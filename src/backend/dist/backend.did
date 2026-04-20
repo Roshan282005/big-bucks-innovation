@@ -1,0 +1,324 @@
+type UserPublic = 
+ record {
+   created_at: Timestamp;
+   email: text;
+   name: text;
+   "principal": UserId;
+   role: Role;
+ };
+type UserId = principal;
+type UpdateUserProfilePayload = 
+ record {
+   email: text;
+   name: text;
+ };
+type UpdateTaskPayload = 
+ record {
+   assigned_to: UserId;
+   description: text;
+   due_date: text;
+   priority: TaskPriority;
+   project_id: ProjectId;
+   status: TaskStatus;
+   title: text;
+ };
+type UpdateProjectPayload = 
+ record {
+   budget: nat;
+   client_id: ClientId;
+   description: text;
+   end_date: text;
+   name: text;
+   owner_principal: UserId;
+   progress: nat;
+   start_date: text;
+   status: ProjectStatus;
+ };
+type UpdateLeadPayload = 
+ record {
+   company: text;
+   email: text;
+   name: text;
+   notes: text;
+   phone: text;
+   source: text;
+   status: LeadStatus;
+ };
+type UpdateJobPostingPayload = 
+ record {
+   department: text;
+   description: text;
+   is_active: bool;
+   job_type: JobType;
+   location: text;
+   requirements: text;
+   title: text;
+ };
+type UpdateClientPayload = 
+ record {
+   company_name: text;
+   contact_name: text;
+   email: text;
+   phone: text;
+   status: ClientStatus;
+ };
+type Timestamp = int;
+type TaskStatus = 
+ variant {
+   Done;
+   InProgress;
+   ToDo;
+ };
+type TaskPublic = 
+ record {
+   assigned_to: UserId;
+   created_at: Timestamp;
+   description: text;
+   due_date: text;
+   id: TaskId;
+   priority: TaskPriority;
+   project_id: ProjectId;
+   status: TaskStatus;
+   title: text;
+ };
+type TaskPriority = 
+ variant {
+   High;
+   Low;
+   Medium;
+ };
+type TaskId = nat;
+type Role = 
+ variant {
+   admin;
+   member;
+ };
+type ProjectStatus = 
+ variant {
+   Completed;
+   InProgress;
+   OnHold;
+   Planning;
+ };
+type ProjectPublic = 
+ record {
+   budget: nat;
+   client_id: ClientId;
+   created_at: Timestamp;
+   description: text;
+   end_date: text;
+   id: ProjectId;
+   name: text;
+   owner_principal: UserId;
+   progress: nat;
+   start_date: text;
+   status: ProjectStatus;
+ };
+type ProjectId = nat;
+type PaginatedResult_6 = 
+ record {
+   items: vec ClientPublic;
+   total: nat;
+ };
+type PaginatedResult_5 = 
+ record {
+   items: vec ContactSubmission;
+   total: nat;
+ };
+type PaginatedResult_4 = 
+ record {
+   items: vec JobPostingPublic;
+   total: nat;
+ };
+type PaginatedResult_3 = 
+ record {
+   items: vec LeadPublic;
+   total: nat;
+ };
+type PaginatedResult_2 = 
+ record {
+   items: vec ProjectPublic;
+   total: nat;
+ };
+type PaginatedResult_1 = 
+ record {
+   items: vec TaskPublic;
+   total: nat;
+ };
+type PaginatedResult = 
+ record {
+   items: vec UserPublic;
+   total: nat;
+ };
+type LeadStatus = 
+ variant {
+   Closed;
+   Contacted;
+   New;
+   Qualified;
+ };
+type LeadPublic = 
+ record {
+   company: text;
+   created_at: Timestamp;
+   email: text;
+   id: LeadId;
+   name: text;
+   notes: text;
+   phone: text;
+   source: text;
+   status: LeadStatus;
+   updated_at: Timestamp;
+ };
+type LeadId = nat;
+type JobType = 
+ variant {
+   Contract;
+   FullTime;
+   PartTime;
+ };
+type JobPostingPublic = 
+ record {
+   created_at: Timestamp;
+   department: text;
+   description: text;
+   id: JobPostingId;
+   is_active: bool;
+   job_type: JobType;
+   location: text;
+   requirements: text;
+   title: text;
+ };
+type JobPostingId = nat;
+type CreateTaskPayload = 
+ record {
+   assigned_to: UserId;
+   description: text;
+   due_date: text;
+   priority: TaskPriority;
+   project_id: ProjectId;
+   status: TaskStatus;
+   title: text;
+ };
+type CreateProjectPayload = 
+ record {
+   budget: nat;
+   client_id: ClientId;
+   description: text;
+   end_date: text;
+   name: text;
+   owner_principal: UserId;
+   progress: nat;
+   start_date: text;
+   status: ProjectStatus;
+ };
+type CreateLeadPayload = 
+ record {
+   company: text;
+   email: text;
+   name: text;
+   notes: text;
+   phone: text;
+   source: text;
+   status: LeadStatus;
+ };
+type CreateJobPostingPayload = 
+ record {
+   department: text;
+   description: text;
+   is_active: bool;
+   job_type: JobType;
+   location: text;
+   requirements: text;
+   title: text;
+ };
+type CreateContactSubmissionPayload = 
+ record {
+   company: text;
+   email: text;
+   message: text;
+   name: text;
+   phone: text;
+ };
+type CreateClientPayload = 
+ record {
+   company_name: text;
+   contact_name: text;
+   email: text;
+   phone: text;
+   status: ClientStatus;
+ };
+type ContactSubmissionId = nat;
+type ContactSubmission = 
+ record {
+   company: text;
+   created_at: Timestamp;
+   email: text;
+   id: ContactSubmissionId;
+   message: text;
+   name: text;
+   phone: text;
+ };
+type ClientStatus = 
+ variant {
+   Active;
+   Inactive;
+   Prospect;
+ };
+type ClientPublic = 
+ record {
+   company_name: text;
+   contact_name: text;
+   created_at: Timestamp;
+   email: text;
+   id: ClientId;
+   phone: text;
+   status: ClientStatus;
+ };
+type ClientId = nat;
+service : {
+  createClient: (payload: CreateClientPayload) -> (ClientPublic);
+  createJobPosting: (payload: CreateJobPostingPayload) -> (JobPostingPublic);
+  createLead: (payload: CreateLeadPayload) -> (LeadPublic);
+  createProject: (payload: CreateProjectPayload) -> (ProjectPublic);
+  createTask: (payload: CreateTaskPayload) -> (TaskPublic);
+  deleteClient: (id: ClientId) -> (bool);
+  deleteContactSubmission: (id: ContactSubmissionId) -> (bool);
+  deleteJobPosting: (id: JobPostingId) -> (bool);
+  deleteLead: (id: LeadId) -> (bool);
+  deleteProject: (id: ProjectId) -> (bool);
+  deleteTask: (id: TaskId) -> (bool);
+  getClient: (id: ClientId) -> (opt ClientPublic) query;
+  getContactSubmission: (id: ContactSubmissionId) ->
+   (opt ContactSubmission) query;
+  getJobPosting: (id: JobPostingId) -> (opt JobPostingPublic) query;
+  getLead: (id: LeadId) -> (opt LeadPublic) query;
+  getMe: () -> (opt UserPublic) query;
+  getProject: (id: ProjectId) -> (opt ProjectPublic) query;
+  getTask: (id: TaskId) -> (opt TaskPublic) query;
+  getUser: ("principal": UserId) -> (opt UserPublic) query;
+  listClients: (statusFilter: opt ClientStatus, offset: nat, limit: nat) ->
+   (PaginatedResult_6) query;
+  listContactSubmissions: (offset: nat, limit: nat) ->
+   (PaginatedResult_5) query;
+  listJobPostings: (activeOnly: opt bool, offset: nat, limit: nat) ->
+   (PaginatedResult_4) query;
+  listLeads: (statusFilter: opt LeadStatus, offset: nat, limit: nat) ->
+   (PaginatedResult_3) query;
+  listProjects: (statusFilter: opt ProjectStatus, offset: nat, limit: 
+   nat) -> (PaginatedResult_2) query;
+  listTasks: (statusFilter: opt TaskStatus, offset: nat, limit: nat) ->
+   (PaginatedResult_1) query;
+  listUsers: (offset: nat, limit: nat) -> (PaginatedResult) query;
+  registerOrUpdateMe: (name: text, email: text) -> (UserPublic);
+  setUserRole: ("principal": UserId, role: Role) -> (bool);
+  submitContactForm: (payload: CreateContactSubmissionPayload) ->
+   (ContactSubmission);
+  updateClient: (id: ClientId, payload: UpdateClientPayload) -> (bool);
+  updateJobPosting: (id: JobPostingId, payload: UpdateJobPostingPayload) ->
+   (bool);
+  updateLead: (id: LeadId, payload: UpdateLeadPayload) -> (bool);
+  updateMyProfile: (payload: UpdateUserProfilePayload) -> (bool);
+  updateProject: (id: ProjectId, payload: UpdateProjectPayload) -> (bool);
+  updateTask: (id: TaskId, payload: UpdateTaskPayload) -> (bool);
+}

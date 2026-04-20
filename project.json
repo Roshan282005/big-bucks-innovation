@@ -1,0 +1,25 @@
+{
+  "overview": "Full-stack company website and CRM dashboard for BIG BUCKS INNOVATION PVT LTD — featuring an animated public marketing site, a Bosch-style mega menu, and a complete authenticated CRM for managing leads, clients, projects, and tasks.",
+  "features": [
+    "Animated landing page with glowing hero (CSS/Framer Motion)",
+    "Mega menu navbar across all public pages",
+    "Products, About, Careers (job board), and Contact pages",
+    "Internet Identity authentication with protected dashboard",
+    "CRM dashboard: Leads, Clients, Projects, Tasks management",
+    "Reports page with charts and pipeline visualization",
+    "Dark mode toggle with persistence",
+    "Mobile-first responsive design"
+  ],
+  "category": "productivity",
+  "tags": [
+    "crm",
+    "company-website",
+    "dashboard",
+    "enterprise",
+    "motoko",
+    "react",
+    "tailwind",
+    "framer-motion"
+  ],
+  "last_updated": "2026-04-20T02:35:58.369Z"
+}
