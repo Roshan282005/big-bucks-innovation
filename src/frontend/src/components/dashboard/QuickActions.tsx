@@ -17,41 +17,37 @@ interface QuickAction {
     | "/dashboard/clients"
     | "/dashboard/projects"
     | "/dashboard/tasks";
-  color: string;
+  variant: "primary" | "accent";
   ocid: string;
 }
 
 const actions: QuickAction[] = [
   {
-    label: "Add Lead",
+    label: "New Lead",
     icon: UserPlus,
     href: "/dashboard/leads",
-    color:
-      "text-primary bg-primary/10 hover:bg-primary/20 border-primary/20 hover:border-primary/40",
+    variant: "primary",
     ocid: "dashboard.quick_add_lead",
   },
   {
-    label: "Add Client",
+    label: "New Client",
     icon: Building2,
     href: "/dashboard/clients",
-    color:
-      "text-accent bg-accent/10 hover:bg-accent/20 border-accent/20 hover:border-accent/40",
+    variant: "primary",
     ocid: "dashboard.quick_add_client",
   },
   {
     label: "New Project",
     icon: FolderKanban,
     href: "/dashboard/projects",
-    color:
-      "text-primary bg-primary/10 hover:bg-primary/20 border-primary/20 hover:border-primary/40",
+    variant: "primary",
     ocid: "dashboard.quick_new_project",
   },
   {
     label: "New Task",
     icon: ListTodo,
     href: "/dashboard/tasks",
-    color:
-      "text-accent bg-accent/10 hover:bg-accent/20 border-accent/20 hover:border-accent/40",
+    variant: "accent",
     ocid: "dashboard.quick_new_task",
   },
 ];
@@ -62,24 +58,36 @@ export function QuickActions() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2, duration: 0.4 }}
-      className="flex flex-wrap gap-2.5"
+      className="flex flex-wrap gap-2.5 p-4 bg-card rounded-xl border border-border"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
       data-ocid="dashboard.quick_actions_section"
     >
-      <span className="flex items-center gap-1.5 text-xs text-muted-foreground self-center pr-1">
-        <Plus className="w-3.5 h-3.5" />
-        Quick Actions
+      <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground self-center pr-2">
+        <Plus className="w-3.5 h-3.5 text-primary" />
+        Quick Add
       </span>
       {actions.map((action) => (
         <Link key={action.label} to={action.href}>
-          <Button
-            size="sm"
-            variant="outline"
-            className={`h-8 text-xs font-medium border transition-smooth gap-1.5 ${action.color}`}
-            data-ocid={action.ocid}
-          >
-            <action.icon className="w-3.5 h-3.5" />
-            {action.label}
-          </Button>
+          {action.variant === "primary" ? (
+            <Button
+              size="sm"
+              className="h-8 text-xs font-semibold gap-1.5 bg-primary text-white hover:bg-primary/90 transition-smooth"
+              data-ocid={action.ocid}
+            >
+              <action.icon className="w-3.5 h-3.5" />
+              {action.label}
+            </Button>
+          ) : (
+            <Button
+              size="sm"
+              variant="outline"
+              className="h-8 text-xs font-semibold gap-1.5 border-amber-400 text-amber-600 hover:bg-amber-50 transition-smooth"
+              data-ocid={action.ocid}
+            >
+              <action.icon className="w-3.5 h-3.5" />
+              {action.label}
+            </Button>
+          )}
         </Link>
       ))}
     </motion.div>

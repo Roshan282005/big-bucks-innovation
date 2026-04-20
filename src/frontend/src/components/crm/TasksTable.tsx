@@ -23,15 +23,15 @@ const STATUS_LABEL: Record<TaskStatus, string> = {
 };
 
 const STATUS_CLASS: Record<TaskStatus, string> = {
-  ToDo: "bg-muted text-muted-foreground border-0",
-  InProgress: "bg-primary/10 text-primary border-0",
-  Done: "bg-chart-2/10 text-chart-2 border-0",
+  ToDo: "bg-muted text-muted-foreground border-border",
+  InProgress: "bg-blue-50 text-primary border-blue-200",
+  Done: "bg-emerald-50 text-emerald-600 border-emerald-200",
 };
 
 const PRIORITY_CLASS: Record<TaskPriority, string> = {
-  Low: "bg-chart-2/10 text-chart-2 border-0",
-  Medium: "bg-accent/10 text-accent border-0",
-  High: "bg-destructive/10 text-destructive border-0",
+  Low: "bg-muted text-muted-foreground border-border",
+  Medium: "bg-amber-50 text-amber-600 border-amber-200",
+  High: "bg-red-50 text-red-500 border-red-200",
 };
 
 interface TasksTableProps {
@@ -69,11 +69,17 @@ export function TasksTable({
   onMarkComplete,
 }: TasksTableProps) {
   return (
-    <div className="bg-card border border-border rounded-xl overflow-hidden">
+    <div
+      className="bg-card border border-border rounded-xl overflow-hidden"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+    >
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border bg-muted/40">
+            <tr
+              className="border-b border-border"
+              style={{ backgroundColor: "#F3F4F6" }}
+            >
               {(
                 [
                   "Task",
@@ -105,10 +111,10 @@ export function TasksTable({
                   data-ocid="tasks.empty_state"
                 >
                   <div className="flex flex-col items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                      <CheckCircle2 className="w-6 h-6 text-muted-foreground" />
+                    <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
+                      <CheckCircle2 className="w-6 h-6 text-primary" />
                     </div>
-                    <p className="text-muted-foreground font-medium">
+                    <p className="text-foreground font-medium">
                       No tasks found
                     </p>
                     <p className="text-muted-foreground/60 text-xs">
@@ -126,10 +132,21 @@ export function TasksTable({
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.04, duration: 0.2 }}
-                    className={`hover:bg-muted/20 transition-smooth${overdue ? " bg-destructive/5" : ""}`}
+                    className={`transition-smooth${overdue ? " bg-red-50/40" : ""}`}
+                    onMouseEnter={(e) => {
+                      if (!overdue)
+                        (
+                          e.currentTarget as HTMLTableRowElement
+                        ).style.backgroundColor = "#EFF6FF";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!overdue)
+                        (
+                          e.currentTarget as HTMLTableRowElement
+                        ).style.backgroundColor = "";
+                    }}
                     data-ocid={`tasks.item.${i + 1}`}
                   >
-                    {/* Task title */}
                     <td className="px-4 py-3 max-w-[260px]">
                       <div className="flex items-start gap-2.5">
                         <button
@@ -140,7 +157,7 @@ export function TasksTable({
                           className="mt-0.5 flex-shrink-0 text-muted-foreground hover:text-primary transition-smooth"
                         >
                           {task.status === "Done" ? (
-                            <CheckCircle2 className="w-4 h-4 text-chart-2" />
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                           ) : (
                             <Circle className="w-4 h-4" />
                           )}
@@ -157,23 +174,21 @@ export function TasksTable({
                             </p>
                           )}
                           {overdue && (
-                            <span className="text-[10px] font-semibold text-destructive">
+                            <span className="text-[10px] font-semibold text-red-500">
                               OVERDUE
                             </span>
                           )}
                         </div>
                       </div>
                     </td>
-                    {/* Project */}
                     <td className="px-4 py-3 text-foreground/70 hidden md:table-cell">
                       <span className="truncate block max-w-[120px]">
                         {task.projectId || "—"}
                       </span>
                     </td>
-                    {/* Assigned to */}
                     <td className="px-4 py-3 hidden md:table-cell">
                       <div className="flex items-center gap-2 min-w-0">
-                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
                           <span className="text-primary text-[10px] font-bold">
                             {task.assigneeId
                               ? task.assigneeId.charAt(0).toUpperCase()
@@ -185,31 +200,27 @@ export function TasksTable({
                         </span>
                       </div>
                     </td>
-                    {/* Due date */}
                     <td className="px-4 py-3 hidden lg:table-cell">
                       <span
-                        className={`text-xs${overdue ? " text-destructive font-semibold" : " text-foreground/60"}`}
+                        className={`text-xs${overdue ? " text-red-500 font-semibold" : " text-foreground/60"}`}
                       >
                         {task.dueDate || "—"}
                       </span>
                     </td>
-                    {/* Status */}
                     <td className="px-4 py-3">
                       <Badge
-                        className={`text-[10px] px-2 ${STATUS_CLASS[task.status]}`}
+                        className={`text-[10px] px-2 border ${STATUS_CLASS[task.status]}`}
                       >
                         {STATUS_LABEL[task.status]}
                       </Badge>
                     </td>
-                    {/* Priority */}
                     <td className="px-4 py-3">
                       <Badge
-                        className={`text-[10px] px-2 ${PRIORITY_CLASS[task.priority]}`}
+                        className={`text-[10px] px-2 border ${PRIORITY_CLASS[task.priority]}`}
                       >
                         {task.priority}
                       </Badge>
                     </td>
-                    {/* Actions */}
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-1">
                         <Button
@@ -218,7 +229,7 @@ export function TasksTable({
                           aria-label="Edit task"
                           data-ocid={`tasks.edit_button.${i + 1}`}
                           onClick={() => onEdit(task)}
-                          className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground"
+                          className="h-7 w-7 p-0 text-muted-foreground hover:text-primary hover:bg-blue-50"
                         >
                           <Pencil className="w-3.5 h-3.5" />
                         </Button>
@@ -229,13 +240,17 @@ export function TasksTable({
                               variant="ghost"
                               aria-label="Delete task"
                               data-ocid={`tasks.delete_button.${i + 1}`}
-                              className="h-7 w-7 p-0 text-muted-foreground hover:text-destructive"
+                              className="h-7 w-7 p-0 text-muted-foreground hover:text-red-500 hover:bg-red-50"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
                             </Button>
                           </AlertDialogTrigger>
                           <AlertDialogContent
-                            className="bg-card border-border"
+                            className="bg-white border-border"
+                            style={{
+                              boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                              borderRadius: "16px",
+                            }}
                             data-ocid="tasks.confirm_dialog"
                           >
                             <AlertDialogHeader>
@@ -250,14 +265,14 @@ export function TasksTable({
                             <AlertDialogFooter>
                               <AlertDialogCancel
                                 data-ocid="tasks.cancel_button"
-                                className="border-border"
+                                className="border-border text-muted-foreground"
                               >
                                 Cancel
                               </AlertDialogCancel>
                               <AlertDialogAction
                                 data-ocid="tasks.confirm_button"
                                 onClick={() => onDelete(task.id)}
-                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                className="bg-red-500 text-white hover:bg-red-600"
                               >
                                 Delete
                               </AlertDialogAction>

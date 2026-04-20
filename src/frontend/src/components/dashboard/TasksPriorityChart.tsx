@@ -2,25 +2,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "motion/react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
+const BLUE = "#2563EB";
+const GOLD = "#F59E0B";
+
 const priorityData = [
-  {
-    name: "High",
-    value: 15,
-    fill: "oklch(0.78 0.17 70)",
-    textColor: "text-accent",
-  },
-  {
-    name: "Medium",
-    value: 20,
-    fill: "oklch(0.72 0.18 190)",
-    textColor: "text-primary",
-  },
-  {
-    name: "Low",
-    value: 8,
-    fill: "oklch(0.35 0.02 260)",
-    textColor: "text-muted-foreground",
-  },
+  { name: "High", value: 15, fill: GOLD },
+  { name: "Medium", value: 20, fill: BLUE },
+  { name: "Low", value: 8, fill: "#E5E7EB" },
 ];
 
 const total = priorityData.reduce((sum, d) => sum + d.value, 0);
@@ -35,7 +23,10 @@ function CustomTooltip({ active, payload }: TooltipProps) {
   const item = payload[0];
   const pct = Math.round((item.value / total) * 100);
   return (
-    <div className="bg-card border border-border rounded-lg px-3 py-2 shadow-lg text-xs">
+    <div
+      className="bg-white border border-border rounded-lg px-3 py-2 text-xs"
+      style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.08)" }}
+    >
       <div className="flex items-center gap-2">
         <span
           className="w-2 h-2 rounded-full"
@@ -61,7 +52,10 @@ export function TasksPriorityChart() {
       transition={{ delay: 0.38, duration: 0.45 }}
       className="h-full"
     >
-      <Card className="bg-card border-border surface-elevated h-full">
+      <Card
+        className="bg-card border-border h-full"
+        style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+      >
         <CardHeader className="pb-2">
           <CardTitle className="font-display text-base text-foreground">
             Tasks by Priority
@@ -82,7 +76,8 @@ export function TasksPriorityChart() {
                   outerRadius={82}
                   paddingAngle={3}
                   dataKey="value"
-                  strokeWidth={0}
+                  strokeWidth={2}
+                  stroke="#ffffff"
                 >
                   {priorityData.map((entry) => (
                     <Cell key={entry.name} fill={entry.fill} />
@@ -93,7 +88,7 @@ export function TasksPriorityChart() {
             </ResponsiveContainer>
             {/* Center label */}
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <span className="font-display font-bold text-2xl text-foreground leading-none">
+              <span className="font-display font-bold text-2xl text-primary leading-none">
                 {total}
               </span>
               <span className="text-[10px] text-muted-foreground mt-0.5">

@@ -38,7 +38,7 @@ const stats: StatCard[] = [
     sub: "18 new this week",
   },
   {
-    label: "Total Clients",
+    label: "Active Clients",
     value: "38",
     change: "+5%",
     trend: "up",
@@ -56,7 +56,7 @@ const stats: StatCard[] = [
     sub: "4 due this week",
   },
   {
-    label: "Open Tasks",
+    label: "Pending Tasks",
     value: "43",
     change: "7 overdue",
     trend: "down",
@@ -80,10 +80,18 @@ export function StatsCards() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.07, duration: 0.4 }}
           data-ocid={`dashboard.stat.${i + 1}`}
+          whileHover={{ y: -2 }}
         >
           <Link to={stat.href}>
-            <Card className="bg-card border-border hover:border-primary/40 transition-smooth cursor-pointer group surface-elevated">
-              <CardContent className="p-4 sm:p-5">
+            <Card
+              className="bg-card border-border transition-smooth cursor-pointer group overflow-hidden relative"
+              style={{
+                boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+              }}
+            >
+              {/* Blue left border accent */}
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl" />
+              <CardContent className="p-4 sm:p-5 pl-5 sm:pl-6">
                 <div className="flex items-start justify-between mb-3">
                   <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-smooth">
                     <stat.icon className="w-[18px] h-[18px] text-primary" />
@@ -91,9 +99,9 @@ export function StatsCards() {
                   <span
                     className={`text-xs font-semibold flex items-center gap-0.5 px-2 py-0.5 rounded-full ${
                       stat.trend === "up"
-                        ? "bg-emerald-500/10 text-emerald-400"
+                        ? "bg-emerald-50 text-emerald-600"
                         : stat.trend === "down"
-                          ? "bg-destructive/10 text-destructive"
+                          ? "bg-red-50 text-red-500"
                           : "bg-muted text-muted-foreground"
                     }`}
                   >
@@ -105,7 +113,7 @@ export function StatsCards() {
                     {stat.change}
                   </span>
                 </div>
-                <p className="font-display font-bold text-3xl text-foreground leading-none">
+                <p className="font-display font-bold text-3xl text-primary leading-none">
                   {stat.value}
                 </p>
                 <p className="text-muted-foreground text-xs font-medium mt-1.5">
@@ -115,7 +123,7 @@ export function StatsCards() {
                   <p
                     className={`text-[10px] mt-1.5 flex items-center gap-1 ${
                       stat.trend === "down"
-                        ? "text-destructive/70"
+                        ? "text-red-400"
                         : "text-muted-foreground"
                     }`}
                   >

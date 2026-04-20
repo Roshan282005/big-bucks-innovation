@@ -37,12 +37,9 @@ import { Plus, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
 
-// ── Sample principal stub ──────────────────────────────────────────────────
 function stubPrincipal(text: string): UserId {
   return { toString: () => text } as unknown as UserId;
 }
-
-// ── Sample fallback data ───────────────────────────────────────────────────
 
 const SAMPLE_PROJECTS: ProjectPublic[] = [
   {
@@ -112,8 +109,6 @@ const SAMPLE_PROJECTS: ProjectPublic[] = [
   },
 ];
 
-// ── Page ──────────────────────────────────────────────────────────────────
-
 export function ProjectsPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -140,8 +135,6 @@ export function ProjectsPage() {
     });
   }, [projects, search, statusFilter]);
 
-  // ── Open/close modal ────────────────────────────────────────────────
-
   function openCreate() {
     setEditProject(null);
     setModalOpen(true);
@@ -156,8 +149,6 @@ export function ProjectsPage() {
     setModalOpen(false);
     setEditProject(null);
   }
-
-  // ── Save handler ────────────────────────────────────────────────────
 
   async function handleSave(data: ProjectFormData) {
     const payload = {
@@ -186,8 +177,6 @@ export function ProjectsPage() {
     }
   }
 
-  // ── Delete handler ──────────────────────────────────────────────────
-
   async function confirmDelete() {
     if (!deleteTarget) return;
     try {
@@ -206,6 +195,27 @@ export function ProjectsPage() {
     <DashboardLayout title="Projects">
       <div className="space-y-5">
         {/* Header row */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="font-display font-bold text-xl text-foreground">
+              Projects
+            </h2>
+            <p className="text-sm text-muted-foreground mt-0.5">
+              {projects.length} total projects
+            </p>
+          </div>
+          <Button
+            data-ocid="projects.add_button"
+            onClick={openCreate}
+            className="bg-primary text-white hover:bg-primary/90 gap-1.5"
+            style={{ boxShadow: "0 4px 12px rgba(37,99,235,0.25)" }}
+          >
+            <Plus className="w-4 h-4" />
+            New Project
+          </Button>
+        </div>
+
+        {/* Search + filter */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative flex-1 min-w-44">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
@@ -253,27 +263,34 @@ export function ProjectsPage() {
               </SelectItem>
             </SelectContent>
           </Select>
-
-          <Button
-            data-ocid="projects.add_button"
-            onClick={openCreate}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 gap-1.5"
-          >
-            <Plus className="w-4 h-4" />
-            New Project
-          </Button>
         </div>
 
-        {/* Stats chips */}
+        {/* Status filter pills */}
         <div className="flex flex-wrap gap-2">
           {(
             [
-              { status: ProjectStatus.InProgress, label: "In Progress" },
-              { status: ProjectStatus.Planning, label: "Planning" },
-              { status: ProjectStatus.OnHold, label: "On Hold" },
-              { status: ProjectStatus.Completed, label: "Completed" },
+              {
+                status: ProjectStatus.InProgress,
+                label: "In Progress",
+                color: "text-primary bg-blue-50 border-blue-200",
+              },
+              {
+                status: ProjectStatus.Planning,
+                label: "Planning",
+                color: "text-blue-400 bg-blue-50/50 border-blue-100",
+              },
+              {
+                status: ProjectStatus.OnHold,
+                label: "On Hold",
+                color: "text-amber-600 bg-amber-50 border-amber-200",
+              },
+              {
+                status: ProjectStatus.Completed,
+                label: "Completed",
+                color: "text-emerald-600 bg-emerald-50 border-emerald-200",
+              },
             ] as const
-          ).map(({ status, label }) => {
+          ).map(({ status, label, color }) => {
             const count = projects.filter((p) => p.status === status).length;
             return (
               <button
@@ -283,9 +300,9 @@ export function ProjectsPage() {
                 onClick={() =>
                   setStatusFilter((prev) => (prev === status ? "all" : status))
                 }
-                className={`px-3 py-1 rounded-full text-xs font-medium border transition-smooth ${
+                className={`px-3 py-1 rounded-full text-xs font-semibold border transition-smooth ${
                   statusFilter === status
-                    ? "bg-primary/15 text-primary border-primary/40"
+                    ? color
                     : "bg-muted/40 text-muted-foreground border-border hover:bg-muted"
                 }`}
               >
@@ -308,7 +325,6 @@ export function ProjectsPage() {
         )}
       </div>
 
-      {/* Create / Edit modal */}
       <ProjectModal
         open={modalOpen}
         project={editProject}
@@ -317,14 +333,17 @@ export function ProjectsPage() {
         isSaving={isSaving}
       />
 
-      {/* Delete confirmation */}
       <AlertDialog
         open={!!deleteTarget}
         onOpenChange={(v) => !v && setDeleteTarget(null)}
       >
         <AlertDialogContent
           data-ocid="projects.delete_dialog"
-          className="bg-card border-border"
+          className="bg-white border-border"
+          style={{
+            boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+            borderRadius: "16px",
+          }}
         >
           <AlertDialogHeader>
             <AlertDialogTitle className="text-foreground">
@@ -341,7 +360,7 @@ export function ProjectsPage() {
           <AlertDialogFooter>
             <AlertDialogCancel
               data-ocid="projects.delete_cancel_button"
-              className="border-border text-foreground hover:bg-muted"
+              className="border-border text-muted-foreground"
             >
               Cancel
             </AlertDialogCancel>
@@ -349,7 +368,7 @@ export function ProjectsPage() {
               data-ocid="projects.delete_confirm_button"
               onClick={confirmDelete}
               disabled={deleteProject.isPending}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="bg-red-500 text-white hover:bg-red-600"
             >
               {deleteProject.isPending ? "Deleting…" : "Delete"}
             </AlertDialogAction>

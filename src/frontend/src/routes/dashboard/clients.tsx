@@ -31,7 +31,7 @@ import {
   useDeleteClient,
   useUpdateClient,
 } from "@/hooks/useClients";
-import { Plus, Search, Users } from "lucide-react";
+import { Building2, Plus, Search, Users } from "lucide-react";
 import { useMemo, useState } from "react";
 
 type StatusFilter = "all" | ClientStatus;
@@ -102,6 +102,27 @@ export function ClientsPage() {
   return (
     <DashboardLayout title="Clients">
       <div className="space-y-6">
+        {/* Page header */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="font-display font-bold text-xl text-foreground">
+              Clients
+            </h2>
+            <p className="text-sm text-muted-foreground mt-0.5">
+              Manage your client relationships
+            </p>
+          </div>
+          <Button
+            data-ocid="clients.add_button"
+            onClick={openCreate}
+            className="bg-primary text-white hover:bg-primary/90 gap-1.5"
+            style={{ boxShadow: "0 4px 12px rgba(37,99,235,0.25)" }}
+          >
+            <Plus className="w-4 h-4" />
+            Add Client
+          </Button>
+        </div>
+
         {/* Stats row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
@@ -109,37 +130,46 @@ export function ClientsPage() {
               label: "Total Clients",
               value: clients.length,
               icon: Users,
-              accent: "text-primary",
+              color: "text-primary",
+              bg: "bg-blue-50",
             },
             {
               label: "Active",
               value: totalByStatus.Active,
-              icon: Users,
-              accent: "text-chart-2",
+              icon: Building2,
+              color: "text-emerald-600",
+              bg: "bg-emerald-50",
             },
             {
               label: "Inactive",
               value: totalByStatus.Inactive,
               icon: Users,
-              accent: "text-muted-foreground",
+              color: "text-muted-foreground",
+              bg: "bg-muted",
             },
             {
               label: "Prospect",
               value: totalByStatus.Prospect,
               icon: Users,
-              accent: "text-accent",
+              color: "text-amber-600",
+              bg: "bg-amber-50",
             },
           ].map((stat) => (
             <div
               key={stat.label}
               className="bg-card border border-border rounded-xl px-4 py-3 flex items-center gap-3"
+              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
             >
-              <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
-                <stat.icon className={`w-4 h-4 ${stat.accent}`} />
+              <div
+                className={`w-8 h-8 rounded-lg ${stat.bg} flex items-center justify-center flex-shrink-0`}
+              >
+                <stat.icon className={`w-4 h-4 ${stat.color}`} />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">{stat.label}</p>
-                <p className="text-lg font-display font-semibold text-foreground">
+                <p
+                  className={`text-lg font-display font-semibold ${stat.color}`}
+                >
                   {stat.value}
                 </p>
               </div>
@@ -177,15 +207,6 @@ export function ClientsPage() {
               <SelectItem value={ClientStatus.Prospect}>Prospect</SelectItem>
             </SelectContent>
           </Select>
-
-          <Button
-            data-ocid="clients.add_button"
-            onClick={openCreate}
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
-          >
-            <Plus className="w-4 h-4 mr-1.5" />
-            Add Client
-          </Button>
         </div>
 
         {/* Table */}
@@ -197,7 +218,6 @@ export function ClientsPage() {
         />
       </div>
 
-      {/* Create / Edit modal */}
       <ClientModal
         open={modalOpen}
         client={editingClient}
@@ -206,13 +226,16 @@ export function ClientsPage() {
         onSave={handleSave}
       />
 
-      {/* Delete confirmation */}
       <AlertDialog
         open={!!deleteTarget}
         onOpenChange={(o) => !o && setDeleteTarget(null)}
       >
         <AlertDialogContent
-          className="bg-card border-border"
+          className="bg-white border-border"
+          style={{
+            boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+            borderRadius: "16px",
+          }}
           data-ocid="clients.delete_dialog"
         >
           <AlertDialogHeader>
@@ -230,7 +253,7 @@ export function ClientsPage() {
           <AlertDialogFooter>
             <AlertDialogCancel
               data-ocid="clients.cancel_button"
-              className="border-border"
+              className="border-border text-muted-foreground"
               onClick={() => setDeleteTarget(null)}
             >
               Cancel
@@ -239,7 +262,7 @@ export function ClientsPage() {
               data-ocid="clients.confirm_button"
               onClick={confirmDelete}
               disabled={deleteMutation.isPending}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="bg-red-500 text-white hover:bg-red-600"
             >
               {deleteMutation.isPending ? "Deleting…" : "Delete Client"}
             </AlertDialogAction>

@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -122,18 +123,13 @@ export function ContactForm({ defaultSubject }: ContactFormProps) {
       <motion.div
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-card border border-border rounded-2xl p-10 flex flex-col items-center text-center gap-5"
+        className="bg-white border border-border rounded-2xl p-10 flex flex-col items-center text-center gap-5"
+        style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
         data-ocid="contact.success_state"
       >
-        <div
-          className="w-16 h-16 rounded-full flex items-center justify-center"
-          style={{
-            background: "oklch(0.72 0.18 190 / 0.12)",
-            border: "1px solid oklch(0.72 0.18 190 / 0.3)",
-          }}
-        >
+        <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
           <svg
-            className="w-8 h-8"
+            className="w-8 h-8 text-primary"
             viewBox="0 0 24 24"
             fill="none"
             role="img"
@@ -142,7 +138,7 @@ export function ContactForm({ defaultSubject }: ContactFormProps) {
             <title>Success checkmark</title>
             <path
               d="M5 13l4 4L19 7"
-              stroke="oklch(0.72 0.18 190)"
+              stroke="#2563EB"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -176,10 +172,20 @@ export function ContactForm({ defaultSubject }: ContactFormProps) {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       onSubmit={handleSubmit}
-      className="bg-card border border-border rounded-2xl p-7 space-y-5"
+      className="bg-white border border-border rounded-2xl p-7 space-y-5"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
       data-ocid="contact.form"
       noValidate
     >
+      <div className="pb-2 border-b border-border/60">
+        <Badge
+          variant="outline"
+          className="border-primary/30 text-primary bg-primary/5 text-xs uppercase tracking-widest"
+        >
+          Send a Message
+        </Badge>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {/* Name */}
         <div className="space-y-1.5">
@@ -198,7 +204,7 @@ export function ContactForm({ defaultSubject }: ContactFormProps) {
             onBlur={handleBlur("name")}
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? "name-error" : undefined}
-            className={`bg-background transition-colors duration-200 focus:border-primary/60 ${errors.name ? "border-destructive" : "border-input"}`}
+            className={`bg-background transition-colors duration-200 focus:border-primary focus:ring-1 focus:ring-primary/30 ${errors.name ? "border-destructive" : "border-input"}`}
           />
           {errors.name && touched.name && (
             <p
@@ -229,7 +235,7 @@ export function ContactForm({ defaultSubject }: ContactFormProps) {
             onBlur={handleBlur("email")}
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? "email-error" : undefined}
-            className={`bg-background transition-colors duration-200 focus:border-primary/60 ${errors.email ? "border-destructive" : "border-input"}`}
+            className={`bg-background transition-colors duration-200 focus:border-primary focus:ring-1 focus:ring-primary/30 ${errors.email ? "border-destructive" : "border-input"}`}
           />
           {errors.email && touched.email && (
             <p
@@ -258,10 +264,10 @@ export function ContactForm({ defaultSubject }: ContactFormProps) {
           <Input
             id="contact-phone"
             data-ocid="contact.phone_input"
-            placeholder="+91 98765 43210"
+            placeholder="+91 86678 58430"
             value={form.phone}
             onChange={set("phone")}
-            className="bg-background border-input transition-colors duration-200 focus:border-primary/60"
+            className="bg-background border-input transition-colors duration-200 focus:border-primary focus:ring-1 focus:ring-primary/30"
           />
         </div>
 
@@ -282,7 +288,7 @@ export function ContactForm({ defaultSubject }: ContactFormProps) {
             placeholder="Acme Corp"
             value={form.company}
             onChange={set("company")}
-            className="bg-background border-input transition-colors duration-200 focus:border-primary/60"
+            className="bg-background border-input transition-colors duration-200 focus:border-primary focus:ring-1 focus:ring-primary/30"
           />
         </div>
       </div>
@@ -305,7 +311,7 @@ export function ContactForm({ defaultSubject }: ContactFormProps) {
           rows={5}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : undefined}
-          className={`bg-background resize-none transition-colors duration-200 focus:border-primary/60 ${errors.message ? "border-destructive" : "border-input"}`}
+          className={`bg-background resize-none transition-colors duration-200 focus:border-primary focus:ring-1 focus:ring-primary/30 ${errors.message ? "border-destructive" : "border-input"}`}
         />
         {errors.message && touched.message && (
           <p
@@ -322,10 +328,10 @@ export function ContactForm({ defaultSubject }: ContactFormProps) {
         type="submit"
         data-ocid="contact.submit_button"
         disabled={submitting}
-        className="w-full h-11 font-semibold text-sm"
+        className="w-full h-11 font-semibold text-sm text-white"
         style={{
-          background: submitting ? undefined : "oklch(0.78 0.17 70)",
-          color: "oklch(0.13 0.016 255)",
+          background: submitting ? "#d97706" : "#F59E0B",
+          color: "#111827",
         }}
       >
         {submitting ? (

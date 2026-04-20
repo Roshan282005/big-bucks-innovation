@@ -19,59 +19,57 @@ interface ActivityItem {
   title: string;
   detail: string;
   time: string;
-  type: "lead" | "task" | "client" | "project" | "note";
+  highlighted?: boolean;
 }
 
 const activities: ActivityItem[] = [
   {
     id: 1,
     icon: Plus,
-    iconBg: "bg-primary/10",
+    iconBg: "bg-blue-50",
     iconColor: "text-primary",
     title: "New lead added",
     detail: "Rahul Sharma — TechCorp India",
     time: "2 min ago",
-    type: "lead",
+    highlighted: false,
   },
   {
     id: 2,
     icon: CheckCircle2,
-    iconBg: "bg-emerald-500/10",
-    iconColor: "text-emerald-400",
+    iconBg: "bg-emerald-50",
+    iconColor: "text-emerald-500",
     title: "Task completed",
     detail: "Review security audit report",
     time: "18 min ago",
-    type: "task",
   },
   {
     id: 3,
     icon: UserCheck,
-    iconBg: "bg-accent/10",
-    iconColor: "text-accent",
+    iconBg: "bg-amber-50",
+    iconColor: "text-amber-500",
     title: "Lead qualified",
     detail: "Priya Nair — FinEdge Solutions",
     time: "1 hr ago",
-    type: "lead",
+    highlighted: true,
   },
   {
     id: 4,
     icon: Building2,
-    iconBg: "bg-primary/10",
+    iconBg: "bg-blue-50",
     iconColor: "text-primary",
     title: "Client updated",
     detail: "Profile updated for GovTech Ministry",
     time: "3 hr ago",
-    type: "client",
   },
   {
     id: 5,
     icon: FileText,
-    iconBg: "bg-accent/10",
-    iconColor: "text-accent",
+    iconBg: "bg-amber-50",
+    iconColor: "text-amber-500",
     title: "New project created",
     detail: "AI Infrastructure Rollout — Phase 2",
     time: "5 hr ago",
-    type: "project",
+    highlighted: true,
   },
   {
     id: 6,
@@ -81,17 +79,15 @@ const activities: ActivityItem[] = [
     title: "Note added to lead",
     detail: "Amit Verma — called, demo scheduled",
     time: "Yesterday",
-    type: "note",
   },
   {
     id: 7,
     icon: Users,
-    iconBg: "bg-primary/10",
+    iconBg: "bg-blue-50",
     iconColor: "text-primary",
     title: "Lead converted to client",
     detail: "Sunita Reddy — InnovateMfg Ltd",
     time: "Yesterday",
-    type: "client",
   },
 ];
 
@@ -102,7 +98,10 @@ export function RecentActivity() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.46, duration: 0.45 }}
     >
-      <Card className="bg-card border-border surface-elevated">
+      <Card
+        className="bg-card border-border"
+        style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+      >
         <CardHeader className="pb-3 flex flex-row items-center justify-between">
           <div>
             <CardTitle className="font-display text-base text-foreground">
@@ -112,8 +111,8 @@ export function RecentActivity() {
               Latest actions across your CRM
             </p>
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <Clock className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full">
+            <Clock className="w-3 h-3" />
             Live
           </div>
         </CardHeader>
@@ -128,7 +127,11 @@ export function RecentActivity() {
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 + i * 0.05, duration: 0.3 }}
-                className="flex items-start gap-3.5 px-5 py-3.5 hover:bg-muted/30 transition-smooth"
+                className={`flex items-start gap-3.5 px-5 py-3.5 transition-smooth ${
+                  item.highlighted
+                    ? "bg-amber-50/50 hover:bg-amber-50"
+                    : "hover:bg-blue-50/30"
+                }`}
                 data-ocid={`dashboard.activity.${i + 1}`}
               >
                 <div
@@ -140,7 +143,13 @@ export function RecentActivity() {
                   <p className="text-sm font-medium text-foreground">
                     {item.title}
                   </p>
-                  <p className="text-xs text-muted-foreground truncate mt-0.5">
+                  <p
+                    className={`text-xs truncate mt-0.5 ${
+                      item.highlighted
+                        ? "text-amber-600"
+                        : "text-muted-foreground"
+                    }`}
+                  >
                     {item.detail}
                   </p>
                 </div>

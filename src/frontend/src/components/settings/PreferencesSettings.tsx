@@ -69,13 +69,14 @@ export function PreferencesSettings() {
       {/* Appearance */}
       <section
         className="bg-card border border-border rounded-xl p-5"
+        style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
         data-ocid="preferences.appearance_section"
       >
         <div className="flex items-center gap-2.5 mb-4">
           {theme === "dark" ? (
             <Moon className="w-4 h-4 text-primary" />
           ) : (
-            <Sun className="w-4 h-4 text-accent" />
+            <Sun className="w-4 h-4 text-amber-500" />
           )}
           <h3 className="font-display font-semibold text-sm text-foreground">
             Appearance
@@ -85,13 +86,14 @@ export function PreferencesSettings() {
           <div>
             <p className="text-sm font-medium text-foreground">Dark Mode</p>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Applies across all dashboard pages
+              Applies across all dashboard pages — navy/slate background
             </p>
           </div>
           <Switch
             checked={theme === "dark"}
             onCheckedChange={handleThemeChange}
             data-ocid="preferences.dark_mode_toggle"
+            className="data-[state=checked]:bg-primary"
           />
         </div>
       </section>
@@ -99,6 +101,7 @@ export function PreferencesSettings() {
       {/* Language & Currency */}
       <section
         className="bg-card border border-border rounded-xl p-5"
+        style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
         data-ocid="preferences.locale_section"
       >
         <div className="flex items-center gap-2.5 mb-4">
@@ -119,7 +122,7 @@ export function PreferencesSettings() {
             </div>
             <Select value={language} onValueChange={handleLanguageChange}>
               <SelectTrigger
-                className="w-36 border-border bg-background"
+                className="w-36 border-border bg-white"
                 data-ocid="preferences.language_select"
               >
                 <SelectValue />
@@ -138,7 +141,7 @@ export function PreferencesSettings() {
 
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-2 min-w-0">
-              <DollarSign className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+              <DollarSign className="w-3.5 h-3.5 text-amber-500 shrink-0" />
               <div className="min-w-0">
                 <Label className="text-sm font-medium text-foreground">
                   Currency
@@ -150,7 +153,7 @@ export function PreferencesSettings() {
             </div>
             <Select value={currency} onValueChange={handleCurrencyChange}>
               <SelectTrigger
-                className="w-36 border-border bg-background"
+                className="w-36 border-border bg-white"
                 data-ocid="preferences.currency_select"
               >
                 <SelectValue />
@@ -170,6 +173,7 @@ export function PreferencesSettings() {
       {/* Notifications */}
       <section
         className="bg-card border border-border rounded-xl p-5"
+        style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
         data-ocid="preferences.notifications_section"
       >
         <div className="flex items-center gap-2.5 mb-4">
@@ -218,6 +222,7 @@ export function PreferencesSettings() {
                   checked={notifications[item.key]}
                   onCheckedChange={(v) => handleNotifChange(item.key, v)}
                   data-ocid={`preferences.notif_${item.key}_toggle`}
+                  className="data-[state=checked]:bg-primary"
                 />
               </div>
               {i < arr.length - 1 && <Separator className="bg-border/50" />}

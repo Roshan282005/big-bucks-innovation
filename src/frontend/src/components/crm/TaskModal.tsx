@@ -47,6 +47,11 @@ interface TaskModalProps {
   isSaving?: boolean;
 }
 
+const inputCls =
+  "bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary";
+const labelCls =
+  "text-xs font-semibold text-muted-foreground uppercase tracking-wider";
+
 export function TaskModal({
   open,
   task,
@@ -83,7 +88,11 @@ export function TaskModal({
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent
-        className="bg-card border-border max-w-lg"
+        className="bg-white border-border max-w-lg"
+        style={{
+          boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+          borderRadius: "16px",
+        }}
         data-ocid="tasks.dialog"
       >
         <DialogHeader>
@@ -93,8 +102,8 @@ export function TaskModal({
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-1">
           <div className="space-y-1.5">
-            <Label htmlFor="task-title" className="text-foreground/80 text-xs">
-              Title <span className="text-destructive">*</span>
+            <Label htmlFor="task-title" className={labelCls}>
+              Title <span className="text-red-500">*</span>
             </Label>
             <Input
               id="task-title"
@@ -103,11 +112,11 @@ export function TaskModal({
               value={form.title}
               onChange={(e) => set("title")(e.target.value)}
               required
-              className="bg-background border-border"
+              className={inputCls}
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="task-desc" className="text-foreground/80 text-xs">
+            <Label htmlFor="task-desc" className={labelCls}>
               Description
             </Label>
             <Textarea
@@ -117,15 +126,12 @@ export function TaskModal({
               value={form.description}
               onChange={(e) => set("description")(e.target.value)}
               rows={3}
-              className="bg-background border-border resize-none"
+              className="bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label
-                htmlFor="task-project"
-                className="text-foreground/80 text-xs"
-              >
+              <Label htmlFor="task-project" className={labelCls}>
                 Project
               </Label>
               <Input
@@ -134,14 +140,11 @@ export function TaskModal({
                 placeholder="Project name"
                 value={form.project}
                 onChange={(e) => set("project")(e.target.value)}
-                className="bg-background border-border"
+                className={inputCls}
               />
             </div>
             <div className="space-y-1.5">
-              <Label
-                htmlFor="task-assignee"
-                className="text-foreground/80 text-xs"
-              >
+              <Label htmlFor="task-assignee" className={labelCls}>
                 Assigned To
               </Label>
               <Input
@@ -150,13 +153,13 @@ export function TaskModal({
                 placeholder="Team member name"
                 value={form.assignedTo}
                 onChange={(e) => set("assignedTo")(e.target.value)}
-                className="bg-background border-border"
+                className={inputCls}
               />
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div className="space-y-1.5">
-              <Label htmlFor="task-due" className="text-foreground/80 text-xs">
+              <Label htmlFor="task-due" className={labelCls}>
                 Due Date
               </Label>
               <Input
@@ -165,15 +168,15 @@ export function TaskModal({
                 data-ocid="tasks.modal.duedate_input"
                 value={form.dueDate}
                 onChange={(e) => set("dueDate")(e.target.value)}
-                className="bg-background border-border"
+                className={inputCls}
               />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-foreground/80 text-xs">Status</Label>
+              <Label className={labelCls}>Status</Label>
               <Select value={form.status} onValueChange={set("status")}>
                 <SelectTrigger
                   data-ocid="tasks.modal.status_select"
-                  className="bg-background border-border"
+                  className="bg-white border-border"
                 >
                   <SelectValue />
                 </SelectTrigger>
@@ -185,11 +188,11 @@ export function TaskModal({
               </Select>
             </div>
             <div className="space-y-1.5">
-              <Label className="text-foreground/80 text-xs">Priority</Label>
+              <Label className={labelCls}>Priority</Label>
               <Select value={form.priority} onValueChange={set("priority")}>
                 <SelectTrigger
                   data-ocid="tasks.modal.priority_select"
-                  className="bg-background border-border"
+                  className="bg-white border-border"
                 >
                   <SelectValue />
                 </SelectTrigger>
@@ -207,7 +210,7 @@ export function TaskModal({
               variant="outline"
               onClick={onClose}
               data-ocid="tasks.modal.cancel_button"
-              className="border-border"
+              className="border-border text-muted-foreground hover:text-foreground"
             >
               Cancel
             </Button>
@@ -215,7 +218,7 @@ export function TaskModal({
               type="submit"
               disabled={isSaving || !form.title.trim()}
               data-ocid="tasks.modal.submit_button"
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
+              className="bg-primary text-white hover:bg-primary/90"
             >
               {isSaving ? "Saving…" : task ? "Save Changes" : "Create Task"}
             </Button>

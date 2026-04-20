@@ -6,10 +6,32 @@ import { motion } from "motion/react";
 export function FinalCTA() {
   return (
     <section
-      className="py-20 md:py-28 bg-card border-t border-border"
+      className="py-20 md:py-28 relative overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, oklch(0.45 0.16 264) 0%, oklch(0.38 0.14 264) 100%)",
+      }}
       data-ocid="final_cta.section"
     >
-      <div className="container mx-auto px-4">
+      {/* Subtle dot grid overlay */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
+      {/* Gold orb */}
+      <div
+        className="absolute -top-20 right-0 w-80 h-80 rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, oklch(0.62 0.19 60 / 0.18), transparent 70%)",
+        }}
+      />
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -17,9 +39,9 @@ export function FinalCTA() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
-          {/* Decorative bulb glow */}
+          {/* Icon */}
           <div
-            className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center border border-accent/30 bg-accent/10"
+            className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center border border-white/20 bg-white/10"
             aria-hidden="true"
           >
             <svg
@@ -33,14 +55,14 @@ export function FinalCTA() {
             >
               <path
                 d="M14 3C9.582 3 6 6.582 6 11c0 2.52 1.26 4.739 3.15 6.076V19.5h9.7V17.076C20.74 15.74 22 13.52 22 11c0-4.418-3.582-8-8-8z"
-                fill="oklch(0.78 0.17 70 / 0.9)"
+                fill="oklch(0.62 0.19 60 / 0.95)"
               />
               <line
                 x1="10"
                 y1="21"
                 x2="18"
                 y2="21"
-                stroke="oklch(0.78 0.17 70)"
+                stroke="oklch(0.62 0.19 60)"
                 strokeWidth="1.5"
                 strokeLinecap="round"
               />
@@ -49,17 +71,31 @@ export function FinalCTA() {
                 y1="23.5"
                 x2="17"
                 y2="23.5"
-                stroke="oklch(0.78 0.17 70)"
+                stroke="oklch(0.62 0.19 60)"
                 strokeWidth="1.5"
                 strokeLinecap="round"
               />
             </svg>
           </div>
 
-          <h2 className="font-display font-bold text-3xl md:text-5xl text-foreground mb-5 leading-tight">
-            Ready to <span className="text-gradient-accent">Innovate?</span>
+          <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-5 leading-tight">
+            Ready to{" "}
+            <span
+              style={{
+                background:
+                  "linear-gradient(135deg, oklch(0.62 0.19 60), oklch(0.72 0.17 70))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Innovate?
+            </span>
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl mx-auto">
+          <p
+            className="text-lg leading-relaxed mb-8 max-w-xl mx-auto"
+            style={{ color: "oklch(0.95 0.01 260 / 0.80)" }}
+          >
             Let's build the future together. Reach out to explore custom
             solutions, partnerships, or a live product demo.
           </p>
@@ -69,7 +105,12 @@ export function FinalCTA() {
               <Button
                 data-ocid="final_cta.contact_button"
                 size="lg"
-                className="bg-accent text-accent-foreground hover:bg-accent/90 glow-accent px-8 h-12 font-semibold text-base transition-smooth"
+                className="h-12 px-8 font-semibold text-base transition-smooth text-foreground"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.62 0.19 60), oklch(0.72 0.17 70))",
+                  border: "none",
+                }}
               >
                 Contact Us
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -80,30 +121,41 @@ export function FinalCTA() {
                 data-ocid="final_cta.explore_button"
                 size="lg"
                 variant="outline"
-                className="border-primary/40 text-primary hover:bg-primary/10 px-8 h-12 transition-smooth"
+                className="border-white/30 text-white hover:bg-white/10 px-8 h-12 transition-smooth"
               >
-                Explore Solutions
+                Explore Products
               </Button>
             </Link>
           </div>
 
-          {/* Contact quick info */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground">
+          {/* Contact info */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
             <a
               href="tel:8667858430"
-              className="flex items-center gap-2 hover:text-foreground transition-smooth"
+              className="flex items-center gap-2 transition-smooth"
+              style={{ color: "oklch(0.95 0.01 260 / 0.75)" }}
               data-ocid="final_cta.phone_link"
             >
-              <Phone className="w-3.5 h-3.5 text-primary" />
+              <Phone
+                className="w-3.5 h-3.5"
+                style={{ color: "oklch(0.62 0.19 60)" }}
+              />
               8667858430
             </a>
-            <span className="hidden sm:block w-px h-4 bg-border" />
+            <span
+              className="hidden sm:block w-px h-4"
+              style={{ background: "oklch(0.95 0.01 260 / 0.25)" }}
+            />
             <a
               href="mailto:bigbucksinnovation@gmail.com"
-              className="flex items-center gap-2 hover:text-foreground transition-smooth"
+              className="flex items-center gap-2 transition-smooth"
+              style={{ color: "oklch(0.95 0.01 260 / 0.75)" }}
               data-ocid="final_cta.email_link"
             >
-              <Mail className="w-3.5 h-3.5 text-primary" />
+              <Mail
+                className="w-3.5 h-3.5"
+                style={{ color: "oklch(0.62 0.19 60)" }}
+              />
               bigbucksinnovation@gmail.com
             </a>
           </div>

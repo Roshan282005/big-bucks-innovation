@@ -1,55 +1,53 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Geist+Mono:wght@400;500&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --font-display: "Space Grotesk", sans-serif;
-    --font-body: "DM Sans", sans-serif;
+    --font-display: "Plus Jakarta Sans", sans-serif;
+    --font-body: "Plus Jakarta Sans", sans-serif;
     --font-mono: "Geist Mono", monospace;
     --radius: 0.5rem;
 
-    --background: 0.96 0.01 260;
-    --foreground: 0.18 0.015 260;
-    --card: 1.0 0.005 260;
-    --card-foreground: 0.18 0.015 260;
-    --popover: 1.0 0.005 260;
-    --popover-foreground: 0.18 0.015 260;
+    --background: 0.99 0 0;
+    --foreground: 0.22 0.01 260;
+    --card: 0.98 0.002 0;
+    --card-foreground: 0.22 0.01 260;
+    --popover: 0.98 0.002 0;
+    --popover-foreground: 0.22 0.01 260;
 
-    --primary: 0.45 0.2 265;
-    --primary-foreground: 0.98 0.005 265;
+    --primary: 0.45 0.16 264;
+    --primary-foreground: 0.98 0.002 264;
 
-    --secondary: 0.95 0.01 260;
-    --secondary-foreground: 0.25 0.01 260;
-    --muted: 0.95 0.01 260;
-    --muted-foreground: 0.5 0.01 260;
+    --secondary: 0.93 0.01 260;
+    --secondary-foreground: 0.3 0.01 260;
+    --muted: 0.93 0.01 260;
+    --muted-foreground: 0.55 0.01 260;
 
-    --accent: 0.72 0.17 70;
-    --accent-foreground: 0.96 0.01 70;
+    --accent: 0.62 0.19 60;
+    --accent-foreground: 0.98 0.002 60;
 
     --destructive: 0.55 0.22 25;
     --destructive-foreground: 0.98 0.005 25;
 
-    --border: 0.9 0.01 260;
-    --input: 0.9 0.01 260;
-    --ring: 0.45 0.2 265;
+    --border: 0.92 0.002 260;
+    --input: 0.92 0.002 260;
+    --ring: 0.45 0.16 264;
 
-    --chart-1: 0.72 0.18 190;
-    --chart-2: 0.65 0.18 145;
-    --chart-3: 0.6 0.18 85;
-    --chart-4: 0.72 0.17 70;
+    --chart-1: 0.45 0.16 264;
+    --chart-2: 0.62 0.19 60;
+    --chart-3: 0.55 0.18 130;
+    --chart-4: 0.65 0.18 15;
     --chart-5: 0.55 0.22 25;
 
-    --sidebar: 0.96 0.01 260;
-    --sidebar-foreground: 0.18 0.015 260;
-    --sidebar-primary: 0.45 0.2 265;
-    --sidebar-primary-foreground: 0.98 0.005 265;
-    --sidebar-accent: 0.95 0.01 260;
-    --sidebar-accent-foreground: 0.25 0.01 260;
-    --sidebar-border: 0.9 0.01 260;
-    --sidebar-ring: 0.45 0.2 265;
+    --sidebar: 0.97 0.001 0;
+    --sidebar-foreground: 0.22 0.01 260;
+    --sidebar-primary: 0.45 0.16 264;
+    --sidebar-primary-foreground: 0.98 0.002 264;
+    --sidebar-accent: 0.93 0.01 260;
+    --sidebar-accent-foreground: 0.3 0.01 260;
+    --sidebar-border: 0.92 0.002 260;
+    --sidebar-ring: 0.45 0.16 264;
   }
 
   .dark {
@@ -60,7 +58,7 @@
     --popover: 0.17 0.016 255;
     --popover-foreground: 0.95 0.01 260;
 
-    --primary: 0.72 0.18 190;
+    --primary: 0.65 0.18 264;
     --primary-foreground: 0.13 0.016 255;
 
     --secondary: 0.21 0.02 260;
@@ -68,7 +66,7 @@
     --muted: 0.21 0.02 260;
     --muted-foreground: 0.55 0.015 260;
 
-    --accent: 0.78 0.17 70;
+    --accent: 0.72 0.19 60;
     --accent-foreground: 0.13 0.016 255;
 
     --destructive: 0.55 0.2 25;
@@ -76,22 +74,22 @@
 
     --border: 0.26 0.022 260;
     --input: 0.26 0.022 260;
-    --ring: 0.72 0.18 190;
+    --ring: 0.65 0.18 264;
 
-    --chart-1: 0.72 0.18 190;
-    --chart-2: 0.65 0.18 145;
-    --chart-3: 0.6 0.18 85;
-    --chart-4: 0.78 0.17 70;
+    --chart-1: 0.65 0.18 264;
+    --chart-2: 0.72 0.19 60;
+    --chart-3: 0.6 0.18 130;
+    --chart-4: 0.7 0.18 15;
     --chart-5: 0.55 0.2 25;
 
     --sidebar: 0.1 0.012 255;
     --sidebar-foreground: 0.92 0.01 260;
-    --sidebar-primary: 0.72 0.18 190;
+    --sidebar-primary: 0.65 0.18 264;
     --sidebar-primary-foreground: 0.1 0.012 255;
     --sidebar-accent: 0.18 0.018 260;
     --sidebar-accent-foreground: 0.85 0.01 260;
     --sidebar-border: 0.22 0.02 260;
-    --sidebar-ring: 0.72 0.18 190;
+    --sidebar-ring: 0.65 0.18 264;
   }
 
   * {
@@ -99,7 +97,7 @@
   }
 
   html {
-    color-scheme: dark;
+    color-scheme: light;
     scroll-behavior: smooth;
   }
 
@@ -119,72 +117,87 @@
 
 @layer utilities {
   .transition-smooth {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .glow-cyan {
-    box-shadow: 0 0 20px oklch(var(--primary) / 0.35), 0 0 60px
-      oklch(var(--primary) / 0.12);
+  .glow-primary {
+    box-shadow: 0 0 20px oklch(var(--primary) / 0.25), 0 0 40px
+      oklch(var(--primary) / 0.08);
   }
 
   .glow-accent {
-    box-shadow: 0 0 16px oklch(var(--accent) / 0.3), 0 0 40px
-      oklch(var(--accent) / 0.1);
+    box-shadow: 0 0 16px oklch(var(--accent) / 0.25), 0 0 32px
+      oklch(var(--accent) / 0.08);
   }
 
   .surface-elevated {
-    box-shadow: 0 4px 12px oklch(0.05 0.01 260 / 0.4), 0 1px 3px
-      oklch(0.05 0.01 260 / 0.2);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .surface-subtle {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
   }
 
   .gradient-hero {
-    background: radial-gradient(
-        ellipse 80% 80% at 50% -20%,
-        oklch(var(--primary) / 0.15),
-        transparent
-      ),
-      linear-gradient(to bottom, oklch(var(--card)), oklch(var(--background)));
-  }
-
-  .text-gradient-accent {
     background: linear-gradient(
       135deg,
-      oklch(var(--primary)),
-      oklch(var(--accent))
+      oklch(var(--background)),
+      oklch(var(--card))
     );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
   .text-gradient-primary {
     background: linear-gradient(
       135deg,
       oklch(var(--primary)),
-      oklch(var(--primary) / 0.7)
+      oklch(var(--primary) / 0.85)
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .bg-grid {
-    background-image: linear-gradient(
-        oklch(var(--primary) / 0.05) 1px,
-        transparent 1px
-      ),
-      linear-gradient(90deg, oklch(var(--primary) / 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+  .text-gradient-accent {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--accent)),
+      oklch(var(--accent) / 0.85)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .border-glow {
-    border-color: oklch(var(--primary) / 0.4);
-    box-shadow: 0 0 0 1px oklch(var(--primary) / 0.15), inset 0 0 0 1px
-      oklch(var(--primary) / 0.08);
+  .nav-glass {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid #e5e7eb;
   }
 
-  .nav-blur {
-    backdrop-filter: blur(16px) saturate(1.5);
-    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  .shadow-subtle {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   }
+
+  .shadow-elevated {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .card-soft {
+    background: oklch(var(--card));
+    border: 1px solid oklch(var(--border));
+    border-radius: calc(var(--radius) * 1.5);
+  }
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
 }

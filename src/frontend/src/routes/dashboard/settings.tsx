@@ -24,8 +24,8 @@ export function SettingsPage() {
           className="flex items-center gap-3"
           data-ocid="settings.page"
         >
-          <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-            <Settings className="w-4.5 h-4.5 text-primary" />
+          <div className="w-9 h-9 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
+            <Settings className="w-4 h-4 text-primary" />
           </div>
           <div>
             <h2 className="font-display font-bold text-xl text-foreground">
@@ -45,15 +45,15 @@ export function SettingsPage() {
         >
           <Tabs defaultValue="profile" data-ocid="settings.tabs">
             <TabsList
-              className="w-full sm:w-auto grid grid-cols-3 sm:flex bg-muted/60 border border-border rounded-lg p-1 mb-6 h-auto"
+              className="w-full sm:w-auto grid grid-cols-3 sm:flex bg-muted/60 border border-border rounded-xl p-1 mb-6 h-auto"
               data-ocid="settings.tab_list"
             >
               {TABS.map(({ value, label, icon: Icon }) => (
                 <TabsTrigger
                   key={value}
                   value={value}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-smooth
-                    data-[state=active]:bg-card data-[state=active]:text-primary data-[state=active]:shadow-sm
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-smooth
+                    data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm
                     data-[state=active]:border data-[state=active]:border-primary/20
                     text-muted-foreground hover:text-foreground"
                   data-ocid={`settings.${value}_tab`}

@@ -20,9 +20,9 @@ interface ClientsTableProps {
 }
 
 const STATUS_STYLES: Record<ClientStatus, string> = {
-  [ClientStatus.Active]: "bg-primary/10 text-primary border-0",
-  [ClientStatus.Inactive]: "bg-muted text-muted-foreground border-0",
-  [ClientStatus.Prospect]: "bg-accent/10 text-accent border-0",
+  [ClientStatus.Active]: "bg-blue-50 text-blue-600 border-blue-200",
+  [ClientStatus.Inactive]: "bg-muted text-muted-foreground border-border",
+  [ClientStatus.Prospect]: "bg-amber-50 text-amber-600 border-amber-200",
 };
 
 function formatDate(ts: bigint): string {
@@ -84,11 +84,17 @@ export function ClientsTable({
   onDelete,
 }: ClientsTableProps) {
   return (
-    <div className="bg-card border border-border rounded-xl overflow-hidden">
+    <div
+      className="bg-card border border-border rounded-xl overflow-hidden"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+    >
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border bg-muted/40">
+            <tr
+              className="border-b border-border"
+              style={{ backgroundColor: "#F3F4F6" }}
+            >
               <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                 Company
               </th>
@@ -123,10 +129,10 @@ export function ClientsTable({
                   data-ocid="clients.empty_state"
                 >
                   <div className="flex flex-col items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                      <Building2 className="w-6 h-6 text-muted-foreground" />
+                    <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
+                      <Building2 className="w-6 h-6 text-primary" />
                     </div>
-                    <p className="text-muted-foreground text-sm font-medium">
+                    <p className="text-foreground text-sm font-medium">
                       No clients found
                     </p>
                     <p className="text-muted-foreground/60 text-xs">
@@ -142,12 +148,23 @@ export function ClientsTable({
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.04 }}
-                  className="hover:bg-muted/30 transition-smooth"
+                  className="transition-smooth cursor-pointer"
+                  onMouseEnter={(e) => {
+                    (
+                      e.currentTarget as HTMLTableRowElement
+                    ).style.backgroundColor = "#EFF6FF";
+                  }}
+                  onMouseLeave={(e) => {
+                    (
+                      e.currentTarget as HTMLTableRowElement
+                    ).style.backgroundColor = "";
+                  }}
                   data-ocid={`clients.item.${i + 1}`}
+                  onClick={() => onEdit(client)}
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0">
                         <span className="text-primary text-xs font-semibold">
                           {client.company_name[0]?.toUpperCase() ?? "?"}
                         </span>
@@ -178,7 +195,7 @@ export function ClientsTable({
                   </td>
                   <td className="px-4 py-3">
                     <Badge
-                      className={`text-xs ${STATUS_STYLES[client.status]}`}
+                      className={`text-xs border ${STATUS_STYLES[client.status]}`}
                     >
                       {client.status}
                     </Badge>
@@ -189,13 +206,17 @@ export function ClientsTable({
                       <span>{formatDate(client.created_at)}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3">
+                  <td
+                    className="px-4 py-3"
+                    onClick={(e) => e.stopPropagation()}
+                    onKeyDown={(e) => e.stopPropagation()}
+                  >
                     <div className="flex items-center justify-end gap-1.5">
                       <Button
                         data-ocid={`clients.edit_button.${i + 1}`}
                         size="sm"
                         variant="ghost"
-                        className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground hover:bg-muted"
+                        className="h-7 w-7 p-0 text-muted-foreground hover:text-primary hover:bg-blue-50"
                         onClick={() => onEdit(client)}
                         aria-label={`Edit ${client.company_name}`}
                       >
@@ -205,7 +226,7 @@ export function ClientsTable({
                         data-ocid={`clients.delete_button.${i + 1}`}
                         size="sm"
                         variant="ghost"
-                        className="h-7 w-7 p-0 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                        className="h-7 w-7 p-0 text-muted-foreground hover:text-red-500 hover:bg-red-50"
                         onClick={() => onDelete(client)}
                         aria-label={`Delete ${client.company_name}`}
                       >

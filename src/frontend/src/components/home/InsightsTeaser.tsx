@@ -16,17 +16,18 @@ const insights = [
   {
     type: "Report",
     icon: BarChart2,
-    title: "Networking Trends 2026: SD-WAN, Zero Trust, and Edge Computing",
+    title: "LED Street Lighting Trends 2026: Smart, Solar & Energy-Efficient",
     snippet:
-      "Our annual report analyzes enterprise networking priorities, cloud adoption rates, and cybersecurity postures.",
+      "Our annual report analyzes adoption of smart lighting in Indian municipalities and the ROI of transitioning to LED infrastructure.",
     date: "February 2026",
   },
   {
     type: "Blog",
     icon: BookOpen,
-    title: "Building Resilient Business Applications with Cloud-Native Stacks",
+    title:
+      "Bridging the Gap: How SEYAL Connects Students, Startups & Investors",
     snippet:
-      "A practical guide to microservices, container orchestration, and CI/CD pipelines for mid-to-large enterprises.",
+      "A look at how platform-based connectivity is changing the innovation pipeline from campus to commercial success across India.",
     date: "January 2026",
   },
 ];
@@ -34,7 +35,7 @@ const insights = [
 export function InsightsTeaser() {
   return (
     <section
-      className="py-20 md:py-24 bg-background"
+      className="py-20 md:py-28 bg-background"
       data-ocid="insights.section"
     >
       <div className="container mx-auto px-4">
@@ -46,7 +47,7 @@ export function InsightsTeaser() {
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
         >
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">
+            <p className="text-xs font-bold uppercase tracking-widest text-primary mb-3">
               Insights &amp; Resources
             </p>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">
@@ -56,7 +57,7 @@ export function InsightsTeaser() {
           <Link to="/about">
             <Button
               variant="ghost"
-              className="text-primary hover:text-primary hover:bg-primary/10 shrink-0"
+              className="text-primary hover:text-primary hover:bg-primary/8 shrink-0"
               data-ocid="insights.view_all_button"
             >
               View All Resources <ArrowRight className="ml-1.5 w-4 h-4" />
@@ -72,11 +73,10 @@ export function InsightsTeaser() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.12 }}
-              className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/30 transition-smooth"
+              className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/35 transition-smooth surface-subtle"
               data-ocid={`insights.card.${i + 1}`}
             >
-              {/* Top accent bar */}
-              <div className="h-1 w-full bg-gradient-to-r from-primary/60 to-accent/60" />
+              <div className="h-1 w-full bg-gradient-to-r from-primary/70 to-accent/70" />
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-7 h-7 rounded-md bg-primary/10 flex items-center justify-center text-primary">

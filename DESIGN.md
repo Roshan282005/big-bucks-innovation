@@ -2,77 +2,76 @@
 
 ## Direction
 
-**Enterprise Modern Tech** — Sophisticated, credible digital platform that conveys innovation and reliability at scale, avoiding sterile corporate coldness.
+**Premium White SaaS** — Clean, refined digital platform with Apple-inspired minimalism, Stripe precision, and Notion editorial elegance. Light-first aesthetic for modern business dashboards.
 
 ## Tone
 
-Refined minimalism with selective depth. Editorial grid layout, measured micro-interactions, entrance animations only. Tech-forward without trendy excess.
+Refined minimalism with subtle depth. Generous whitespace, soft shadows barely visible, modern blue primary with warm gold accents. Trustworthy, premium, approachable.
 
 ## Differentiation
 
-Animated glowing bulb hero (ideas + innovation iconography) paired with IIT Delhi co-branding creates memorable visual identity. Dual-tone surface treatment (alternating card zones with intentional depth) prevents flat layouts.
+Glassmorphism navbar with translucent background and backdrop blur creates sophisticated entry point. Soft shadow system (0 4px 24px rgba(0,0,0,0.06)) grounds UI without visual weight — premium restraint.
 
 ## Color Palette
 
 | Token            | OKLCH           | Role                                |
 | ---------------- | --------------- | ----------------------------------- |
-| background       | 0.145 0.014 260 | Dark base (primary)                 |
-| foreground       | 0.95 0.01 260   | Text on dark backgrounds            |
-| card             | 0.18 0.014 260  | Elevated surfaces, content areas    |
-| primary          | 0.75 0.15 190   | Cyan/teal tech accent (dark mode)   |
-| accent           | 0.72 0.17 70    | Warm amber for CTAs & highlights    |
-| muted            | 0.22 0.02 260   | Secondary UI, disabled states       |
-| destructive      | 0.55 0.2 25     | Error, delete, critical actions     |
+| background       | 0.99 0 0        | Pure white base                     |
+| foreground       | 0.22 0.01 260   | Dark text on light backgrounds      |
+| card             | 0.98 0.002 0    | Elevated surfaces, content areas    |
+| primary          | 0.45 0.16 264   | Modern indigo-blue, CTAs & links    |
+| accent           | 0.62 0.19 60    | Warm gold, highlights & accents     |
+| muted            | 0.93 0.01 260   | Secondary UI, disabled states       |
+| destructive      | 0.55 0.22 25    | Error, delete, critical actions     |
 
-Light mode inverts L values; C and H stable for harmony.
+Dark mode inverts with lighter primary (0.65 0.18 264) and gold (0.72 0.19 60) for readability.
 
 ## Typography
 
-- **Display**: Space Grotesk — bold, confident headlines and hero text
-- **Body**: DM Sans — clean, readable UI labels, paragraph text, CRM interface
+- **Display + Body**: Plus Jakarta Sans — modern, friendly, premium SaaS standard
 - **Mono**: Geist Mono — code, data, technical content
 - **Scale**: Hero `text-5xl md:text-7xl font-bold tracking-tight` | H2 `text-3xl md:text-5xl font-bold` | Label `text-sm font-semibold uppercase tracking-widest` | Body `text-base lg:text-lg`
 
 ## Elevation & Depth
 
-Depth via surface colors (card, muted, background layers) rather than opacity. Subtle shadows on hover/active states; no ambient shadows on every element. Glow effects reserved for interactive focal points.
+Surface hierarchy via background color layers (white, card, secondary) rather than stacked shadows. Soft unified shadow system (0 4px 24px rgba) applied sparingly on hover/interactive states — no ambient shadows.
 
 ## Structural Zones
 
-| Zone         | Treatment                      | Border                | Notes                                           |
-| ------------ | ------------------------------ | --------------------- | ----------------------------------------------- |
-| Header       | card bg with border-b           | border-muted          | Navigation, branding                            |
-| Hero         | gradient-hero background       | —                     | Animated bulb, CTA entry point                  |
-| Content      | alternating bg-background      | —                     | Editorial grid, 2-3 column responsive           |
-| Card Section | bg-card surface-elevated       | border-subtle         | Feature highlights, product showcase, CRM data  |
-| Sidebar      | bg-sidebar (darker in dark)    | sidebar-border        | CRM navigation, persistent context              |
-| Footer       | bg-muted/40 with border-t      | border-muted          | Links, copyright, secondary content             |
+| Zone         | Treatment                        | Border              | Notes                                    |
+| ------------ | -------------------------------- | ------------------- | ---------------------------------------- |
+| Header       | nav-glass (translucent backdrop) | border-b border     | Sticky navbar with subtle blur           |
+| Hero         | gradient-hero background         | —                   | Editorial transition from header         |
+| Content      | bg-background (white)            | —                   | Generous whitespace, card grid layout    |
+| Card Section | bg-card with surface-elevated    | border subtle       | Product features, dashboard data         |
+| Sidebar      | bg-sidebar (white/light)         | border-border       | Navigation, persistent context           |
+| Footer       | bg-muted/20 with border-t        | border-top          | Links, copyright, secondary info         |
 
 ## Spacing & Rhythm
 
-Section gaps: `gap-16 md:gap-24`. Content grouping: `space-y-8 md:space-y-12`. Micro-spacing: `space-x-2` for inline, `gap-4` for grid items. Density tightens on mobile (`space-y-6 sm:space-y-8`).
+Section gaps: `gap-16 md:gap-24`. Content grouping: `space-y-8 md:space-y-12`. Micro-spacing: `space-x-2` inline, `gap-4` grid items. Density increases on mobile with tighter rhythm.
 
 ## Component Patterns
 
-- **Buttons**: Rounded corners, cyan primary (dark) or indigo (light), amber accent for secondary, smooth transitions on hover
-- **Cards**: Subtle border, minimal shadow on hover, background color indicates elevation
-- **Badges**: Pill shape (`rounded-full`), muted background with foreground text, compact padding
-- **Inputs**: Minimal borders, focused ring uses primary color, placeholder text muted
+- **Buttons**: Rounded 8px, primary blue with white text, secondary muted, accent gold, smooth 200ms hover scale (98%) + shadow
+- **Cards**: Subtle 1px border, minimal bg difference from background, surface-elevated shadow on hover, rounded 12px
+- **Badges**: Pill shape, muted background, dark text, compact spacing
+- **Inputs**: 1px border, focus ring uses primary color, minimal visual weight, placeholder muted
 
 ## Motion
 
-- **Entrance**: `fade-in` or `slide-up` (0.5s ease-out) on route load, card mount
-- **Hover**: `transition-smooth` on buttons, links, interactive zones
-- **Decorative**: `glow-pulse` animation on hero bulb (2s infinite), subtle auto-play entrance only
+- **Entrance**: fade-in or slide-up (0.5s ease-out) on route load, card mount
+- **Hover**: transition-smooth (200ms) on buttons, links, cards — scale, shadow, color shifts
+- **Decorative**: Reserved; subtle pulse on focal interactive elements only
 
 ## Constraints
 
-- No decorative full-page gradients; use surface color layers instead
-- No opacity stacking for depth; use dedicated surface token colors
-- Animations are entrance/hover only; no constant auto-play beyond hero bulb
-- Maintain AA+ WCAG contrast in both light and dark modes
-- Mobile-first responsive: `sm:`, `md:`, `lg:` breakpoints
+- No decorative full-page gradients; use surface colors only
+- No opacity stacking for depth; use distinct background tokens
+- Shadows subtle and purpose-driven (hover states, elevation)
+- Maintain AA+ contrast in light mode; dark mode optimized separately
+- Mobile-first responsive with `sm:`, `md:`, `lg:` breakpoints
 
 ## Signature Detail
 
-Glow-effect animated bulb in hero section with dual-tone background gradient creates premium, innovative impression — the visual anchor that differentiates BIG BUCKS from generic SaaS platforms.
+Glassmorphism navbar with translucent white background and 16px backdrop blur — modern SaaS sophistication that signals premium aesthetic on first load.

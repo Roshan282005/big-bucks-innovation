@@ -7,20 +7,17 @@ import type { Lead } from "@/types";
 import { Edit2, Trash2, UserPlus } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
-// ── Status helpers ─────────────────────────────────────────────────────────
-
 const STATUS_STYLES: Record<string, string> = {
-  [LeadStatus.New]: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-  [LeadStatus.Contacted]: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  [LeadStatus.Qualified]: "bg-green-500/10 text-green-400 border-green-500/20",
-  [LeadStatus.Closed]: "bg-muted text-muted-foreground border-0",
+  [LeadStatus.New]: "bg-blue-50 text-blue-600 border-blue-200",
+  [LeadStatus.Contacted]: "bg-amber-50 text-amber-600 border-amber-200",
+  [LeadStatus.Qualified]: "bg-emerald-50 text-emerald-600 border-emerald-200",
+  [LeadStatus.Closed]: "bg-muted text-muted-foreground border-border",
 };
 
 const SKELETON_KEYS = ["sk-a", "sk-b", "sk-c", "sk-d", "sk-e"] as const;
 
 function fmtTimestamp(ts: bigint): string {
   try {
-    // backend timestamps in nanoseconds
     const ms = Number(ts / BigInt(1_000_000));
     return new Date(ms).toLocaleDateString("en-IN", {
       day: "2-digit",
@@ -41,8 +38,6 @@ function initials(name: string): string {
     .toUpperCase();
 }
 
-// ── Skeleton row ───────────────────────────────────────────────────────────
-
 function SkeletonRow() {
   return (
     <tr className="border-b border-border last:border-0">
@@ -54,8 +49,6 @@ function SkeletonRow() {
     </tr>
   );
 }
-
-// ── Sample data fallback ───────────────────────────────────────────────────
 
 export const SAMPLE_LEADS: LeadPublic[] = [
   {
@@ -120,8 +113,6 @@ export const SAMPLE_LEADS: LeadPublic[] = [
   },
 ];
 
-// ── Props ──────────────────────────────────────────────────────────────────
-
 interface LeadsTableProps {
   leads: LeadPublic[];
   isLoading: boolean;
@@ -131,8 +122,6 @@ interface LeadsTableProps {
   onDelete: (lead: LeadPublic) => void;
   onAddFirst: () => void;
 }
-
-// ── Component ──────────────────────────────────────────────────────────────
 
 export function LeadsTable({
   leads,
@@ -154,11 +143,17 @@ export function LeadsTable({
   });
 
   return (
-    <div className="bg-card border border-border rounded-xl overflow-hidden">
+    <div
+      className="bg-card border border-border rounded-xl overflow-hidden"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+    >
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border bg-muted/40">
+            <tr
+              className="border-b border-border"
+              style={{ backgroundColor: "#F3F4F6" }}
+            >
               {(
                 [
                   { col: "Name / Email", cls: "" },
@@ -189,7 +184,7 @@ export function LeadsTable({
                   data-ocid="leads.empty_state"
                 >
                   <div className="flex flex-col items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
                       <UserPlus className="w-5 h-5 text-primary" />
                     </div>
                     <p className="font-semibold text-foreground">
@@ -222,14 +217,24 @@ export function LeadsTable({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ delay: i * 0.04, duration: 0.22 }}
-                    className="hover:bg-muted/25 transition-smooth cursor-pointer"
+                    className="transition-smooth cursor-pointer"
+                    style={{}}
+                    onMouseEnter={(e) => {
+                      (
+                        e.currentTarget as HTMLTableRowElement
+                      ).style.backgroundColor = "#EFF6FF";
+                    }}
+                    onMouseLeave={(e) => {
+                      (
+                        e.currentTarget as HTMLTableRowElement
+                      ).style.backgroundColor = "";
+                    }}
                     data-ocid={`leads.item.${i + 1}`}
                     onClick={() => onEdit(lead)}
                   >
-                    {/* Name / email */}
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 text-primary text-xs font-bold">
+                        <div className="w-8 h-8 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0 text-primary text-xs font-bold">
                           {initials(lead.name)}
                         </div>
                         <div className="min-w-0">
@@ -242,11 +247,9 @@ export function LeadsTable({
                         </div>
                       </div>
                     </td>
-                    {/* Company */}
                     <td className="px-4 py-3 text-foreground/75 hidden md:table-cell max-w-[140px]">
                       <span className="truncate block">{lead.company}</span>
                     </td>
-                    {/* Status */}
                     <td className="px-4 py-3">
                       <Badge
                         className={`text-xs border ${STATUS_STYLES[lead.status] ?? ""}`}
@@ -254,15 +257,12 @@ export function LeadsTable({
                         {lead.status}
                       </Badge>
                     </td>
-                    {/* Source */}
                     <td className="px-4 py-3 text-foreground/60 text-xs hidden lg:table-cell">
                       {lead.source || "—"}
                     </td>
-                    {/* Created */}
                     <td className="px-4 py-3 text-foreground/60 text-xs hidden lg:table-cell whitespace-nowrap">
                       {fmtTimestamp(lead.created_at)}
                     </td>
-                    {/* Actions */}
                     <td
                       className="px-4 py-3 text-right"
                       onClick={(e) => e.stopPropagation()}
@@ -274,7 +274,7 @@ export function LeadsTable({
                           variant="ghost"
                           data-ocid={`leads.edit_button.${i + 1}`}
                           onClick={() => onEdit(lead)}
-                          className="h-7 w-7 p-0 text-muted-foreground hover:text-primary"
+                          className="h-7 w-7 p-0 text-muted-foreground hover:text-primary hover:bg-blue-50"
                           aria-label="Edit lead"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
@@ -284,7 +284,7 @@ export function LeadsTable({
                           variant="ghost"
                           data-ocid={`leads.delete_button.${i + 1}`}
                           onClick={() => onDelete(lead)}
-                          className="h-7 w-7 p-0 text-muted-foreground hover:text-destructive"
+                          className="h-7 w-7 p-0 text-muted-foreground hover:text-red-500 hover:bg-red-50"
                           aria-label="Delete lead"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -301,7 +301,5 @@ export function LeadsTable({
     </div>
   );
 }
-
-// ── Re-export helper for parent ────────────────────────────────────────────
 
 export type { Lead };

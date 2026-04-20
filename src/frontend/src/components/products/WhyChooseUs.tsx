@@ -8,6 +8,7 @@ interface Differentiator {
   description: string;
   stat: string;
   statLabel: string;
+  isAccent: boolean;
 }
 
 const differentiators: Differentiator[] = [
@@ -18,6 +19,7 @@ const differentiators: Differentiator[] = [
       "From kickoff to go-live in as little as 2 weeks. Our pre-built modules and agile delivery cut implementation time by 60%.",
     stat: "2 wks",
     statLabel: "Avg. time-to-live",
+    isAccent: false,
   },
   {
     icon: Award,
@@ -26,22 +28,25 @@ const differentiators: Differentiator[] = [
       "Co-developed with IIT Delhi's innovation lab, our solutions carry academic rigour and cutting-edge research backing.",
     stat: "10+",
     statLabel: "Active MOUs",
+    isAccent: true,
   },
   {
     icon: Users,
     title: "Proven at Scale",
     description:
-      "5,000+ students trained, 20 active expert members, and government-backed programmes that validate our reach.",
+      "5,000+ students trained, 15 active expert members, and government-backed programmes that validate our reach.",
     stat: "5,000+",
     statLabel: "Students trained",
+    isAccent: false,
   },
   {
     icon: LifeBuoy,
     title: "Enterprise Support",
     description:
-      "Dedicated account managers, 24 × 7 SLA-backed incident response, and proactive health monitoring for all deployments.",
+      "Dedicated account managers, 24×7 SLA-backed incident response, and proactive health monitoring for all deployments.",
     stat: "24×7",
     statLabel: "SLA support",
+    isAccent: true,
   },
 ];
 
@@ -87,7 +92,12 @@ export function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group bg-card border border-border hover:border-primary/25 rounded-2xl p-6 transition-smooth text-center"
+                className="group bg-white border border-border hover:border-primary/30 rounded-2xl p-6 transition-smooth text-center"
+                style={{
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+                  borderLeftWidth: "3px",
+                  borderLeftColor: item.isAccent ? "#F59E0B" : "#2563EB",
+                }}
                 data-ocid={`why_choose_us.item.${i + 1}`}
               >
                 {/* Icon */}
@@ -97,7 +107,10 @@ export function WhyChooseUs() {
 
                 {/* Stat */}
                 <div className="mb-1">
-                  <span className="font-display font-bold text-3xl text-gradient-accent">
+                  <span
+                    className="font-display font-bold text-3xl"
+                    style={{ color: item.isAccent ? "#F59E0B" : "#2563EB" }}
+                  >
                     {item.stat}
                   </span>
                 </div>

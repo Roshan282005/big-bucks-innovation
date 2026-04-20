@@ -18,20 +18,25 @@ const revenueData = [
   { month: "Mar", actual: 38.9, forecast: 37 },
 ];
 
-const AMBER = "oklch(0.78 0.17 70)";
-const AMBER_DIM = "oklch(0.60 0.13 70)";
+const BLUE = "#2563EB";
+const GOLD = "#F59E0B";
 
 const tooltipStyle = {
-  background: "oklch(0.17 0.016 255)",
-  border: "1px solid oklch(0.26 0.022 260)",
+  background: "#ffffff",
+  border: "1px solid #E5E7EB",
   borderRadius: 8,
   fontSize: 12,
-  color: "oklch(0.95 0.01 260)",
+  color: "#111827",
+  boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
 };
 
 export function RevenueChart() {
   return (
-    <Card className="bg-card border-border" data-ocid="reports.revenue_chart">
+    <Card
+      className="bg-card border-border"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+      data-ocid="reports.revenue_chart"
+    >
       <CardHeader className="pb-2">
         <CardTitle className="font-display text-sm text-foreground">
           Revenue Forecast
@@ -45,28 +50,28 @@ export function RevenueChart() {
             margin={{ top: 6, right: 8, left: -16, bottom: 0 }}
           >
             <defs>
-              <linearGradient id="amberGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={AMBER} stopOpacity={0.4} />
-                <stop offset="95%" stopColor={AMBER} stopOpacity={0.02} />
+              <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={BLUE} stopOpacity={0.15} />
+                <stop offset="95%" stopColor={BLUE} stopOpacity={0.01} />
               </linearGradient>
-              <linearGradient id="forecastGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={AMBER_DIM} stopOpacity={0.2} />
-                <stop offset="95%" stopColor={AMBER_DIM} stopOpacity={0.02} />
+              <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={GOLD} stopOpacity={0.12} />
+                <stop offset="95%" stopColor={GOLD} stopOpacity={0.01} />
               </linearGradient>
             </defs>
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke="oklch(0.26 0.022 260)"
+              stroke="#E5E7EB"
               vertical={false}
             />
             <XAxis
               dataKey="month"
-              tick={{ fontSize: 11, fill: "oklch(0.55 0.015 260)" }}
+              tick={{ fontSize: 11, fill: "#6B7280" }}
               axisLine={false}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 11, fill: "oklch(0.55 0.015 260)" }}
+              tick={{ fontSize: 11, fill: "#6B7280" }}
               axisLine={false}
               tickLine={false}
               tickFormatter={(v: number) => `₹${v}L`}
@@ -81,21 +86,21 @@ export function RevenueChart() {
             <Area
               type="monotone"
               dataKey="forecast"
-              stroke={AMBER_DIM}
+              stroke={GOLD}
               strokeWidth={1.5}
               strokeDasharray="5 3"
-              fill="url(#forecastGrad)"
+              fill="url(#goldGrad)"
               dot={false}
               name="forecast"
             />
             <Area
               type="monotone"
               dataKey="actual"
-              stroke={AMBER}
+              stroke={BLUE}
               strokeWidth={2.5}
-              fill="url(#amberGrad)"
-              dot={{ r: 4, fill: AMBER, strokeWidth: 0 }}
-              activeDot={{ r: 6, fill: AMBER }}
+              fill="url(#blueGrad)"
+              dot={{ r: 4, fill: BLUE, strokeWidth: 0 }}
+              activeDot={{ r: 6, fill: BLUE }}
               name="actual"
             />
           </AreaChart>
@@ -104,14 +109,14 @@ export function RevenueChart() {
           <span className="flex items-center gap-1.5">
             <span
               className="inline-block w-6 h-0.5 rounded"
-              style={{ background: AMBER }}
+              style={{ background: BLUE }}
             />
             Actual
           </span>
           <span className="flex items-center gap-1.5">
             <span
               className="inline-block w-6 h-px rounded border-t border-dashed"
-              style={{ borderColor: AMBER_DIM }}
+              style={{ borderColor: GOLD }}
             />
             Forecast
           </span>

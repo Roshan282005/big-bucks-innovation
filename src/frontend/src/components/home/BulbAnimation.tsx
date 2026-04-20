@@ -12,34 +12,35 @@ export function BulbAnimation() {
       data-ocid="hero.bulb_animation"
     >
       <div className="relative flex items-center justify-center">
-        {/* Outer glow ring */}
+        {/* Outer glow ring — blue */}
         <motion.div
-          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.65, 0.4] }}
-          transition={{ duration: 2.2, repeat: INFINITY, ease: "easeInOut" }}
-          className="absolute w-36 h-36 rounded-full"
+          animate={{ scale: [1, 1.18, 1], opacity: [0.35, 0.6, 0.35] }}
+          transition={{ duration: 2.4, repeat: INFINITY, ease: "easeInOut" }}
+          className="absolute w-40 h-40 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.72 0.18 190 / 0.22), transparent 70%)",
+              "radial-gradient(circle, oklch(0.45 0.16 264 / 0.20), transparent 70%)",
           }}
         />
-        {/* Mid ring */}
+        {/* Mid ring — blue border pulse */}
         <motion.div
-          animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.9, 0.5] }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.45, 0.85, 0.45] }}
           transition={{
-            duration: 2.2,
+            duration: 2.4,
             repeat: INFINITY,
             ease: "easeInOut",
-            delay: 0.3,
+            delay: 0.35,
           }}
-          className="absolute w-24 h-24 rounded-full border border-primary/25"
+          className="absolute w-26 h-26 rounded-full border border-primary/30"
           style={{
+            width: "6.5rem",
+            height: "6.5rem",
             background:
-              "radial-gradient(circle, oklch(0.72 0.18 190 / 0.1), transparent 70%)",
+              "radial-gradient(circle, oklch(0.45 0.16 264 / 0.09), transparent 70%)",
           }}
         />
         {/* Inner container */}
-        <div className="relative z-10 w-20 h-20 rounded-full bg-card border border-primary/30 flex items-center justify-center">
-          {/* SVG bulb */}
+        <div className="relative z-10 w-20 h-20 rounded-full bg-card border border-primary/35 flex items-center justify-center surface-elevated">
           <svg
             width="40"
             height="40"
@@ -50,7 +51,7 @@ export function BulbAnimation() {
           >
             <defs>
               <filter
-                id="bulb-glow"
+                id="bulb-glow-blue"
                 x="-50%"
                 y="-50%"
                 width="200%"
@@ -63,21 +64,25 @@ export function BulbAnimation() {
                 </feMerge>
               </filter>
             </defs>
-            {/* Bulb body */}
+            {/* Bulb body — blue */}
             <motion.path
               d="M20 6C14.477 6 10 10.477 10 16c0 3.6 1.8 6.77 4.5 8.68V28h11v-3.32C28.2 22.77 30 19.6 30 16c0-5.523-4.477-10-10-10z"
-              fill="oklch(0.72 0.18 190 / 0.85)"
-              filter="url(#bulb-glow)"
+              fill="oklch(0.45 0.16 264 / 0.85)"
+              filter="url(#bulb-glow-blue)"
               animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: INFINITY, ease: "easeInOut" }}
+              transition={{
+                duration: 2.2,
+                repeat: INFINITY,
+                ease: "easeInOut",
+              }}
             />
-            {/* Base lines */}
+            {/* Base lines — blue */}
             <line
               x1="15"
               y1="30"
               x2="25"
               y2="30"
-              stroke="oklch(0.72 0.18 190)"
+              stroke="oklch(0.45 0.16 264)"
               strokeWidth="1.5"
               strokeLinecap="round"
             />
@@ -86,54 +91,54 @@ export function BulbAnimation() {
               y1="33"
               x2="24"
               y2="33"
-              stroke="oklch(0.72 0.18 190)"
+              stroke="oklch(0.45 0.16 264)"
               strokeWidth="1.5"
               strokeLinecap="round"
             />
-            {/* Shine lines */}
+            {/* Shine lines — gold accent */}
             <motion.line
               x1="33"
               y1="8"
               x2="36"
               y2="5"
-              stroke="oklch(0.78 0.17 70)"
+              stroke="oklch(0.62 0.19 60)"
               strokeWidth="1.5"
               strokeLinecap="round"
               animate={{ opacity: [0, 1, 0] }}
-              transition={{ duration: 2, repeat: INFINITY, delay: 0.4 }}
+              transition={{ duration: 2.2, repeat: INFINITY, delay: 0.4 }}
             />
             <motion.line
               x1="36"
               y1="16"
               x2="40"
               y2="16"
-              stroke="oklch(0.78 0.17 70)"
+              stroke="oklch(0.62 0.19 60)"
               strokeWidth="1.5"
               strokeLinecap="round"
               animate={{ opacity: [0, 1, 0] }}
-              transition={{ duration: 2, repeat: INFINITY, delay: 0.7 }}
+              transition={{ duration: 2.2, repeat: INFINITY, delay: 0.7 }}
             />
             <motion.line
               x1="7"
               y1="8"
               x2="4"
               y2="5"
-              stroke="oklch(0.78 0.17 70)"
+              stroke="oklch(0.62 0.19 60)"
               strokeWidth="1.5"
               strokeLinecap="round"
               animate={{ opacity: [0, 1, 0] }}
-              transition={{ duration: 2, repeat: INFINITY, delay: 0.55 }}
+              transition={{ duration: 2.2, repeat: INFINITY, delay: 0.55 }}
             />
             <motion.line
               x1="4"
               y1="16"
               x2="0"
               y2="16"
-              stroke="oklch(0.78 0.17 70)"
+              stroke="oklch(0.62 0.19 60)"
               strokeWidth="1.5"
               strokeLinecap="round"
               animate={{ opacity: [0, 1, 0] }}
-              transition={{ duration: 2, repeat: INFINITY, delay: 0.9 }}
+              transition={{ duration: 2.2, repeat: INFINITY, delay: 0.9 }}
             />
           </svg>
         </div>

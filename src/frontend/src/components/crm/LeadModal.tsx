@@ -19,8 +19,6 @@ import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
-// ── Types ──────────────────────────────────────────────────────────────────
-
 interface FormState {
   name: string;
   email: string;
@@ -43,15 +41,13 @@ const DEFAULT_FORM: FormState = {
 
 interface LeadModalProps {
   open: boolean;
-  lead: LeadPublic | null; // null = create mode
+  lead: LeadPublic | null;
   onClose: () => void;
   onSave: (
     data: CreateLeadPayload | (UpdateLeadPayload & { id: bigint }),
   ) => Promise<void>;
   isSaving: boolean;
 }
-
-// ── Field component ────────────────────────────────────────────────────────
 
 function Field({
   label,
@@ -60,20 +56,18 @@ function Field({
 }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
-      <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+      <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
         {label}
       </Label>
       {children}
       {error && (
-        <p className="text-xs text-destructive" data-ocid="leads.field_error">
+        <p className="text-xs text-red-500" data-ocid="leads.field_error">
           {error}
         </p>
       )}
     </div>
   );
 }
-
-// ── Main component ─────────────────────────────────────────────────────────
 
 export function LeadModal({
   open,
@@ -89,7 +83,6 @@ export function LeadModal({
   >({});
   const firstInputRef = useRef<HTMLInputElement>(null);
 
-  // Populate form when lead changes
   useEffect(() => {
     if (lead) {
       setForm({
@@ -107,12 +100,10 @@ export function LeadModal({
     setErrors({});
   }, [lead]);
 
-  // Trap focus on open
   useEffect(() => {
     if (open) setTimeout(() => firstInputRef.current?.focus(), 80);
   }, [open]);
 
-  // Close on Escape
   useEffect(() => {
     if (!open) return;
     const handler = (e: KeyboardEvent) => {
@@ -161,17 +152,15 @@ export function LeadModal({
     <AnimatePresence>
       {open && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-background/60 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
             onClick={onClose}
             aria-hidden="true"
           />
-          {/* Positioned dialog wrapper */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -183,7 +172,11 @@ export function LeadModal({
             <dialog
               open
               aria-label={isEdit ? "Edit Lead" : "Add Lead"}
-              className="relative w-full max-w-lg bg-card border border-border rounded-2xl shadow-2xl overflow-hidden p-0 m-0 pointer-events-auto"
+              className="relative w-full max-w-lg bg-white rounded-2xl overflow-hidden p-0 m-0 pointer-events-auto"
+              style={{
+                boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                borderRadius: "16px",
+              }}
             >
               {/* Header */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-muted/20">
@@ -220,7 +213,7 @@ export function LeadModal({
                           value={form.name}
                           onChange={(e) => set("name", e.target.value)}
                           placeholder="Rahul Sharma"
-                          className="bg-background border-border focus:border-primary"
+                          className="bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary"
                         />
                       </Field>
                     </div>
@@ -231,7 +224,7 @@ export function LeadModal({
                         value={form.email}
                         onChange={(e) => set("email", e.target.value)}
                         placeholder="rahul@company.com"
-                        className="bg-background border-border focus:border-primary"
+                        className="bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary"
                       />
                     </Field>
                     <Field label="Phone" error={errors.phone}>
@@ -240,7 +233,7 @@ export function LeadModal({
                         value={form.phone}
                         onChange={(e) => set("phone", e.target.value)}
                         placeholder="98765 43210"
-                        className="bg-background border-border focus:border-primary"
+                        className="bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary"
                       />
                     </Field>
                     <div className="col-span-2">
@@ -250,7 +243,7 @@ export function LeadModal({
                           value={form.company}
                           onChange={(e) => set("company", e.target.value)}
                           placeholder="TechCorp India"
-                          className="bg-background border-border focus:border-primary"
+                          className="bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary"
                         />
                       </Field>
                     </div>
@@ -261,7 +254,7 @@ export function LeadModal({
                       >
                         <SelectTrigger
                           data-ocid="leads.status_select"
-                          className="bg-background border-border"
+                          className="bg-white border-border"
                         >
                           <SelectValue />
                         </SelectTrigger>
@@ -280,7 +273,7 @@ export function LeadModal({
                         value={form.source}
                         onChange={(e) => set("source", e.target.value)}
                         placeholder="LinkedIn, Referral, Event…"
-                        className="bg-background border-border focus:border-primary"
+                        className="bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary"
                       />
                     </Field>
                     <div className="col-span-2">
@@ -291,7 +284,7 @@ export function LeadModal({
                           onChange={(e) => set("notes", e.target.value)}
                           placeholder="Any additional context about this lead…"
                           rows={3}
-                          className="bg-background border-border focus:border-primary resize-none"
+                          className="bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
                         />
                       </Field>
                     </div>
@@ -302,10 +295,10 @@ export function LeadModal({
                 <div className="flex items-center justify-end gap-2.5 px-6 py-4 border-t border-border bg-muted/10">
                   <Button
                     type="button"
-                    variant="ghost"
+                    variant="outline"
                     data-ocid="leads.cancel_button"
                     onClick={onClose}
-                    className="text-muted-foreground hover:text-foreground"
+                    className="border-border text-muted-foreground hover:text-foreground"
                   >
                     Cancel
                   </Button>
@@ -313,11 +306,11 @@ export function LeadModal({
                     type="submit"
                     data-ocid="leads.submit_button"
                     disabled={isSaving}
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 min-w-[100px]"
+                    className="bg-primary text-white hover:bg-primary/90 min-w-[100px]"
                   >
                     {isSaving ? (
                       <span className="flex items-center gap-2">
-                        <span className="w-3.5 h-3.5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                        <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                         Saving…
                       </span>
                     ) : isEdit ? (
@@ -335,8 +328,6 @@ export function LeadModal({
     </AnimatePresence>
   );
 }
-
-// ── Delete confirmation dialog ─────────────────────────────────────────────
 
 interface DeleteConfirmProps {
   open: boolean;
@@ -362,7 +353,7 @@ export function DeleteConfirmDialog({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
-            className="fixed inset-0 z-50 bg-background/70 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm"
             onClick={onCancel}
             aria-hidden="true"
           />
@@ -374,9 +365,12 @@ export function DeleteConfirmDialog({
             className="fixed inset-0 z-[60] flex items-center justify-center p-4"
             data-ocid="leads.delete_dialog"
           >
-            <div className="w-full max-w-sm bg-card border border-border rounded-xl shadow-2xl p-6">
-              <div className="w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center mb-4">
-                <span className="text-destructive text-lg">⚠</span>
+            <div
+              className="w-full max-w-sm bg-white rounded-2xl p-6 border border-border"
+              style={{ boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
+            >
+              <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center mb-4">
+                <span className="text-red-500 text-lg">⚠</span>
               </div>
               <h3 className="font-display font-semibold text-foreground mb-1.5">
                 Delete Lead
@@ -388,23 +382,22 @@ export function DeleteConfirmDialog({
               </p>
               <div className="flex gap-2.5 justify-end">
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   data-ocid="leads.cancel_button"
                   onClick={onCancel}
-                  className="text-muted-foreground hover:text-foreground"
+                  className="border-border text-muted-foreground"
                 >
                   Cancel
                 </Button>
                 <Button
-                  variant="destructive"
                   data-ocid="leads.confirm_button"
                   onClick={onConfirm}
                   disabled={isDeleting}
-                  className="min-w-[90px]"
+                  className="bg-red-500 text-white hover:bg-red-600 min-w-[90px]"
                 >
                   {isDeleting ? (
                     <span className="flex items-center gap-2">
-                      <span className="w-3.5 h-3.5 border-2 border-destructive-foreground/30 border-t-destructive-foreground rounded-full animate-spin" />
+                      <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                       Deleting…
                     </span>
                   ) : (

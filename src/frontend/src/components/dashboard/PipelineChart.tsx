@@ -11,12 +11,15 @@ import {
   YAxis,
 } from "recharts";
 
+const BLUE = "#2563EB";
+const GOLD = "#F59E0B";
+
 const pipelineData = [
-  { status: "New", count: 42, fill: "oklch(0.72 0.18 190)" },
-  { status: "Contacted", count: 31, fill: "oklch(0.65 0.16 200)" },
-  { status: "Qualified", count: 28, fill: "oklch(0.58 0.14 210)" },
-  { status: "Proposal", count: 18, fill: "oklch(0.72 0.17 70)" },
-  { status: "Closed", count: 14, fill: "oklch(0.55 0.12 220)" },
+  { status: "New", count: 42, fill: BLUE },
+  { status: "Contacted", count: 31, fill: "#3B82F6" },
+  { status: "Qualified", count: 28, fill: GOLD },
+  { status: "Proposal", count: 18, fill: "#F59E0B99" },
+  { status: "Closed", count: 14, fill: "#60A5FA" },
 ];
 
 interface TooltipProps {
@@ -28,7 +31,10 @@ interface TooltipProps {
 function CustomTooltip({ active, payload, label }: TooltipProps) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-card border border-border rounded-lg px-3 py-2 shadow-lg text-xs">
+    <div
+      className="bg-white border border-border rounded-lg px-3 py-2 text-xs"
+      style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.08)" }}
+    >
       <p className="text-muted-foreground mb-1">{label}</p>
       <p className="font-display font-bold text-foreground text-sm">
         {payload[0].value}{" "}
@@ -45,7 +51,10 @@ export function PipelineChart() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.3, duration: 0.45 }}
     >
-      <Card className="bg-card border-border surface-elevated h-full">
+      <Card
+        className="bg-card border-border h-full"
+        style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+      >
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className="font-display text-base text-foreground">
@@ -68,23 +77,23 @@ export function PipelineChart() {
             >
               <CartesianGrid
                 vertical={false}
-                stroke="oklch(0.26 0.022 260 / 0.5)"
+                stroke="#E5E7EB"
                 strokeDasharray="4 4"
               />
               <XAxis
                 dataKey="status"
-                tick={{ fill: "oklch(0.55 0.015 260)", fontSize: 11 }}
+                tick={{ fill: "#6B7280", fontSize: 11 }}
                 axisLine={false}
                 tickLine={false}
               />
               <YAxis
-                tick={{ fill: "oklch(0.55 0.015 260)", fontSize: 11 }}
+                tick={{ fill: "#6B7280", fontSize: 11 }}
                 axisLine={false}
                 tickLine={false}
               />
               <Tooltip
                 content={<CustomTooltip />}
-                cursor={{ fill: "oklch(0.72 0.18 190 / 0.06)" }}
+                cursor={{ fill: "rgba(37,99,235,0.04)" }}
               />
               <Bar dataKey="count" radius={[5, 5, 0, 0]}>
                 {pipelineData.map((entry) => (

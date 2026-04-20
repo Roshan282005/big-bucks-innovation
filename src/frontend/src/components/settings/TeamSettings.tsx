@@ -22,7 +22,7 @@ interface TeamMember {
   role: Role;
   lastActive: string;
   initials: string;
-  color: string;
+  avatarCls: string;
 }
 
 const INITIAL_MEMBERS: TeamMember[] = [
@@ -33,7 +33,7 @@ const INITIAL_MEMBERS: TeamMember[] = [
     role: "Admin",
     lastActive: "Just now",
     initials: "AS",
-    color: "bg-primary/20 text-primary",
+    avatarCls: "bg-blue-50 text-primary",
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const INITIAL_MEMBERS: TeamMember[] = [
     role: "Manager",
     lastActive: "2 hours ago",
     initials: "PN",
-    color: "bg-accent/20 text-accent",
+    avatarCls: "bg-amber-50 text-amber-600",
   },
   {
     id: 3,
@@ -51,7 +51,7 @@ const INITIAL_MEMBERS: TeamMember[] = [
     role: "Member",
     lastActive: "Yesterday",
     initials: "RV",
-    color: "bg-chart-2/20 text-chart-2",
+    avatarCls: "bg-emerald-50 text-emerald-600",
   },
   {
     id: 4,
@@ -60,7 +60,7 @@ const INITIAL_MEMBERS: TeamMember[] = [
     role: "Member",
     lastActive: "3 days ago",
     initials: "SP",
-    color: "bg-chart-3/20 text-chart-3",
+    avatarCls: "bg-purple-50 text-purple-600",
   },
   {
     id: 5,
@@ -69,14 +69,14 @@ const INITIAL_MEMBERS: TeamMember[] = [
     role: "Viewer",
     lastActive: "1 week ago",
     initials: "DK",
-    color: "bg-muted-foreground/20 text-muted-foreground",
+    avatarCls: "bg-muted text-muted-foreground",
   },
 ];
 
 const ROLE_BADGE: Record<Role, string> = {
-  Admin: "bg-primary/10 text-primary border-primary/20",
-  Manager: "bg-accent/10 text-accent border-accent/20",
-  Member: "bg-chart-2/10 text-chart-2 border-chart-2/20",
+  Admin: "bg-primary text-white border-0",
+  Manager: "bg-amber-50 text-amber-600 border-amber-200",
+  Member: "bg-blue-50 text-blue-600 border-blue-200",
   Viewer: "bg-muted text-muted-foreground border-border",
 };
 
@@ -108,7 +108,7 @@ export function TeamSettings() {
         <Button
           variant="outline"
           size="sm"
-          className="gap-2 border-border hover:bg-muted"
+          className="gap-2 border-primary/30 text-primary hover:bg-blue-50 hover:border-primary"
           data-ocid="team.invite_member_button"
           onClick={() => toast.info("Invite flow coming soon.")}
         >
@@ -118,19 +118,29 @@ export function TeamSettings() {
       </div>
 
       {/* Member list */}
-      <div className="divide-y divide-border border border-border rounded-xl overflow-hidden">
+      <div
+        className="divide-y divide-border border border-border rounded-xl overflow-hidden"
+        style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+      >
         {members.map((member, i) => (
           <motion.div
             key={member.id}
             initial={{ opacity: 0, x: -6 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.06 }}
-            className="flex items-center gap-3 px-4 py-3 bg-card hover:bg-muted/30 transition-smooth"
+            className="flex items-center gap-3 px-4 py-3 bg-card transition-smooth"
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLDivElement).style.backgroundColor =
+                "#EFF6FF";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLDivElement).style.backgroundColor = "";
+            }}
             data-ocid={`team.item.${i + 1}`}
           >
             <Avatar className="w-9 h-9 shrink-0">
               <AvatarFallback
-                className={`text-xs font-semibold ${member.color}`}
+                className={`text-xs font-semibold ${member.avatarCls}`}
               >
                 {member.initials}
               </AvatarFallback>
@@ -146,7 +156,7 @@ export function TeamSettings() {
             </div>
 
             <div className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-chart-2 opacity-70" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
               {member.lastActive}
             </div>
 
@@ -164,7 +174,7 @@ export function TeamSettings() {
                 onValueChange={(v) => handleRoleChange(member.id, v as Role)}
               >
                 <SelectTrigger
-                  className="w-28 h-7 text-xs border-border bg-background"
+                  className="w-28 h-7 text-xs border-border bg-white"
                   data-ocid={`team.role_select.${i + 1}`}
                 >
                   <SelectValue />

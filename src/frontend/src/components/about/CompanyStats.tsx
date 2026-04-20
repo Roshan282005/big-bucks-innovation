@@ -12,31 +12,31 @@ interface Stat {
 
 const stats: Stat[] = [
   {
-    value: 5000,
-    suffix: "+",
-    label: "Students Trained",
-    sublabel: "Across AI, networking & digital skills programs",
+    value: 35,
+    suffix: "",
+    label: "Completed Projects",
+    sublabel: "Delivered across enterprise, government & education sectors",
     accent: false,
   },
   {
-    value: 20,
+    value: 5000,
+    suffix: "+",
+    label: "Total Students Trained",
+    sublabel: "In AI, IoT, digital skills & innovation programs",
+    accent: true,
+  },
+  {
+    value: 15,
     suffix: "",
     label: "Active Members",
-    sublabel: "Expert engineers, trainers & researchers",
-    accent: true,
+    sublabel: "Expert engineers, mentors, trainers & researchers",
+    accent: false,
   },
   {
     value: 10,
     suffix: "+",
-    label: "MOUs Signed",
-    sublabel: "With government bodies, universities & industry",
-    accent: false,
-  },
-  {
-    value: 4,
-    suffix: "+",
-    label: "Years of Innovation",
-    sublabel: "Building enterprise-grade technology since 2020",
+    label: "MOU & Collaboration",
+    sublabel: "With colleges, government bodies & industry partners",
     accent: true,
   },
 ];
@@ -110,32 +110,26 @@ export function CompanyStats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.55 }}
-              className={`relative bg-card rounded-2xl p-7 text-center border transition-smooth surface-elevated overflow-hidden group
-                ${s.accent ? "border-accent/30 hover:border-accent/50" : "border-border hover:border-primary/30"}`}
+              className="relative bg-white rounded-2xl p-7 text-center border-l-4 overflow-hidden group transition-smooth"
+              style={{
+                borderLeftColor: s.accent ? "#F59E0B" : "#2563EB",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+              }}
               data-ocid={`about.stat_card.${i + 1}`}
             >
-              {/* top bar accent */}
-              <div
-                className={`absolute top-0 left-0 w-full h-0.5 transition-smooth
-                ${
-                  s.accent
-                    ? "bg-gradient-to-r from-transparent via-accent to-transparent group-hover:opacity-100 opacity-50"
-                    : "bg-gradient-to-r from-transparent via-primary to-transparent group-hover:opacity-100 opacity-50"
-                }`}
-              />
               {/* Glow orb */}
               <div
-                className={`absolute -top-8 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-smooth
+                className={`absolute -top-8 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full blur-2xl opacity-15 group-hover:opacity-30 transition-smooth
                 ${s.accent ? "bg-accent" : "bg-primary"}`}
               />
 
               <div
-                className={`font-display font-bold text-5xl md:text-6xl mb-3 relative
-                ${s.accent ? "text-gradient-accent" : "text-gradient-primary"}`}
+                className="font-display font-bold text-5xl md:text-6xl mb-3 relative"
+                style={{ color: s.accent ? "#F59E0B" : "#2563EB" }}
               >
                 <AnimatedCounter target={s.value} suffix={s.suffix} />
               </div>
-              <h3 className="font-display font-semibold text-foreground text-lg mb-1.5">
+              <h3 className="font-display font-semibold text-foreground text-base mb-1.5">
                 {s.label}
               </h3>
               <p className="text-muted-foreground text-xs leading-relaxed">

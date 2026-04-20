@@ -55,22 +55,31 @@ const teamData = [
 const perfBadge: Record<string, { label: string; cls: string }> = {
   high: {
     label: "High",
-    cls: "bg-primary/15 text-primary border-primary/30 hover:bg-primary/20",
+    cls: "bg-blue-50 text-primary border-blue-200",
   },
   medium: {
     label: "Medium",
-    cls: "bg-accent/15 text-accent border-accent/30 hover:bg-accent/20",
+    cls: "bg-amber-50 text-amber-600 border-amber-200",
   },
   low: {
     label: "Low",
-    cls: "bg-muted text-muted-foreground border-border hover:bg-muted",
+    cls: "bg-muted text-muted-foreground border-border",
   },
 };
+
+const avatarColor = [
+  "bg-blue-50 text-primary",
+  "bg-amber-50 text-amber-600",
+  "bg-emerald-50 text-emerald-600",
+  "bg-purple-50 text-purple-600",
+  "bg-muted text-muted-foreground",
+];
 
 export function TeamPerformanceTable() {
   return (
     <Card
       className="bg-card border-border"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
       data-ocid="reports.team_performance_table"
     >
       <CardHeader className="pb-2">
@@ -84,20 +93,23 @@ export function TeamPerformanceTable() {
       <CardContent className="p-0">
         <Table>
           <TableHeader>
-            <TableRow className="border-border hover:bg-transparent">
-              <TableHead className="text-muted-foreground text-xs font-medium pl-6">
+            <TableRow
+              className="border-border hover:bg-transparent"
+              style={{ backgroundColor: "#F3F4F6" }}
+            >
+              <TableHead className="text-muted-foreground text-xs font-semibold uppercase tracking-wider pl-6">
                 Member
               </TableHead>
-              <TableHead className="text-muted-foreground text-xs font-medium text-right">
+              <TableHead className="text-muted-foreground text-xs font-semibold uppercase tracking-wider text-right">
                 Leads
               </TableHead>
-              <TableHead className="text-muted-foreground text-xs font-medium text-right">
+              <TableHead className="text-muted-foreground text-xs font-semibold uppercase tracking-wider text-right">
                 Tasks Done
               </TableHead>
-              <TableHead className="text-muted-foreground text-xs font-medium text-right">
+              <TableHead className="text-muted-foreground text-xs font-semibold uppercase tracking-wider text-right">
                 Projects
               </TableHead>
-              <TableHead className="text-muted-foreground text-xs font-medium text-right pr-6">
+              <TableHead className="text-muted-foreground text-xs font-semibold uppercase tracking-wider text-right pr-6">
                 Performance
               </TableHead>
             </TableRow>
@@ -108,17 +120,23 @@ export function TeamPerformanceTable() {
               return (
                 <TableRow
                   key={member.name}
-                  className="border-border hover:bg-muted/30 transition-colors"
+                  className="border-border transition-smooth"
+                  onMouseEnter={(e) => {
+                    (
+                      e.currentTarget as HTMLTableRowElement
+                    ).style.backgroundColor = "#EFF6FF";
+                  }}
+                  onMouseLeave={(e) => {
+                    (
+                      e.currentTarget as HTMLTableRowElement
+                    ).style.backgroundColor = "";
+                  }}
                   data-ocid={`reports.team_row.${i + 1}`}
                 >
                   <TableCell className="pl-6 py-3">
                     <div className="flex items-center gap-2.5">
                       <div
-                        className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0"
-                        style={{
-                          background: "oklch(0.26 0.022 260)",
-                          color: "oklch(0.72 0.18 190)",
-                        }}
+                        className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${avatarColor[i] ?? "bg-muted text-muted-foreground"}`}
                       >
                         {member.name
                           .split(" ")
@@ -147,7 +165,7 @@ export function TeamPerformanceTable() {
                   <TableCell className="text-right pr-6">
                     <Badge
                       variant="outline"
-                      className={`text-[10px] font-medium ${badge.cls}`}
+                      className={`text-[10px] font-medium border ${badge.cls}`}
                     >
                       {badge.label}
                     </Badge>

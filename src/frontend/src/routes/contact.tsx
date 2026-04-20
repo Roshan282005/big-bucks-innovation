@@ -15,21 +15,14 @@ export function ContactPage() {
     <PublicLayout>
       {/* Hero */}
       <section
-        className="relative py-20 overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(to bottom, oklch(0.17 0.016 255), oklch(0.13 0.016 255))",
-        }}
+        className="relative py-20 overflow-hidden bg-gradient-to-b from-card to-background border-b border-border"
+        data-ocid="contact.hero_section"
       >
         {/* Radial glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 50% -10%, oklch(0.72 0.18 190 / 0.12), transparent)",
-          }}
-        />
-        <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-primary/8 blur-3xl" />
+        </div>
+        <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
 
         <div className="container mx-auto px-4 relative">
           <motion.div
@@ -62,9 +55,9 @@ export function ContactPage() {
           >
             {[
               { value: "5,000+", label: "Students Trained" },
-              { value: "20+", label: "Active Members" },
+              { value: "15", label: "Active Members" },
               { value: "10+", label: "MOUs Signed" },
-              { value: "4+", label: "Years of Innovation" },
+              { value: "35", label: "Projects Completed" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <p className="font-display font-bold text-2xl text-primary">
@@ -105,10 +98,7 @@ export function ContactPage() {
       </section>
 
       {/* Bottom CTA strip */}
-      <section
-        className="py-12 border-t border-border"
-        style={{ background: "oklch(0.17 0.016 255 / 0.6)" }}
-      >
+      <section className="py-12 border-t border-border bg-muted/20">
         <div className="container mx-auto px-4 text-center">
           <motion.p
             initial={{ opacity: 0 }}

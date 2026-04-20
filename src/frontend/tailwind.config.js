@@ -79,8 +79,8 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        elevated: "0 4px 12px oklch(var(--foreground) / 0.08)",
-        subtle: "0 1px 3px oklch(var(--foreground) / 0.05), 0 1px 2px oklch(var(--foreground) / 0.03)",
+        elevated: "0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04)",
+        subtle: "0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)",
       },
       keyframes: {
         "accordion-down": {

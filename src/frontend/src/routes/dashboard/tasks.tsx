@@ -16,7 +16,6 @@ import { motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
 
-// ── Sample data ──────────────────────────────────────────────
 const SAMPLE_TASKS: Task[] = [
   {
     id: "1",
@@ -97,25 +96,21 @@ const SAMPLE_TASKS: Task[] = [
   },
 ];
 
-// ── Helper ────────────────────────────────────────────────────
 let nextId = 100;
 function generateId() {
   nextId += 1;
   return String(nextId);
 }
 
-// ── Page ──────────────────────────────────────────────────────
 export function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>(SAMPLE_TASKS);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
-
   const [modalOpen, setModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
-  // ── Counts for filter pills ───────────────────────────────
   const counts = useMemo(
     () => ({
       todo: tasks.filter((t) => t.status === "ToDo").length,
@@ -125,7 +120,6 @@ export function TasksPage() {
     [tasks],
   );
 
-  // ── Filter ────────────────────────────────────────────────
   const filtered = useMemo(
     () =>
       tasks.filter((t) => {
@@ -139,11 +133,11 @@ export function TasksPage() {
     [tasks, search, statusFilter, priorityFilter],
   );
 
-  // ── CRUD handlers ─────────────────────────────────────────
   function handleOpenCreate() {
     setEditingTask(null);
     setModalOpen(true);
   }
+
   function handleOpenEdit(task: Task) {
     setEditingTask(task);
     setModalOpen(true);
@@ -216,24 +210,38 @@ export function TasksPage() {
     );
   }
 
-  // ── Stat pills ────────────────────────────────────────────
   const statPills = [
-    { label: "To Do", value: counts.todo, color: "text-muted-foreground" },
-    { label: "In Progress", value: counts.inProgress, color: "text-primary" },
-    { label: "Done", value: counts.done, color: "text-chart-2" },
+    {
+      label: "To Do",
+      value: counts.todo,
+      color: "text-muted-foreground",
+      bg: "bg-muted",
+    },
+    {
+      label: "In Progress",
+      value: counts.inProgress,
+      color: "text-primary",
+      bg: "bg-blue-50",
+    },
+    {
+      label: "Done",
+      value: counts.done,
+      color: "text-emerald-600",
+      bg: "bg-emerald-50",
+    },
   ];
 
   return (
     <DashboardLayout title="Tasks">
       <div className="space-y-5">
-        {/* ── Page header ─────────────────────────────────── */}
+        {/* Page header */}
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-wrap items-center justify-between gap-3"
         >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center">
               <ClipboardList className="w-5 h-5 text-primary" />
             </div>
             <div>
@@ -249,7 +257,7 @@ export function TasksPage() {
             {statPills.map((p) => (
               <div
                 key={p.label}
-                className="hidden sm:flex items-center gap-1.5 bg-card border border-border rounded-lg px-3 py-1.5"
+                className={`hidden sm:flex items-center gap-1.5 ${p.bg} border border-border rounded-lg px-3 py-1.5`}
               >
                 <span className={`text-lg font-bold font-display ${p.color}`}>
                   {p.value}
@@ -260,7 +268,8 @@ export function TasksPage() {
             <Button
               data-ocid="tasks.add_button"
               onClick={handleOpenCreate}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 gap-1.5"
+              className="bg-primary text-white hover:bg-primary/90 gap-1.5"
+              style={{ boxShadow: "0 4px 12px rgba(37,99,235,0.25)" }}
             >
               <Plus className="w-4 h-4" />
               New Task
@@ -268,7 +277,7 @@ export function TasksPage() {
           </div>
         </motion.div>
 
-        {/* ── Filters ──────────────────────────────────────── */}
+        {/* Filters */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -352,7 +361,7 @@ export function TasksPage() {
           )}
         </motion.div>
 
-        {/* ── Table ────────────────────────────────────────── */}
+        {/* Table */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -369,7 +378,6 @@ export function TasksPage() {
         </motion.div>
       </div>
 
-      {/* ── Modal ────────────────────────────────────────────── */}
       <TaskModal
         open={modalOpen}
         task={editingTask}

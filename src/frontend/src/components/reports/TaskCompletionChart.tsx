@@ -1,25 +1,33 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
+const BLUE = "#2563EB";
+const GOLD = "#F59E0B";
+
 const taskData = [
-  { name: "Done", value: 68, color: "oklch(0.72 0.18 190)" },
-  { name: "In Progress", value: 23, color: "oklch(0.78 0.17 70)" },
-  { name: "To Do", value: 19, color: "oklch(0.35 0.025 260)" },
+  { name: "Done", value: 68, color: BLUE },
+  { name: "In Progress", value: 23, color: GOLD },
+  { name: "To Do", value: 19, color: "#E5E7EB" },
 ];
 
 const total = taskData.reduce((s, d) => s + d.value, 0);
 
 const tooltipStyle = {
-  background: "oklch(0.17 0.016 255)",
-  border: "1px solid oklch(0.26 0.022 260)",
+  background: "#ffffff",
+  border: "1px solid #E5E7EB",
   borderRadius: 8,
   fontSize: 12,
-  color: "oklch(0.95 0.01 260)",
+  color: "#111827",
+  boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
 };
 
 export function TaskCompletionChart() {
   return (
-    <Card className="bg-card border-border" data-ocid="reports.task_pie_chart">
+    <Card
+      className="bg-card border-border"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+      data-ocid="reports.task_pie_chart"
+    >
       <CardHeader className="pb-2">
         <CardTitle className="font-display text-sm text-foreground">
           Task Completion
@@ -30,7 +38,7 @@ export function TaskCompletionChart() {
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-4">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 relative">
             <ResponsiveContainer width={160} height={160}>
               <PieChart>
                 <Pie
@@ -43,9 +51,11 @@ export function TaskCompletionChart() {
                   dataKey="value"
                   startAngle={90}
                   endAngle={-270}
+                  strokeWidth={2}
+                  stroke="#ffffff"
                 >
                   {taskData.map((entry) => (
-                    <Cell key={entry.name} fill={entry.color} strokeWidth={0} />
+                    <Cell key={entry.name} fill={entry.color} />
                   ))}
                 </Pie>
                 <Tooltip
@@ -57,6 +67,14 @@ export function TaskCompletionChart() {
                 />
               </PieChart>
             </ResponsiveContainer>
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <span className="font-display font-bold text-xl text-primary leading-none">
+                {total}
+              </span>
+              <span className="text-[9px] text-muted-foreground mt-0.5">
+                tasks
+              </span>
+            </div>
           </div>
           <div className="flex-1 space-y-3">
             {taskData.map((item, i) => (

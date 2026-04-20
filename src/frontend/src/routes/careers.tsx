@@ -11,8 +11,8 @@ import { motion } from "motion/react";
 
 const stats = [
   { value: "5,000+", label: "Students Trained", icon: GraduationCap },
-  { value: "20", label: "Team Members", icon: Users },
-  { value: "10", label: "Active MOUs", icon: Building2 },
+  { value: "15", label: "Team Members", icon: Users },
+  { value: "10+", label: "Active MOUs", icon: Building2 },
 ];
 
 export function CareersPage() {
@@ -58,7 +58,7 @@ export function CareersPage() {
               <a href="#open-positions">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 transition-smooth glow-cyan"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 transition-smooth"
                   data-ocid="careers.view_jobs_button"
                 >
                   View Open Roles

@@ -10,6 +10,9 @@ import {
   YAxis,
 } from "recharts";
 
+const BLUE = "#2563EB";
+const GOLD = "#F59E0B";
+
 const pipelineData = [
   { status: "New", count: 87 },
   { status: "Contacted", count: 64 },
@@ -17,20 +20,24 @@ const pipelineData = [
   { status: "Closed", count: 28 },
 ];
 
-const CYAN = "oklch(0.72 0.18 190)";
-const CYAN_DIM = "oklch(0.58 0.15 190)";
+const FILLS = [BLUE, "#3B82F6", GOLD, "#60A5FA"];
 
 const tooltipStyle = {
-  background: "oklch(0.17 0.016 255)",
-  border: "1px solid oklch(0.26 0.022 260)",
+  background: "#ffffff",
+  border: "1px solid #E5E7EB",
   borderRadius: 8,
   fontSize: 12,
-  color: "oklch(0.95 0.01 260)",
+  color: "#111827",
+  boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
 };
 
 export function PipelineChart() {
   return (
-    <Card className="bg-card border-border" data-ocid="reports.pipeline_chart">
+    <Card
+      className="bg-card border-border"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+      data-ocid="reports.pipeline_chart"
+    >
       <CardHeader className="pb-2">
         <CardTitle className="font-display text-sm text-foreground">
           Pipeline by Status
@@ -46,31 +53,27 @@ export function PipelineChart() {
           >
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke="oklch(0.26 0.022 260)"
+              stroke="#E5E7EB"
               vertical={false}
             />
             <XAxis
               dataKey="status"
-              tick={{ fontSize: 11, fill: "oklch(0.55 0.015 260)" }}
+              tick={{ fontSize: 11, fill: "#6B7280" }}
               axisLine={false}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 11, fill: "oklch(0.55 0.015 260)" }}
+              tick={{ fontSize: 11, fill: "#6B7280" }}
               axisLine={false}
               tickLine={false}
             />
             <Tooltip
               contentStyle={tooltipStyle}
-              cursor={{ fill: "oklch(0.26 0.022 260)" }}
+              cursor={{ fill: "rgba(37,99,235,0.04)" }}
             />
             <Bar dataKey="count" radius={[4, 4, 0, 0]} name="Leads">
               {pipelineData.map((entry, index) => (
-                <Cell
-                  key={entry.status}
-                  fill={index === 0 ? CYAN : CYAN_DIM}
-                  opacity={1 - index * 0.1}
-                />
+                <Cell key={entry.status} fill={FILLS[index] ?? BLUE} />
               ))}
             </Bar>
           </BarChart>

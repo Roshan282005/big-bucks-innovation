@@ -21,9 +21,9 @@ import { useState } from "react";
 type DateRange = "7d" | "30d" | "90d" | "custom";
 
 const DATE_RANGES: { label: string; value: DateRange }[] = [
-  { label: "Last 7 days", value: "7d" },
-  { label: "Last 30 days", value: "30d" },
-  { label: "Last 90 days", value: "90d" },
+  { label: "7 days", value: "7d" },
+  { label: "30 days", value: "30d" },
+  { label: "90 days", value: "90d" },
   { label: "Custom", value: "custom" },
 ];
 
@@ -32,37 +32,37 @@ const summaryStats = [
     label: "Total Leads",
     value: "240",
     delta: "+12%",
-    positive: true,
     icon: Users,
-    color: "oklch(0.72 0.18 190)",
-    bg: "oklch(0.72 0.18 190 / 0.1)",
+    iconBg: "bg-blue-50",
+    iconColor: "text-primary",
+    valueColor: "text-primary",
   },
   {
     label: "Conversion Rate",
     value: "17.1%",
     delta: "+2.4pp",
-    positive: true,
     icon: TrendingUp,
-    color: "oklch(0.72 0.18 190)",
-    bg: "oklch(0.72 0.18 190 / 0.1)",
+    iconBg: "bg-blue-50",
+    iconColor: "text-primary",
+    valueColor: "text-primary",
   },
   {
     label: "Active Clients",
     value: "63",
     delta: "+5",
-    positive: true,
     icon: Activity,
-    color: "oklch(0.78 0.17 70)",
-    bg: "oklch(0.78 0.17 70 / 0.1)",
+    iconBg: "bg-amber-50",
+    iconColor: "text-amber-500",
+    valueColor: "text-amber-600",
   },
   {
     label: "Revenue Pipeline",
     value: "₹38.9L",
     delta: "+23%",
-    positive: true,
     icon: BarChart3,
-    color: "oklch(0.78 0.17 70)",
-    bg: "oklch(0.78 0.17 70 / 0.1)",
+    iconBg: "bg-amber-50",
+    iconColor: "text-amber-500",
+    valueColor: "text-amber-600",
   },
 ];
 
@@ -85,7 +85,8 @@ export function ReportsPage() {
 
           {/* Date range picker */}
           <div
-            className="flex items-center gap-1 p-1 rounded-lg border border-border bg-card"
+            className="flex items-center gap-1 p-1 rounded-xl border border-border bg-card"
+            style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
             data-ocid="reports.date_range_picker"
           >
             <CalendarDays className="w-3.5 h-3.5 text-muted-foreground ml-1.5 flex-shrink-0" />
@@ -94,7 +95,7 @@ export function ReportsPage() {
                 key={r.value}
                 size="sm"
                 variant={activeRange === r.value ? "default" : "ghost"}
-                className="h-6 text-[11px] px-2.5"
+                className={`h-6 text-[11px] px-2.5 ${activeRange === r.value ? "bg-primary text-white" : ""}`}
                 onClick={() => setActiveRange(r.value)}
                 data-ocid={`reports.date_range.${r.value}`}
               >
@@ -114,29 +115,28 @@ export function ReportsPage() {
               transition={{ delay: i * 0.07 }}
               data-ocid={`reports.stat.${i + 1}`}
             >
-              <Card className="bg-card border-border hover:border-primary/30 transition-colors">
-                <CardContent className="p-4">
+              <Card
+                className="bg-card border-border hover:border-primary/30 transition-colors overflow-hidden relative"
+                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+              >
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary opacity-60 rounded-l-xl" />
+                <CardContent className="p-4 pl-5">
                   <div className="flex items-start justify-between mb-3">
                     <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center"
-                      style={{ background: stat.bg }}
+                      className={`w-8 h-8 rounded-lg ${stat.iconBg} flex items-center justify-center`}
                     >
-                      <stat.icon
-                        className="w-4 h-4"
-                        style={{ color: stat.color }}
-                      />
+                      <stat.icon className={`w-4 h-4 ${stat.iconColor}`} />
                     </div>
                     <Badge
                       variant="outline"
-                      className="text-[10px] h-5 border-border text-muted-foreground"
+                      className="text-[10px] h-5 bg-emerald-50 border-emerald-200 text-emerald-600"
                     >
-                      <ArrowUpRight className="w-2.5 h-2.5 mr-0.5 text-primary" />
+                      <ArrowUpRight className="w-2.5 h-2.5 mr-0.5" />
                       {stat.delta}
                     </Badge>
                   </div>
                   <p
-                    className="font-display font-bold text-2xl"
-                    style={{ color: stat.color }}
+                    className={`font-display font-bold text-2xl ${stat.valueColor}`}
                   >
                     {stat.value}
                   </p>

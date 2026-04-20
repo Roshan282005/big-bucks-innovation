@@ -26,21 +26,26 @@ export function DashboardPage() {
         >
           <div>
             <h2 className="font-display font-bold text-2xl text-foreground">
-              Welcome back,{" "}
-              <span className="text-gradient-primary">{displayName}</span>
+              Welcome back, <span className="text-primary">{displayName}</span>
             </h2>
             <p className="text-sm text-muted-foreground mt-0.5">
               Here's what's happening at Big Bucks Innovation today.
             </p>
           </div>
-          <p className="text-xs text-muted-foreground">
-            {new Date().toLocaleDateString("en-IN", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
+          <div
+            className="flex items-center gap-2 bg-card border border-border rounded-lg px-3 py-2"
+            style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
+          >
+            <div className="w-2 h-2 rounded-full bg-emerald-400" />
+            <p className="text-xs text-muted-foreground">
+              {new Date().toLocaleDateString("en-IN", {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </p>
+          </div>
         </motion.div>
 
         {/* Stats cards */}

@@ -8,29 +8,22 @@ import { WhyChooseUs } from "@/components/products/WhyChooseUs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  Brain,
-  ChevronRight,
-  Cloud,
-  Network,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowRight, ChevronRight, Leaf, Share2, Zap } from "lucide-react";
 import { motion } from "motion/react";
 
 const products: ProductCardData[] = [
   {
-    id: "networking",
-    icon: Network,
-    title: "Enterprise Networking",
-    badge: "Infrastructure",
+    id: "renewa",
+    icon: Leaf,
+    title: "RENEWA",
+    badge: "Hardware Product",
     description:
-      "High-performance network architectures engineered for zero-downtime operations, massive throughput, and multi-site resilience — from campus LANs to global SD-WAN fabrics.",
+      "LED Street Light engineered for energy efficiency and sustainability. RENEWA reduces municipal energy consumption by up to 70% with smart dimming, remote monitoring, and long-life components — bringing smart city infrastructure to Indian roads.",
     features: [
-      "SD-WAN & WAN optimisation",
-      "Enterprise switches & managed routers",
-      "Network monitoring & real-time analytics",
-      "Multi-site connectivity & load balancing",
+      "Energy efficient — up to 70% savings",
+      "Smart dimming & remote monitoring",
+      "Weatherproof industrial-grade design",
+      "Municipality & smart city ready",
     ],
     color: "text-primary",
     bg: "bg-primary/10",
@@ -38,35 +31,17 @@ const products: ProductCardData[] = [
     glowColor: "primary",
   },
   {
-    id: "security",
-    icon: ShieldCheck,
-    title: "Cybersecurity Suite",
-    badge: "Protection",
+    id: "annam",
+    icon: Share2,
+    title: "ANNAM",
+    badge: "SaaS Mobile App",
     description:
-      "Comprehensive threat detection, prevention, and automated response systems that safeguard endpoints, data, and identities across the entire enterprise perimeter.",
+      "Redirecting Surplus Food to Wealth. ANNAM is a SaaS mobile app that connects food donors — restaurants, events, and households — with NGOs and communities in need. Turning food waste into social value through intelligent logistics and real-time matching.",
     features: [
-      "Next-gen firewall & endpoint protection",
-      "Zero-trust network access (ZTNA)",
-      "Threat intelligence & SIEM integration",
-      "Compliance automation (ISO 27001, GDPR)",
-    ],
-    color: "text-chart-2",
-    bg: "bg-chart-2/10",
-    borderHover: "hover:border-chart-2/35",
-    glowColor: "chart-2",
-  },
-  {
-    id: "ai",
-    icon: Brain,
-    title: "AI Solutions",
-    badge: "Intelligence",
-    description:
-      "Intelligent automation and machine learning platforms that augment decision-making, streamline operations, and surface predictive insights from your enterprise data.",
-    features: [
-      "Predictive analytics & forecasting",
-      "NLP, chatbots & conversational AI",
-      "Robotic process automation (RPA)",
-      "Computer vision & quality inspection",
+      "Real-time food donor-recipient matching",
+      "Logistics tracking & route optimization",
+      "NGO and community onboarding portal",
+      "Impact analytics and reporting dashboard",
     ],
     color: "text-accent",
     bg: "bg-accent/10",
@@ -74,22 +49,22 @@ const products: ProductCardData[] = [
     glowColor: "accent",
   },
   {
-    id: "cloud",
-    icon: Cloud,
-    title: "Cloud Infrastructure",
-    badge: "Scalability",
+    id: "seyal",
+    icon: Zap,
+    title: "SEYAL",
+    badge: "SaaS Mobile App",
     description:
-      "Managed cloud services and proven migration strategies delivering cost efficiency, global availability, and DevOps-grade CI/CD pipelines at enterprise scale.",
+      "Connects Students, Startups, Colleges, and Investors in one unified ecosystem. SEYAL is the platform where talent meets opportunity — enabling collaboration, mentorship, funding discovery, and project showcasing for India's next generation of innovators.",
     features: [
-      "Cloud migration (lift-shift & re-architect)",
-      "Multi-cloud & hybrid management",
-      "Auto-scaling & cost optimisation",
-      "DevOps toolchain & IaC provisioning",
+      "Student-startup collaboration network",
+      "Investor discovery and pitch portal",
+      "College and mentor onboarding",
+      "Project showcase and feedback system",
     ],
-    color: "text-chart-3",
-    bg: "bg-chart-3/10",
-    borderHover: "hover:border-chart-3/35",
-    glowColor: "chart-3",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    borderHover: "hover:border-primary/35",
+    glowColor: "primary",
   },
 ];
 
@@ -151,7 +126,7 @@ export function ProductsPage() {
               variant="outline"
               className="mb-6 border-primary/35 text-primary bg-primary/5 px-4 py-1 text-xs tracking-widest uppercase font-mono"
             >
-              Products & Services
+              Products &amp; Services
             </Badge>
 
             <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
@@ -160,16 +135,16 @@ export function ProductsPage() {
             </h1>
 
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg md:text-xl leading-relaxed mb-10">
-              Four core technology pillars — Networking, Security, AI, and Cloud
-              — powering digital transformation across industries and
-              institutions.
+              3 flagship products and 10 specialized services — from IoT
+              hardware and SaaS apps to web development, patent services, and
+              R&D support.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link to="/contact">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 gap-2 glow-cyan"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 gap-2"
                   data-ocid="products.hero_cta"
                 >
                   Get a Custom Quote <ArrowRight className="w-4 h-4" />
@@ -193,7 +168,7 @@ export function ProductsPage() {
         </div>
       </section>
 
-      {/* ── Product Categories ── */}
+      {/* ── Flagship Products ── */}
       <section
         id="products-grid"
         className="py-20 bg-background"
@@ -207,17 +182,24 @@ export function ProductsPage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-14"
           >
+            <Badge
+              variant="outline"
+              className="mb-4 border-accent/30 text-accent bg-accent/5 text-xs uppercase tracking-widest"
+            >
+              Flagship Products
+            </Badge>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground mb-4">
-              Core Product Categories
+              3 Products Built for{" "}
+              <span className="text-gradient-primary">Scale</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Each pillar is a full-stack capability — from strategy and design
-              to deployment and 24×7 managed operations.
+              Hardware innovation, food sustainability SaaS, and an ecosystem
+              connector — each product addresses a real-world challenge.
             </p>
           </motion.div>
 
           <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
             data-ocid="products.card_list"
           >
             {products.map((product, i) => (
@@ -227,7 +209,7 @@ export function ProductsPage() {
         </div>
       </section>
 
-      {/* ── Solutions Grid ── */}
+      {/* ── Services Grid (10 services) ── */}
       <SolutionGrid />
 
       {/* ── Why Choose Us ── */}
@@ -264,13 +246,15 @@ export function ProductsPage() {
               </h2>
               <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
                 Our architects design custom packages combining any of our
-                products. From scoping to delivery — we own the outcome.
+                products and services. From scoping to delivery — we own the
+                outcome.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <Link to="/contact">
                   <Button
                     size="lg"
-                    className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 gap-2 glow-accent font-semibold"
+                    className="px-10 gap-2 font-semibold text-sm"
+                    style={{ background: "#F59E0B", color: "#111827" }}
                     data-ocid="products.bottom_cta"
                   >
                     Talk to an Expert <ArrowRight className="w-4 h-4" />

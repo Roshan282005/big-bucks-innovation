@@ -17,13 +17,6 @@ import { motion } from "motion/react";
 
 const contactItems = [
   {
-    icon: Phone,
-    label: "Phone",
-    value: "+91 86678 58430",
-    href: "tel:8667858430",
-    description: "Mon–Fri, 9 AM–6 PM IST",
-  },
-  {
     icon: Mail,
     label: "Email",
     value: "bigbucksinnovation@gmail.com",
@@ -31,11 +24,25 @@ const contactItems = [
     description: "Responses within 24 hours",
   },
   {
+    icon: Phone,
+    label: "Mobile",
+    value: "+91 86678 58430",
+    href: "tel:8667858430",
+    description: "Mon–Fri, 9 AM–6 PM IST",
+  },
+  {
     icon: MapPin,
-    label: "Office",
-    value: "IIT Delhi Innovation Hub",
+    label: "Head Office",
+    value: "No.14, Prabhu Nagar, Neelankarai Link Road",
     href: undefined,
-    description: "New Delhi, India 110016",
+    description: "Thoraipakkam, Chennai – 600097",
+  },
+  {
+    icon: Building2,
+    label: "Branch Office",
+    value: "3rd Floor, Lab Block 1, St Josephs Institute of Technology",
+    href: undefined,
+    description: "Semmancherry, Chennai – 600119",
   },
 ];
 
@@ -110,19 +117,14 @@ export function ContactInfo() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08 + 0.15 }}
-            className="flex items-start gap-3.5 p-3.5 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors duration-200"
+            className="flex items-start gap-3.5 p-3.5 rounded-xl bg-white border border-border hover:border-primary/30 transition-colors duration-200"
+            style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}
           >
-            <div
-              className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-              style={{
-                background: "oklch(0.72 0.18 190 / 0.1)",
-                border: "1px solid oklch(0.72 0.18 190 / 0.2)",
-              }}
-            >
+            <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
               <item.icon className="w-4 h-4 text-primary" />
             </div>
             <div className="min-w-0">
-              <p className="text-xs text-muted-foreground mb-0.5">
+              <p className="text-xs text-muted-foreground mb-0.5 font-medium uppercase tracking-wide">
                 {item.label}
               </p>
               {item.href ? (
@@ -133,7 +135,7 @@ export function ContactInfo() {
                   {item.value}
                 </a>
               ) : (
-                <p className="text-foreground text-sm font-medium">
+                <p className="text-foreground text-sm font-medium leading-snug">
                   {item.value}
                 </p>
               )}
@@ -190,16 +192,10 @@ export function ContactInfo() {
               <Link
                 to={link.href}
                 data-ocid={link.ocid}
-                className="flex items-center gap-2.5 p-3 rounded-lg bg-muted/40 hover:bg-primary/8 border border-transparent hover:border-primary/20 transition-all duration-200 group"
+                className="flex items-center gap-2.5 p-3 rounded-lg bg-muted/40 hover:bg-primary/5 border border-transparent hover:border-primary/20 transition-all duration-200 group"
               >
-                <div
-                  className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0"
-                  style={{ background: "oklch(0.78 0.17 70 / 0.1)" }}
-                >
-                  <link.icon
-                    className="w-3.5 h-3.5"
-                    style={{ color: "oklch(0.78 0.17 70)" }}
-                  />
+                <div className="w-7 h-7 rounded-md bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <link.icon className="w-3.5 h-3.5 text-accent" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-semibold text-foreground truncate group-hover:text-primary transition-colors duration-200">

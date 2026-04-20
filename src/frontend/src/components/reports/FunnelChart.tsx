@@ -1,16 +1,23 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "motion/react";
 
+const BLUE = "#2563EB";
+const GOLD = "#F59E0B";
+
 const funnelStages = [
-  { label: "Leads", count: 240, pct: 100, color: "oklch(0.72 0.18 190)" },
-  { label: "Contacted", count: 172, pct: 72, color: "oklch(0.65 0.17 190)" },
-  { label: "Qualified", count: 89, pct: 37, color: "oklch(0.56 0.16 190)" },
-  { label: "Closed Won", count: 41, pct: 17, color: "oklch(0.48 0.14 190)" },
+  { label: "Leads", count: 240, pct: 100, color: BLUE },
+  { label: "Contacted", count: 172, pct: 72, color: "#3B82F6" },
+  { label: "Qualified", count: 89, pct: 37, color: GOLD },
+  { label: "Closed Won", count: 41, pct: 17, color: "#F59E0B99" },
 ];
 
 export function FunnelChart() {
   return (
-    <Card className="bg-card border-border" data-ocid="reports.funnel_chart">
+    <Card
+      className="bg-card border-border"
+      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+      data-ocid="reports.funnel_chart"
+    >
       <CardHeader className="pb-2">
         <CardTitle className="font-display text-sm text-foreground">
           Lead Conversion Funnel
@@ -42,18 +49,13 @@ export function FunnelChart() {
                   </span>
                 </span>
               </div>
-              <div
-                className="h-7 rounded-md overflow-hidden"
-                style={{
-                  background: "oklch(0.21 0.02 260)",
-                }}
-              >
+              <div className="h-7 rounded-md overflow-hidden bg-muted">
                 <motion.div
                   className="h-full rounded-md flex items-center px-3"
                   style={{
                     width: `${stage.pct}%`,
                     background: stage.color,
-                    opacity: 0.85,
+                    opacity: 0.9,
                   }}
                   initial={{ width: 0 }}
                   animate={{ width: `${stage.pct}%` }}
@@ -73,7 +75,7 @@ export function FunnelChart() {
           <span className="text-xs text-muted-foreground">
             Overall conversion
           </span>
-          <span className="text-sm font-semibold text-primary">17.1%</span>
+          <span className="text-sm font-bold text-primary">17.1%</span>
         </div>
       </CardContent>
     </Card>

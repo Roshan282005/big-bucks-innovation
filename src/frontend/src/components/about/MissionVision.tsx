@@ -70,31 +70,36 @@ export function MissionVision() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-card border border-border rounded-2xl p-8 relative overflow-hidden group hover:border-primary/30 transition-smooth surface-elevated"
+            className="bg-white border border-primary/20 rounded-2xl p-8 relative overflow-hidden group hover:border-primary/40 transition-smooth"
+            style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
           >
+            {/* left blue accent bar */}
+            <div className="absolute top-0 left-0 h-full w-1 bg-primary rounded-l-2xl opacity-70" />
             <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-60" />
-            <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 ml-3">
               <Zap className="w-6 h-6 text-primary" />
             </div>
-            <Badge
-              variant="outline"
-              className="mb-4 border-primary/30 text-primary bg-primary/5 text-xs uppercase tracking-widest"
-            >
-              Our Mission
-            </Badge>
-            <h3 className="font-display font-bold text-2xl text-foreground mb-4 leading-snug">
-              Empowering enterprises through{" "}
-              <span className="text-gradient-primary">
-                intelligent technology
-              </span>
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              We exist to bridge the gap between cutting-edge research and
-              real-world enterprise needs — delivering AI, networking, and
-              digital transformation solutions that scale. From government
-              bodies to growing startups, our mission is to make world-class
-              technology accessible to every organization in India.
-            </p>
+            <div className="pl-3">
+              <Badge
+                variant="outline"
+                className="mb-4 border-primary/30 text-primary bg-primary/5 text-xs uppercase tracking-widest"
+              >
+                Our Mission
+              </Badge>
+              <h3 className="font-display font-bold text-2xl text-foreground mb-4 leading-snug">
+                Empowering enterprises through{" "}
+                <span className="text-gradient-primary">
+                  intelligent technology
+                </span>
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                We exist to bridge the gap between cutting-edge research and
+                real-world enterprise needs — delivering IoT, web, mobile, and
+                digital transformation solutions that scale. From government
+                bodies to growing startups, our mission is to make world-class
+                technology accessible to every organization in India.
+              </p>
+            </div>
           </motion.div>
 
           <motion.div
@@ -102,29 +107,34 @@ export function MissionVision() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-            className="bg-card border border-border rounded-2xl p-8 relative overflow-hidden group hover:border-accent/30 transition-smooth surface-elevated"
+            className="bg-white border border-accent/20 rounded-2xl p-8 relative overflow-hidden group hover:border-accent/40 transition-smooth"
+            style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
           >
+            {/* left gold accent bar */}
+            <div className="absolute top-0 left-0 h-full w-1 bg-accent rounded-l-2xl opacity-70" />
             <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-accent to-transparent opacity-60" />
-            <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-5">
+            <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-5 ml-3">
               <Eye className="w-6 h-6 text-accent" />
             </div>
-            <Badge
-              variant="outline"
-              className="mb-4 border-accent/30 text-accent bg-accent/5 text-xs uppercase tracking-widest"
-            >
-              Our Vision
-            </Badge>
-            <h3 className="font-display font-bold text-2xl text-foreground mb-4 leading-snug">
-              India's most trusted{" "}
-              <span className="text-gradient-accent">innovation partner</span>
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              To become India's foremost pre-incubated technology company — a
-              benchmark for innovation, talent development, and enterprise
-              impact. By 2030, we envision a network of 50,000+ trained
-              professionals, 100+ enterprise MOUs, and technology solutions
-              deployed across every state in India.
-            </p>
+            <div className="pl-3">
+              <Badge
+                variant="outline"
+                className="mb-4 border-accent/30 text-accent bg-accent/5 text-xs uppercase tracking-widest"
+              >
+                Our Vision
+              </Badge>
+              <h3 className="font-display font-bold text-2xl text-foreground mb-4 leading-snug">
+                India's most trusted{" "}
+                <span className="text-gradient-accent">innovation partner</span>
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                To become India's foremost pre-incubated technology company — a
+                benchmark for innovation, talent development, and enterprise
+                impact. By 2030, we envision a network of 50,000+ trained
+                professionals, 100+ enterprise MOUs, and technology solutions
+                deployed across every state in India.
+              </p>
+            </div>
           </motion.div>
         </div>
 
@@ -156,7 +166,8 @@ export function MissionVision() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className={`bg-card border ${v.border} rounded-xl p-6 hover:border-opacity-60 transition-smooth group`}
+              className="bg-white border border-border rounded-xl p-6 hover:border-primary/30 transition-smooth group"
+              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
               data-ocid={`about.value_card.${i + 1}`}
             >
               <div

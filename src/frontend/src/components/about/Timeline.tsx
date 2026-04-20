@@ -8,17 +8,17 @@ const milestones = [
     quarter: "Q1",
     title: "Founded",
     description:
-      "Big Bucks Innovation Pvt Ltd established with IIT Delhi pre-incubation backing. First team of 5 engineers assembled, initial R&D into enterprise AI and networking solutions commenced.",
+      "Big Bucks Innovation Pvt Ltd established with IIT Delhi pre-incubation backing. First team of 5 engineers assembled, initial R&D into enterprise IoT and technology solutions commenced.",
     tags: ["Company Founded", "IIT Delhi", "Pre-Incubation"],
     accent: false,
   },
   {
     year: "2021",
     quarter: "Q3",
-    title: "First Government MOU",
+    title: "First MOU & Training Cohort",
     description:
-      "Signed inaugural MOU with a central government body for deploying networking infrastructure. Launched first student training cohort — 500 students trained in first year.",
-    tags: ["Gov. MOU", "500 Students", "Infrastructure"],
+      "Signed inaugural MOU with an academic institution. Launched first student training cohort — 500 students trained in the first year across IoT, digital marketing, and web technologies.",
+    tags: ["First MOU", "500 Students", "Training Launch"],
     accent: true,
   },
   {
@@ -26,18 +26,27 @@ const milestones = [
     quarter: "Q2",
     title: "IIT Delhi Strategic Partnership",
     description:
-      "Formalized deep collaboration with IIT Delhi Innovation Lab, gaining access to world-class research facilities, faculty expertise, and a pipeline of top engineering talent for R&D projects.",
+      "Formalized deep collaboration with IIT Delhi's innovation lab, gaining access to world-class research facilities, faculty expertise, and a pipeline of top engineering talent for R&D projects.",
     tags: ["IIT Delhi Partnership", "Research Lab", "Talent Pipeline"],
     accent: false,
   },
   {
+    year: "2023",
+    quarter: "Q4",
+    title: "Product & Service Expansion",
+    description:
+      "Launched RENEWA LED Street Light, ANNAM food surplus SaaS, and SEYAL student-startup connector app. Expanded services to 10 verticals including 3D printing, PCB design, and patent services.",
+    tags: ["3 Products Launched", "10 Services", "SaaS Expansion"],
+    accent: true,
+  },
+  {
     year: "2024",
     quarter: "Today",
-    title: "5000+ Students & 10 MOUs",
+    title: "35 Projects, 5000+ Students & 10+ MOUs",
     description:
-      "Reached major milestones: 5000+ students trained across India, 10+ MOUs signed with government and industry, 20 active team members, and government-funded projects deployed nationally.",
-    tags: ["5000+ Students", "10+ MOUs", "National Deployment"],
-    accent: true,
+      "Reached major milestones: 35 completed projects, 5000+ students trained across India, 10+ MOUs signed, 15 active team members, 6 funding grants, and 2 branch offices operational nationally.",
+    tags: ["5000+ Students", "10+ MOUs", "35 Projects", "National Reach"],
+    accent: false,
   },
 ];
 
@@ -67,7 +76,7 @@ export function Timeline() {
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-base">
             From a bold idea in IIT Delhi's innovation lab to a
-            government-backed enterprise technology company.
+            government-backed enterprise technology company with national reach.
           </p>
         </motion.div>
 
@@ -94,8 +103,13 @@ export function Timeline() {
                     className={`flex-1 ${isRight ? "md:pr-12" : "md:pl-12"}`}
                   >
                     <div
-                      className={`bg-card border rounded-2xl p-6 transition-smooth surface-elevated group
-                      ${m.accent ? "border-accent/25 hover:border-accent/40" : "border-border hover:border-primary/30"}`}
+                      className="bg-white border rounded-2xl p-6 transition-smooth group"
+                      style={{
+                        borderColor: m.accent
+                          ? "rgba(245,158,11,0.25)"
+                          : "rgba(37,99,235,0.2)",
+                        boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+                      }}
                     >
                       {/* top accent */}
                       <div

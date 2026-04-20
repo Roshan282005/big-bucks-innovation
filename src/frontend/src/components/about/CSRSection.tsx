@@ -7,7 +7,7 @@ const csrInitiatives = [
     icon: GraduationCap,
     title: "Skill India Training",
     description:
-      "Partnered with government bodies to deliver free and subsidized training in AI, networking, and digital skills to students from underserved communities across India.",
+      "Partnered with government bodies to deliver free and subsidized training in IoT, web development, digital marketing, and innovation skills to students from underserved communities across India.",
     stat: "5000+",
     statLabel: "Students Trained",
     accent: false,
@@ -23,20 +23,20 @@ const csrInitiatives = [
   },
   {
     icon: Leaf,
-    title: "Rural Connectivity",
+    title: "Sustainability Innovation",
     description:
-      "Working with state government initiatives to extend enterprise-grade networking infrastructure to rural schools and community centers, bridging the digital divide.",
-    stat: "12",
-    statLabel: "Districts Reached",
+      "Developing green technology solutions like RENEWA LED Street Lights, driving energy efficiency and sustainability across municipalities and smart city initiatives.",
+    stat: "12+",
+    statLabel: "Cities Reached",
     accent: false,
   },
   {
     icon: Heart,
-    title: "Open Source & Research",
+    title: "Food & Social Impact",
     description:
-      "Publishing research, open-sourcing training materials, and contributing to India's national AI/technology policy discourse through IIT Delhi's research network.",
-    stat: "20+",
-    statLabel: "Publications",
+      "ANNAM — our surplus food redistribution SaaS — redirects food waste to wealth for communities in need, demonstrating technology as a force for tangible social good.",
+    stat: "ANNAM",
+    statLabel: "Impact SaaS App",
     accent: true,
   },
 ];
@@ -73,8 +73,8 @@ export function CSRSection() {
           <p className="text-muted-foreground max-w-2xl mx-auto text-base leading-relaxed">
             We believe technology should uplift communities, not just
             corporations. Our CSR initiatives are woven into our DNA — from
-            day-one investments in student training to rural connectivity
-            programs that reach the last mile.
+            day-one investments in student training to sustainability and food
+            impact programs.
           </p>
         </motion.div>
 
@@ -86,8 +86,13 @@ export function CSRSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className={`bg-card border rounded-2xl p-6 transition-smooth group surface-elevated
-                ${item.accent ? "border-accent/25 hover:border-accent/40" : "border-border hover:border-primary/30"}`}
+              className="bg-white border rounded-2xl p-6 transition-smooth group"
+              style={{
+                borderColor: item.accent
+                  ? "rgba(245,158,11,0.25)"
+                  : "rgba(37,99,235,0.15)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+              }}
               data-ocid={`about.csr_item.${i + 1}`}
             >
               <div className="flex items-start gap-4">
@@ -128,7 +133,8 @@ export function CSRSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="max-w-2xl mx-auto text-center bg-card border border-primary/20 rounded-2xl p-8 relative overflow-hidden"
+          className="max-w-2xl mx-auto text-center bg-white border border-primary/20 rounded-2xl p-8 relative overflow-hidden"
+          style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
           data-ocid="about.csr_quote"
         >
           <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />

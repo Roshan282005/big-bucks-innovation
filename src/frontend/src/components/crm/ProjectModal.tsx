@@ -51,6 +51,11 @@ interface ProjectModalProps {
   isSaving: boolean;
 }
 
+const inputCls =
+  "bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary";
+const labelCls =
+  "text-xs font-semibold text-muted-foreground uppercase tracking-wider";
+
 export function ProjectModal({
   open,
   project,
@@ -92,7 +97,11 @@ export function ProjectModal({
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent
         data-ocid="project.dialog"
-        className="bg-card border-border max-w-lg max-h-[90vh] overflow-y-auto"
+        className="bg-white border-border max-w-lg max-h-[90vh] overflow-y-auto"
+        style={{
+          boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+          borderRadius: "16px",
+        }}
       >
         <DialogHeader>
           <DialogTitle className="font-display text-foreground">
@@ -101,12 +110,8 @@ export function ProjectModal({
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-2">
-          {/* Name */}
           <div className="space-y-1.5">
-            <Label
-              htmlFor="proj-name"
-              className="text-foreground/80 text-xs font-medium"
-            >
+            <Label htmlFor="proj-name" className={labelCls}>
               Project Name *
             </Label>
             <Input
@@ -116,17 +121,13 @@ export function ProjectModal({
               value={form.name}
               onChange={set("name")}
               placeholder="Ministry AI Dashboard"
-              className="bg-background border-border"
+              className={inputCls}
             />
           </div>
 
-          {/* Client + Status row */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label
-                htmlFor="proj-client"
-                className="text-foreground/80 text-xs font-medium"
-              >
+              <Label htmlFor="proj-client" className={labelCls}>
                 Client
               </Label>
               <Input
@@ -135,13 +136,11 @@ export function ProjectModal({
                 value={form.client}
                 onChange={set("client")}
                 placeholder="Client name"
-                className="bg-background border-border"
+                className={inputCls}
               />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-foreground/80 text-xs font-medium">
-                Status
-              </Label>
+              <Label className={labelCls}>Status</Label>
               <Select
                 value={form.status}
                 onValueChange={(v) =>
@@ -150,7 +149,7 @@ export function ProjectModal({
               >
                 <SelectTrigger
                   data-ocid="project.status_select"
-                  className="bg-background border-border"
+                  className="bg-white border-border"
                 >
                   <SelectValue />
                 </SelectTrigger>
@@ -170,12 +169,8 @@ export function ProjectModal({
             </div>
           </div>
 
-          {/* Description */}
           <div className="space-y-1.5">
-            <Label
-              htmlFor="proj-desc"
-              className="text-foreground/80 text-xs font-medium"
-            >
+            <Label htmlFor="proj-desc" className={labelCls}>
               Description
             </Label>
             <Textarea
@@ -185,17 +180,13 @@ export function ProjectModal({
               onChange={set("description")}
               placeholder="Project summary..."
               rows={3}
-              className="bg-background border-border resize-none"
+              className="bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
             />
           </div>
 
-          {/* Dates row */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label
-                htmlFor="proj-start"
-                className="text-foreground/80 text-xs font-medium"
-              >
+              <Label htmlFor="proj-start" className={labelCls}>
                 Start Date
               </Label>
               <Input
@@ -204,14 +195,11 @@ export function ProjectModal({
                 type="date"
                 value={form.startDate}
                 onChange={set("startDate")}
-                className="bg-background border-border"
+                className={inputCls}
               />
             </div>
             <div className="space-y-1.5">
-              <Label
-                htmlFor="proj-end"
-                className="text-foreground/80 text-xs font-medium"
-              >
+              <Label htmlFor="proj-end" className={labelCls}>
                 End Date
               </Label>
               <Input
@@ -220,18 +208,14 @@ export function ProjectModal({
                 type="date"
                 value={form.endDate}
                 onChange={set("endDate")}
-                className="bg-background border-border"
+                className={inputCls}
               />
             </div>
           </div>
 
-          {/* Budget + Owner row */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label
-                htmlFor="proj-budget"
-                className="text-foreground/80 text-xs font-medium"
-              >
+              <Label htmlFor="proj-budget" className={labelCls}>
                 Budget (₹)
               </Label>
               <Input
@@ -242,14 +226,11 @@ export function ProjectModal({
                 value={form.budget}
                 onChange={set("budget")}
                 placeholder="1500000"
-                className="bg-background border-border"
+                className={inputCls}
               />
             </div>
             <div className="space-y-1.5">
-              <Label
-                htmlFor="proj-owner"
-                className="text-foreground/80 text-xs font-medium"
-              >
+              <Label htmlFor="proj-owner" className={labelCls}>
                 Owner
               </Label>
               <Input
@@ -258,21 +239,17 @@ export function ProjectModal({
                 value={form.owner}
                 onChange={set("owner")}
                 placeholder="Principal or name"
-                className="bg-background border-border"
+                className={inputCls}
               />
             </div>
           </div>
 
-          {/* Progress slider */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label
-                htmlFor="proj-progress"
-                className="text-foreground/80 text-xs font-medium"
-              >
+              <Label htmlFor="proj-progress" className={labelCls}>
                 Progress
               </Label>
-              <span className="text-xs font-mono text-primary">
+              <span className="text-xs font-mono font-bold text-primary">
                 {form.progress}%
               </span>
             </div>
@@ -291,7 +268,6 @@ export function ProjectModal({
               }
               className="w-full h-2 rounded-full accent-primary cursor-pointer"
             />
-            {/* Progress bar preview */}
             <div className="h-1.5 rounded-full bg-muted overflow-hidden">
               <div
                 className="h-full rounded-full bg-primary transition-all duration-300"
@@ -300,15 +276,14 @@ export function ProjectModal({
             </div>
           </div>
 
-          {/* Actions */}
           <div className="flex gap-2 pt-2 justify-end">
             <Button
               type="button"
               data-ocid="project.cancel_button"
-              variant="ghost"
+              variant="outline"
               onClick={onClose}
               disabled={isSaving}
-              className="text-muted-foreground hover:text-foreground"
+              className="border-border text-muted-foreground hover:text-foreground"
             >
               Cancel
             </Button>
@@ -316,7 +291,7 @@ export function ProjectModal({
               type="submit"
               data-ocid="project.submit_button"
               disabled={isSaving || !form.name.trim()}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 min-w-24"
+              className="bg-primary text-white hover:bg-primary/90 min-w-24"
             >
               {isSaving
                 ? "Saving…"

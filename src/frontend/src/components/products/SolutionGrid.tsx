@@ -1,15 +1,19 @@
 import {
-  BarChart3,
-  CloudUpload,
+  Cpu,
+  Globe,
   GraduationCap,
-  Lock,
-  Server,
+  Hammer,
+  Lightbulb,
+  Monitor,
+  Printer,
+  Rocket,
+  Smartphone,
   TrendingUp,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { motion } from "motion/react";
 
-interface Solution {
+interface Service {
   id: string;
   icon: LucideIcon;
   title: string;
@@ -17,68 +21,119 @@ interface Solution {
   tag: string;
   accent: string;
   iconBg: string;
+  borderColor: string;
 }
 
-const solutions: Solution[] = [
+const services: Service[] = [
   {
-    id: "smart-campus",
-    icon: GraduationCap,
-    title: "Smart Campus",
+    id: "iot-home-automation",
+    icon: Cpu,
+    title: "IoT Home Automation Services",
     description:
-      "Unified IoT and networking infrastructure enabling digital learning environments with real-time monitoring.",
-    tag: "Education",
+      "Smart home and building automation using IoT technologies — from lighting control and energy management to security systems and remote monitoring.",
+    tag: "IoT",
     accent: "text-primary",
     iconBg: "bg-primary/10",
+    borderColor: "rgba(37,99,235,0.2)",
   },
   {
-    id: "digital-security",
-    icon: Lock,
-    title: "Digital Security",
+    id: "website-development",
+    icon: Monitor,
+    title: "Website Development",
     description:
-      "End-to-end encryption, threat hunting, and compliance frameworks protecting your critical data assets.",
-    tag: "Security",
-    accent: "text-chart-2",
-    iconBg: "bg-chart-2/10",
-  },
-  {
-    id: "ai-analytics",
-    icon: BarChart3,
-    title: "AI-Powered Analytics",
-    description:
-      "Turn raw enterprise data into predictive insights with embedded machine learning pipelines.",
-    tag: "AI & Data",
+      "Full-stack web development delivering responsive, performant, and visually stunning websites for businesses, startups, and educational institutions.",
+    tag: "Web",
     accent: "text-accent",
     iconBg: "bg-accent/10",
+    borderColor: "rgba(245,158,11,0.2)",
   },
   {
-    id: "cloud-migration",
-    icon: CloudUpload,
-    title: "Cloud Migration",
+    id: "mobile-app-development",
+    icon: Smartphone,
+    title: "Mobile Application Development",
     description:
-      "Lift-and-shift or re-architect strategies with zero downtime cutover and full rollback plans.",
-    tag: "Cloud",
-    accent: "text-chart-3",
-    iconBg: "bg-chart-3/10",
-  },
-  {
-    id: "hybrid-infra",
-    icon: Server,
-    title: "Hybrid Infrastructure",
-    description:
-      "Bridge on-premise workloads with public cloud seamlessly, optimising for cost and resilience.",
-    tag: "Infrastructure",
+      "Native and cross-platform mobile app development for Android and iOS — from concept and UI/UX to deployment and maintenance.",
+    tag: "Mobile",
     accent: "text-primary",
     iconBg: "bg-primary/10",
+    borderColor: "rgba(37,99,235,0.2)",
   },
   {
-    id: "business-intelligence",
+    id: "digital-marketing",
     icon: TrendingUp,
-    title: "Business Intelligence",
+    title: "Digital Marketing Solution",
     description:
-      "Executive dashboards, KPI tracking, and automated reporting that drive decisions at every level.",
-    tag: "Analytics",
+      "End-to-end digital marketing strategies encompassing SEO, social media, content marketing, and performance advertising to grow your brand online.",
+    tag: "Marketing",
     accent: "text-accent",
     iconBg: "bg-accent/10",
+    borderColor: "rgba(245,158,11,0.2)",
+  },
+  {
+    id: "innovation-patent",
+    icon: Lightbulb,
+    title: "Innovation & Patent Service",
+    description:
+      "Guiding inventors and startups through the patent filing process, IP strategy, and innovation audits — backed by IIT Delhi's research ecosystem.",
+    tag: "IP & Patents",
+    accent: "text-primary",
+    iconBg: "bg-primary/10",
+    borderColor: "rgba(37,99,235,0.2)",
+  },
+  {
+    id: "trainings-internships",
+    icon: GraduationCap,
+    title: "Trainings & Internships",
+    description:
+      "Structured internship programs and technical training cohorts covering IoT, web development, AI, and digital skills — with 5000+ students trained.",
+    tag: "Education",
+    accent: "text-accent",
+    iconBg: "bg-accent/10",
+    borderColor: "rgba(245,158,11,0.2)",
+  },
+  {
+    id: "hackathon-funding",
+    icon: Rocket,
+    title: "Hackathon & Funding Assistance",
+    description:
+      "End-to-end support for students and startups participating in hackathons — mentorship, team formation, pitch coaching, and connections to funding networks.",
+    tag: "Startup",
+    accent: "text-primary",
+    iconBg: "bg-primary/10",
+    borderColor: "rgba(37,99,235,0.2)",
+  },
+  {
+    id: "pcb-designing",
+    icon: Hammer,
+    title: "PCB Designing Services",
+    description:
+      "Professional PCB design and layout services for electronics projects, IoT devices, and industrial applications — from schematic to fabrication-ready files.",
+    tag: "Electronics",
+    accent: "text-accent",
+    iconBg: "bg-accent/10",
+    borderColor: "rgba(245,158,11,0.2)",
+  },
+  {
+    id: "3d-printing",
+    icon: Printer,
+    title: "3D Printing Services",
+    description:
+      "Rapid prototyping and production using advanced 3D printing technologies. From product prototypes to custom parts — precise, fast, and cost-effective.",
+    tag: "Fabrication",
+    accent: "text-primary",
+    iconBg: "bg-primary/10",
+    borderColor: "rgba(37,99,235,0.2)",
+  },
+  {
+    id: "research-development",
+    icon: Globe,
+    title: "Research & Development Support",
+    description:
+      "Collaborative R&D initiatives for enterprises and academic institutions — project scoping, technical research, and prototype development with IIT Delhi backing.",
+    tag: "R&D",
+    accent: "text-accent",
+    iconBg: "bg-accent/10",
+    borderColor: "rgba(245,158,11,0.2)",
   },
 ];
 
@@ -95,52 +150,66 @@ export function SolutionGrid() {
           className="text-center mb-14"
         >
           <span className="inline-block text-xs font-mono font-medium tracking-widest uppercase text-primary mb-4 px-3 py-1 rounded-full border border-primary/25 bg-primary/5">
-            Solutions
+            Our Services
           </span>
           <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground mb-4">
-            Industry-Specific Use Cases
+            10 Services Built for{" "}
+            <span className="text-gradient-accent">Real Impact</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-base">
-            Pre-built solution accelerators designed for rapid deployment across
-            verticals—from education to enterprise.
+            From IoT automation and web development to R&D support and patent
+            services — every offering is designed to accelerate growth.
           </p>
         </motion.div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {solutions.map((sol, i) => {
-            const Icon = sol.icon;
+          {services.map((svc, i) => {
+            const Icon = svc.icon;
             return (
               <motion.div
-                key={sol.id}
+                key={svc.id}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.08 }}
-                className="group bg-card border border-border hover:border-primary/25 rounded-xl p-6 transition-smooth cursor-default"
-                data-ocid={`solutions.${sol.id}_card`}
+                transition={{ duration: 0.45, delay: i * 0.07 }}
+                className="group bg-white border rounded-xl p-6 hover:border-primary/30 transition-smooth cursor-default flex flex-col"
+                style={{
+                  borderColor: svc.borderColor,
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+                }}
+                data-ocid={`solutions.${svc.id}_card`}
               >
                 <div
-                  className={`w-11 h-11 rounded-lg ${sol.iconBg} flex items-center justify-center mb-4`}
+                  className={`w-11 h-11 rounded-lg ${svc.iconBg} flex items-center justify-center mb-4 group-hover:scale-105 transition-smooth`}
                 >
                   <Icon
-                    className={`w-5 h-5 ${sol.accent}`}
+                    className={`w-5 h-5 ${svc.accent}`}
                     strokeWidth={1.75}
                   />
                 </div>
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-display font-semibold text-base text-foreground">
-                    {sol.title}
+                  <h3 className="font-display font-semibold text-base text-foreground leading-snug">
+                    {svc.title}
                   </h3>
-                  <span
-                    className={`text-[10px] font-mono uppercase tracking-wider ${sol.accent} opacity-70`}
-                  >
-                    {sol.tag}
-                  </span>
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {sol.description}
+                <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4">
+                  {svc.description}
                 </p>
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`text-[10px] font-mono uppercase tracking-wider ${svc.accent} opacity-70`}
+                  >
+                    {svc.tag}
+                  </span>
+                  <a
+                    href="/contact"
+                    className="text-xs font-semibold text-primary hover:underline transition-colors duration-200 flex items-center gap-1"
+                    data-ocid={`solutions.${svc.id}_learn_more`}
+                  >
+                    Learn More →
+                  </a>
+                </div>
               </motion.div>
             );
           })}

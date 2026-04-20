@@ -13,6 +13,9 @@ interface FormErrors {
   email?: string;
 }
 
+const inputCls =
+  "bg-white border-border focus:ring-2 focus:ring-primary/20 focus:border-primary";
+
 export function ProfileSettings() {
   const { principal } = useAuthStore();
 
@@ -53,8 +56,8 @@ export function ProfileSettings() {
       className="space-y-6"
     >
       {/* Avatar + role row */}
-      <div className="flex items-center gap-4 p-5 bg-muted/30 border border-border rounded-xl">
-        <div className="w-14 h-14 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center shrink-0">
+      <div className="flex items-center gap-4 p-5 bg-blue-50/50 border border-blue-100 rounded-xl">
+        <div className="w-14 h-14 rounded-full bg-blue-50 border-2 border-blue-200 flex items-center justify-center shrink-0">
           <UserCircle className="w-8 h-8 text-primary" />
         </div>
         <div className="min-w-0">
@@ -67,7 +70,7 @@ export function ProfileSettings() {
         </div>
         <Badge
           variant="secondary"
-          className="ml-auto shrink-0 bg-primary/10 text-primary border-primary/20"
+          className="ml-auto shrink-0 bg-primary text-white border-0"
           data-ocid="profile.role_badge"
         >
           Admin
@@ -79,7 +82,7 @@ export function ProfileSettings() {
         <div className="space-y-1.5">
           <Label
             htmlFor="displayName"
-            className="text-sm font-medium text-foreground"
+            className="text-sm font-semibold text-foreground"
           >
             Display Name
           </Label>
@@ -93,12 +96,12 @@ export function ProfileSettings() {
             }}
             onBlur={validate}
             placeholder="Your full name"
-            className="bg-background border-border"
+            className={inputCls}
             data-ocid="profile.display_name_input"
           />
           {errors.displayName && (
             <p
-              className="text-xs text-destructive mt-1"
+              className="text-xs text-red-500 mt-1"
               data-ocid="profile.display_name_field_error"
             >
               {errors.displayName}
@@ -109,7 +112,7 @@ export function ProfileSettings() {
         <div className="space-y-1.5">
           <Label
             htmlFor="email"
-            className="text-sm font-medium text-foreground"
+            className="text-sm font-semibold text-foreground"
           >
             Email Address
           </Label>
@@ -124,12 +127,12 @@ export function ProfileSettings() {
             }}
             onBlur={validate}
             placeholder="you@company.com"
-            className="bg-background border-border"
+            className={inputCls}
             data-ocid="profile.email_input"
           />
           {errors.email && (
             <p
-              className="text-xs text-destructive mt-1"
+              className="text-xs text-red-500 mt-1"
               data-ocid="profile.email_field_error"
             >
               {errors.email}
@@ -138,7 +141,7 @@ export function ProfileSettings() {
         </div>
 
         <div className="space-y-1.5">
-          <Label className="text-sm font-medium text-foreground">Role</Label>
+          <Label className="text-sm font-semibold text-foreground">Role</Label>
           <div
             className="h-9 px-3 flex items-center rounded-md border border-border bg-muted/50 text-muted-foreground text-sm"
             data-ocid="profile.role_input"
@@ -156,12 +159,12 @@ export function ProfileSettings() {
         <Button
           onClick={handleSave}
           disabled={saving}
-          className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2 px-6"
+          className="bg-primary text-white hover:bg-primary/90 gap-2 px-6"
           data-ocid="profile.save_button"
         >
           {saving ? (
             <>
-              <span className="w-3.5 h-3.5 border-2 border-accent-foreground/30 border-t-accent-foreground rounded-full animate-spin" />
+              <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               Saving…
             </>
           ) : (

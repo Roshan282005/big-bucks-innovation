@@ -24,8 +24,6 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
 
-// ── Helpers ────────────────────────────────────────────────────────────────
-
 type ModalPayload = CreateLeadPayload | (UpdateLeadPayload & { id: bigint });
 
 function isUpdatePayload(
@@ -34,32 +32,25 @@ function isUpdatePayload(
   return "id" in p;
 }
 
-// ── Page ───────────────────────────────────────────────────────────────────
-
 export function LeadsPage() {
-  // ── Query / mutations ────────────────────────────────────────────────────
   const { data: backendLeads, isLoading, isError } = useLeads();
   const createMutation = useCreateLead();
   const updateMutation = useUpdateLead();
   const deleteMutation = useDeleteLead();
 
-  // Use backend data or fall back to sample data for demo
   const leads: LeadPublic[] =
     backendLeads ?? (isError || !isLoading ? SAMPLE_LEADS : []);
 
-  // ── UI state ─────────────────────────────────────────────────────────────
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [modalOpen, setModalOpen] = useState(false);
   const [editingLead, setEditingLead] = useState<LeadPublic | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<LeadPublic | null>(null);
 
-  // ── Counts for summary bar ───────────────────────────────────────────────
   const totalLeads = leads.length;
   const newCount = leads.filter((l) => l.status === "New").length;
   const qualifiedCount = leads.filter((l) => l.status === "Qualified").length;
 
-  // ── Handlers ─────────────────────────────────────────────────────────────
   function openAddModal() {
     setEditingLead(null);
     setModalOpen(true);
@@ -126,9 +117,10 @@ export function LeadsPage() {
           <Button
             data-ocid="leads.add_button"
             onClick={openAddModal}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 glow-cyan h-9"
+            className="bg-primary text-white hover:bg-primary/90 h-9 gap-1.5"
+            style={{ boxShadow: "0 4px 12px rgba(37,99,235,0.25)" }}
           >
-            <Plus className="w-4 h-4 mr-1.5" />
+            <Plus className="w-4 h-4" />
             Add Lead
           </Button>
         </motion.div>
@@ -146,29 +138,40 @@ export function LeadsPage() {
               value: totalLeads,
               icon: Users,
               color: "text-primary",
+              bg: "bg-blue-50",
             },
             {
               label: "New",
               value: newCount,
               icon: Users,
-              color: "text-cyan-400",
+              color: "text-blue-400",
+              bg: "bg-blue-50/50",
             },
             {
               label: "Qualified",
               value: qualifiedCount,
               icon: Users,
-              color: "text-green-400",
+              color: "text-emerald-600",
+              bg: "bg-emerald-50",
             },
           ].map((stat) => (
             <div
               key={stat.label}
               className="bg-card border border-border rounded-xl px-4 py-3 flex items-center gap-3"
+              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
             >
-              <div className={`text-2xl font-display font-bold ${stat.color}`}>
-                {stat.value}
+              <div
+                className={`w-8 h-8 rounded-lg ${stat.bg} flex items-center justify-center flex-shrink-0`}
+              >
+                <stat.icon className={`w-4 h-4 ${stat.color}`} />
               </div>
-              <div className="text-xs text-muted-foreground font-medium">
-                {stat.label}
+              <div>
+                <p className={`text-2xl font-display font-bold ${stat.color}`}>
+                  {stat.value}
+                </p>
+                <p className="text-xs text-muted-foreground font-medium">
+                  {stat.label}
+                </p>
               </div>
             </div>
           ))}
@@ -226,7 +229,6 @@ export function LeadsPage() {
           />
         </motion.div>
 
-        {/* Footer count */}
         {!isLoading && leads.length > 0 && (
           <p className="text-xs text-muted-foreground text-right pr-1">
             {leads.length} lead{leads.length !== 1 ? "s" : ""} total
@@ -234,7 +236,6 @@ export function LeadsPage() {
         )}
       </div>
 
-      {/* Edit / Create modal */}
       <LeadModal
         open={modalOpen}
         lead={editingLead}
@@ -246,7 +247,6 @@ export function LeadsPage() {
         isSaving={isSaving}
       />
 
-      {/* Delete confirmation */}
       <DeleteConfirmDialog
         open={deleteTarget !== null}
         leadName={deleteTarget?.name ?? ""}
