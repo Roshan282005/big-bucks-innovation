@@ -44,11 +44,11 @@ export function Navbar() {
             className="flex items-center gap-3 group"
             data-ocid="nav.logo_link"
           >
-            <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-[0_2px_12px_rgba(37,99,235,0.35)] group-hover:shadow-[0_4px_16px_rgba(37,99,235,0.45)] transition-all duration-200">
-              <span className="text-white font-display font-bold text-sm tracking-tight">
-                B
-              </span>
-            </div>
+            <img
+              src="/assets/logo.png"
+              alt="Big Bucks Innovation"
+              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+            />
             <div>
               <p className="font-display font-bold text-[#111827] text-sm leading-tight tracking-tight">
                 BIG BUCKS

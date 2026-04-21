@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
-import { BulbAnimation } from "./BulbAnimation";
 
 export function HeroSection() {
   return (
@@ -119,7 +118,19 @@ export function HeroSection() {
             </Link>
           </motion.div>
 
-          <BulbAnimation />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.42 }}
+            className="flex justify-center items-center mt-12 mb-4"
+          >
+            <img
+              src="/assets/ihfc-iitdelhi.jpeg"
+              alt="IHFC IIT Delhi"
+              className="max-w-sm w-full h-auto rounded-2xl shadow-2xl object-contain"
+              style={{ maxHeight: "340px" }}
+            />
+          </motion.div>
         </div>
       </div>
     </section>

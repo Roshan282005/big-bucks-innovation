@@ -54,9 +54,11 @@ export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
           className="flex items-center gap-2.5 group"
           onClick={onClose}
         >
-          <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center shadow-[0_2px_8px_rgba(37,99,235,0.3)] group-hover:shadow-[0_4px_12px_rgba(37,99,235,0.4)] transition-all duration-200">
-            <span className="text-white font-display font-bold text-xs">B</span>
-          </div>
+          <img
+            src="/assets/logo.png"
+            alt="Big Bucks Innovation"
+            className="h-9 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+          />
           <div>
             <p className="font-display font-bold text-[#111827] text-xs leading-tight">
               BIG BUCKS
