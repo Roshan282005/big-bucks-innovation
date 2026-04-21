@@ -12,14 +12,17 @@ import {
   Award,
   BookOpen,
   Building2,
+  Camera,
   Cpu,
   FlaskConical,
   GraduationCap,
   Handshake,
   Landmark,
   MapPin,
+  Users,
 } from "lucide-react";
 import { motion } from "motion/react";
+import { useState } from "react";
 
 const mouColleges = [
   {
@@ -112,6 +115,370 @@ const fundingGrants = [
   },
   { title: "NIDHI-EIR Fellowship", body: "DST, Govt. of India", year: "2024" },
 ];
+
+// ─── MOU Signing Event Photos ────────────────────────────────────────────────
+// To replace placeholders with real photos:
+//   1. Copy your MOU photos to: src/frontend/public/assets/
+//   2. Name them: mou-1.jpg, mou-2.jpg, ... mou-7.jpg
+//   3. The <img> tags below will automatically load them.
+//      (The SVG placeholder is only shown when the image fails to load.)
+// ─────────────────────────────────────────────────────────────────────────────
+
+const mouEvents = [
+  {
+    id: 1,
+    // Replace with real photo: public/assets/mou-1.jpg
+    photo: "/assets/mou-1.jpg",
+    institution: "Sairam SDG Solveathon 4.0",
+    description:
+      "MOU signing ceremony on stage during the national-level SDG hackathon",
+    location: "Chennai, Tamil Nadu",
+    attendees: 2,
+    // Warm amber gradient for placeholder
+    gradientFrom: "#92400e",
+    gradientTo: "#b45309",
+    accentColor: "#fbbf24",
+    icon: Award,
+    tall: true, // spans 2 rows in masonry layout
+  },
+  {
+    id: 2,
+    // Replace with real photo: public/assets/mou-2.jpg
+    photo: "/assets/mou-2.jpg",
+    institution: "AVIT",
+    description:
+      "Group MOU signing in conference hall with faculty and leadership",
+    location: "Chennai, Tamil Nadu",
+    attendees: 13,
+    gradientFrom: "#1e3a5f",
+    gradientTo: "#1d4ed8",
+    accentColor: "#93c5fd",
+    icon: Users,
+    tall: false,
+  },
+  {
+    id: 3,
+    // Replace with real photo: public/assets/mou-3.jpg
+    photo: "/assets/mou-3.jpg",
+    institution: "College Auditorium",
+    description:
+      "Formal MOU exchange on the main auditorium stage with dignitaries",
+    location: "Tamil Nadu",
+    attendees: 8,
+    gradientFrom: "#3b0764",
+    gradientTo: "#7e22ce",
+    accentColor: "#c4b5fd",
+    icon: GraduationCap,
+    tall: false,
+  },
+  {
+    id: 4,
+    // Replace with real photo: public/assets/mou-4.jpg
+    photo: "/assets/mou-4.jpg",
+    institution: "Office MOU Signing",
+    description:
+      "Official document signing with stamped MOU, executive team present",
+    location: "Chennai, Tamil Nadu",
+    attendees: 5,
+    gradientFrom: "#064e3b",
+    gradientTo: "#059669",
+    accentColor: "#6ee7b7",
+    icon: Handshake,
+    tall: true,
+  },
+  {
+    id: 5,
+    // Replace with real photo: public/assets/mou-5.jpg
+    photo: "/assets/mou-5.jpg",
+    institution: "ARM CET",
+    description: "Bilateral MOU exchange between institutional representatives",
+    location: "Chennai, Tamil Nadu",
+    attendees: 2,
+    gradientFrom: "#831843",
+    gradientTo: "#be185d",
+    accentColor: "#f9a8d4",
+    icon: Building2,
+    tall: false,
+  },
+  {
+    id: 6,
+    // Replace with real photo: public/assets/mou-6.jpg
+    photo: "/assets/mou-6.jpg",
+    institution: "Gojan School of Business & Technology",
+    description:
+      "Branded MOU signing ceremony with Big Bucks Innovation signage",
+    location: "Chennai, Tamil Nadu",
+    attendees: 6,
+    gradientFrom: "#7c2d12",
+    gradientTo: "#c2410c",
+    accentColor: "#fdba74",
+    icon: FlaskConical,
+    tall: false,
+  },
+  {
+    id: 7,
+    // Replace with real photo: public/assets/mou-7.jpg
+    photo: "/assets/mou-7.jpg",
+    institution: "Chennai Institute of Technology",
+    description: "MOU signing in front of CIT wall logo with core team members",
+    location: "Chennai, Tamil Nadu",
+    attendees: 3,
+    gradientFrom: "#172554",
+    gradientTo: "#1e40af",
+    accentColor: "#bfdbfe",
+    icon: Cpu,
+    tall: false,
+  },
+];
+
+// ─── Photo Card Component ────────────────────────────────────────────────────
+function MouPhotoCard({
+  event,
+  index,
+}: {
+  event: (typeof mouEvents)[0];
+  index: number;
+}) {
+  const [imgError, setImgError] = useState(false);
+  const Icon = event.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.07, duration: 0.55, ease: "easeOut" }}
+      className={`group relative rounded-2xl overflow-hidden cursor-pointer ${
+        event.tall ? "row-span-2" : ""
+      }`}
+      style={{
+        boxShadow: "0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.12)",
+        minHeight: event.tall ? "360px" : "220px",
+      }}
+      data-ocid={`about.mou_photo.${event.id}`}
+    >
+      {/* Real photo — shown when file exists */}
+      {!imgError && (
+        <img
+          src={event.photo}
+          alt={`MOU signing ceremony — ${event.institution}`}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          onError={() => setImgError(true)}
+        />
+      )}
+
+      {/* SVG Placeholder — shown when image file is missing */}
+      {imgError && (
+        <svg
+          className="absolute inset-0 w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient
+              id={`grad-${event.id}`}
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                stopColor={event.gradientFrom}
+                stopOpacity="1"
+              />
+              <stop
+                offset="100%"
+                stopColor={event.gradientTo}
+                stopOpacity="1"
+              />
+            </linearGradient>
+            <filter
+              id={`grain-${event.id}`}
+              x="0%"
+              y="0%"
+              width="100%"
+              height="100%"
+            >
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.65"
+                numOctaves="3"
+                stitchTiles="stitch"
+                result="noise"
+              />
+              <feColorMatrix
+                type="saturate"
+                values="0"
+                in="noise"
+                result="grayNoise"
+              />
+              <feBlend
+                in="SourceGraphic"
+                in2="grayNoise"
+                mode="overlay"
+                result="blend"
+              />
+              <feComposite in="blend" in2="SourceGraphic" operator="in" />
+            </filter>
+          </defs>
+
+          {/* Background gradient */}
+          <rect width="100%" height="100%" fill={`url(#grad-${event.id})`} />
+
+          {/* Subtle grain overlay */}
+          <rect
+            width="100%"
+            height="100%"
+            fill="white"
+            opacity="0.03"
+            filter={`url(#grain-${event.id})`}
+          />
+
+          {/* Soft bokeh blobs */}
+          <circle
+            cx="20%"
+            cy="30%"
+            r="80"
+            fill={event.accentColor}
+            opacity="0.08"
+          />
+          <circle
+            cx="75%"
+            cy="65%"
+            r="100"
+            fill={event.accentColor}
+            opacity="0.06"
+          />
+          <circle cx="50%" cy="15%" r="60" fill="white" opacity="0.05" />
+
+          {/* Diagonal light streak */}
+          <line
+            x1="-10%"
+            y1="120%"
+            x2="110%"
+            y2="-20%"
+            stroke={event.accentColor}
+            strokeWidth="1"
+            opacity="0.15"
+          />
+
+          {/* Center icon area */}
+          <circle cx="50%" cy="42%" r="28" fill="white" opacity="0.1" />
+
+          {/* Camera icon hint */}
+          <text
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize="18"
+            fill="white"
+            opacity="0.5"
+            fontFamily="sans-serif"
+          >
+            📷
+          </text>
+
+          {/* Bottom gradient scrim for text */}
+          <defs>
+            <linearGradient
+              id={`scrim-${event.id}`}
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop offset="0%" stopColor="transparent" />
+              <stop offset="60%" stopColor="rgba(0,0,0,0.5)" />
+              <stop offset="100%" stopColor="rgba(0,0,0,0.85)" />
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill={`url(#scrim-${event.id})`} />
+        </svg>
+      )}
+
+      {/* Always-on gradient scrim for real photo readability */}
+      {!imgError && (
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+      )}
+
+      {/* Warm amber cinematic color wash on hover */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(245,158,11,0.15) 0%, rgba(220,38,38,0.08) 100%)",
+        }}
+      />
+
+      {/* Top-left: photo number badge */}
+      <div className="absolute top-3 left-3">
+        <span
+          className="inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2 py-0.5 rounded-full backdrop-blur-sm"
+          style={{
+            background: "rgba(255,255,255,0.12)",
+            color: "rgba(255,255,255,0.9)",
+            border: "1px solid rgba(255,255,255,0.2)",
+          }}
+        >
+          <Camera className="w-2.5 h-2.5" />
+          MOU {event.id.toString().padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* Top-right: attendees badge */}
+      <div className="absolute top-3 right-3">
+        <span
+          className="inline-flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded-full backdrop-blur-sm"
+          style={{
+            background: "rgba(0,0,0,0.35)",
+            color: "rgba(255,255,255,0.85)",
+            border: "1px solid rgba(255,255,255,0.15)",
+          }}
+        >
+          <Users className="w-2.5 h-2.5" />
+          {event.attendees}
+        </span>
+      </div>
+
+      {/* Bottom caption */}
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <div className="flex items-center gap-1.5 mb-1">
+          <Icon
+            className="w-3 h-3 flex-shrink-0"
+            style={{ color: event.accentColor }}
+          />
+          <span
+            className="text-[10px] font-mono uppercase tracking-widest"
+            style={{ color: event.accentColor }}
+          >
+            MOU Signing
+          </span>
+        </div>
+        <h3 className="font-display font-bold text-white text-sm leading-tight mb-0.5 line-clamp-1">
+          {event.institution}
+        </h3>
+        <p className="text-white/70 text-[11px] leading-snug line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+          {event.description}
+        </p>
+        <div className="flex items-center gap-1 mt-1.5">
+          <MapPin className="w-2.5 h-2.5 text-white/50 flex-shrink-0" />
+          <span className="text-white/50 text-[10px]">{event.location}</span>
+        </div>
+      </div>
+
+      {/* Hover: cinematic border glow */}
+      <div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+        style={{
+          boxShadow: `inset 0 0 0 1.5px ${event.accentColor}40`,
+        }}
+      />
+    </motion.div>
+  );
+}
 
 export function AboutPage() {
   return (
@@ -301,7 +668,165 @@ export function AboutPage() {
       {/* Team */}
       <TeamSection />
 
-      {/* MOU Colleges Carousel */}
+      {/* ─── MOU Signing Gallery ─────────────────────────────────────────────── */}
+      {/*                                                                         */}
+      {/* HOW TO ADD REAL PHOTOS:                                                 */}
+      {/*   1. Copy your 7 MOU signing event photos to:                           */}
+      {/*        src/frontend/public/assets/                                      */}
+      {/*   2. Name them exactly:                                                  */}
+      {/*        mou-1.jpg  → Sairam SDG Solveathon 4.0                          */}
+      {/*        mou-2.jpg  → AVIT group photo                                    */}
+      {/*        mou-3.jpg  → College auditorium stage                            */}
+      {/*        mou-4.jpg  → Office MOU stamped documents                        */}
+      {/*        mou-5.jpg  → ARM CET bilateral signing                           */}
+      {/*        mou-6.jpg  → Gojan School of Business & Technology               */}
+      {/*        mou-7.jpg  → Chennai Institute of Technology                     */}
+      {/*   3. Run `pnpm build` — the placeholders will be replaced automatically */}
+      {/* ──────────────────────────────────────────────────────────────────────── */}
+      <section
+        className="py-20 border-b border-border"
+        style={{
+          background:
+            "linear-gradient(180deg, #0f172a 0%, #1e1b2e 50%, #0f172a 100%)",
+        }}
+        data-ocid="about.mou_gallery_section"
+      >
+        <div className="container mx-auto px-4">
+          {/* Section header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            className="text-center mb-14"
+          >
+            <Badge
+              variant="outline"
+              className="mb-4 text-xs uppercase tracking-widest"
+              style={{
+                borderColor: "rgba(251,191,36,0.35)",
+                color: "#fbbf24",
+                background: "rgba(251,191,36,0.08)",
+              }}
+            >
+              Partnership Milestones
+            </Badge>
+            <h2
+              className="font-display font-bold text-3xl md:text-4xl mb-4 leading-tight"
+              style={{ color: "#f1f5f9" }}
+            >
+              MOU Signing{" "}
+              <span
+                style={{
+                  background: "linear-gradient(90deg, #fbbf24, #f59e0b)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Gallery
+              </span>
+            </h2>
+            <p
+              className="max-w-2xl mx-auto text-base leading-relaxed"
+              style={{ color: "#94a3b8" }}
+            >
+              Real moments from our MOU signing ceremonies across India —
+              building lasting academic and industry partnerships that fuel
+              innovation, training, and research collaboration.
+            </p>
+
+            {/* Stats row */}
+            <div className="flex flex-wrap justify-center gap-6 mt-8">
+              {[
+                { value: "10+", label: "Partner Institutions" },
+                { value: "7", label: "Signing Ceremonies" },
+                { value: "5000+", label: "Students Impacted" },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <div
+                    className="font-display font-bold text-2xl"
+                    style={{
+                      background: "linear-gradient(90deg, #fbbf24, #f59e0b)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-xs" style={{ color: "#64748b" }}>
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Masonry-style photo grid */}
+          {/* Desktop: 3 cols with CSS grid auto rows */}
+          <div
+            className="hidden md:grid gap-4 max-w-6xl mx-auto"
+            style={{
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gridAutoRows: "180px",
+            }}
+            data-ocid="about.mou_gallery_grid"
+          >
+            {mouEvents.map((event, i) => (
+              <MouPhotoCard key={event.id} event={event} index={i} />
+            ))}
+          </div>
+
+          {/* Mobile: single column */}
+          <div className="md:hidden flex flex-col gap-4 max-w-sm mx-auto">
+            {mouEvents.map((event, i) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06, duration: 0.5 }}
+                style={{ height: "220px" }}
+                data-ocid={`about.mou_photo_mobile.${event.id}`}
+              >
+                <MouPhotoCard event={{ ...event, tall: false }} index={i} />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="text-center mt-12"
+          >
+            <p className="text-sm mb-4" style={{ color: "#64748b" }}>
+              Interested in partnering with Big Bucks Innovation?
+            </p>
+            <Button
+              asChild
+              size="sm"
+              style={{
+                background: "linear-gradient(135deg, #f59e0b, #d97706)",
+                color: "#fff",
+                border: "none",
+              }}
+              className="hover:opacity-90 transition-smooth"
+              data-ocid="about.mou_gallery_cta"
+            >
+              <Link to="/contact">
+                Sign an MOU With Us{" "}
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* MOU Colleges Text Grid */}
       <section
         className="py-20 bg-white border-y border-border"
         data-ocid="about.mou_section"
