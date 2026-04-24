@@ -19,16 +19,17 @@ import {
   useLeads,
   useUpdateLead,
 } from "@/hooks/useLeads";
+import type { LeadStatus } from "@/types";
 import { Filter, Plus, Search, Users } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
 
-type ModalPayload = CreateLeadPayload | (UpdateLeadPayload & { id: bigint });
+type ModalPayload = CreateLeadPayload | (UpdateLeadPayload & { id: string });
 
 function isUpdatePayload(
   p: ModalPayload,
-): p is UpdateLeadPayload & { id: bigint } {
+): p is UpdateLeadPayload & { id: string } {
   return "id" in p;
 }
 
@@ -39,10 +40,10 @@ export function LeadsPage() {
   const deleteMutation = useDeleteLead();
 
   const leads: LeadPublic[] =
-    backendLeads ?? (isError || !isLoading ? SAMPLE_LEADS : []);
+    (backendLeads as any) ?? (isError || !isLoading ? SAMPLE_LEADS : []);
 
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [statusFilter, setStatusFilter] = useState<LeadStatus | "all">("all");
   const [modalOpen, setModalOpen] = useState(false);
   const [editingLead, setEditingLead] = useState<LeadPublic | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<LeadPublic | null>(null);
@@ -194,7 +195,7 @@ export function LeadsPage() {
               className="pl-9 bg-card border-border h-9 text-sm"
             />
           </div>
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as LeadStatus | "all")}>
             <SelectTrigger
               data-ocid="leads.status_filter"
               className="w-40 bg-card border-border h-9 text-sm"

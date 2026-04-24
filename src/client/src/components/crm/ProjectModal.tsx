@@ -26,6 +26,7 @@ interface ProjectFormData {
   startDate: string;
   endDate: string;
   budget: string;
+  client: string;
 }
 
 const defaultForm: ProjectFormData = {
@@ -35,6 +36,7 @@ const defaultForm: ProjectFormData = {
   startDate: "",
   endDate: "",
   budget: "",
+  client: "1",
 };
 
 interface ProjectModalProps {
@@ -68,6 +70,7 @@ export function ProjectModal({
         startDate: project.startDate,
         endDate: project.endDate,
         budget: String(project.budget),
+        client: project.clientId,
       });
     } else {
       setForm(defaultForm);

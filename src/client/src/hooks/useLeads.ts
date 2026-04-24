@@ -3,6 +3,15 @@ import type { Lead, LeadStatus } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
+export interface LeadPublic extends Omit<Lead, "id" | "createdAt" | "updatedAt"> {
+  id: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export type CreateLeadPayload = Omit<Lead, "id" | "createdAt" | "updatedAt">;
+export type UpdateLeadPayload = Partial<CreateLeadPayload>;
+
 const LEADS_KEY = ["leads"] as const;
 
 export function useLeads(statusFilter: LeadStatus | null = null) {
