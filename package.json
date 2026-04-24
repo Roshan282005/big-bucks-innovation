@@ -8,9 +8,9 @@
     "scripts": {
         "build": "pnpm -r build",
         "dev:client": "cd src/client && pnpm dev",
-        "dev:server": "cd server && npm run dev",
+        "dev:server": "cd server && pnpm dev",
         "build:client": "cd src/client && pnpm build",
-        "build:server": "cd server && npm run build"
+        "build:server": "cd server && pnpm build"
     },
     "devDependencies": {
         "sharp": "^0.34.4",

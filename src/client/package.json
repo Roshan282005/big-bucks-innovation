@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run typecheck && npm run check && npx vite build",
+    "build": "pnpm typecheck && pnpm check && pnpm vite build",
     "typecheck": "tsc --noEmit",
     "check": "biome check src",
     "fix": "biome check --write src"
