@@ -8,6 +8,7 @@ const team = [
     description:
       "Serial entrepreneur and visionary leader driving BIG BUCKS INNOVATION's mission to create technology-driven impact. Spearheads partnerships, strategy, and IIT Delhi collaboration.",
     accent: "bg-primary",
+    image: "/assets/foun.jpg",
   },
   {
     role: "Chief Operating Officer",
@@ -16,6 +17,7 @@ const team = [
     description:
       "Operations specialist with deep expertise in scaling technology teams, managing client delivery, and building enterprise partnerships that drive sustained growth.",
     accent: "bg-accent",
+    image: "/assets/coo.jpg",
   },
   {
     role: "Co Founder",
@@ -24,6 +26,7 @@ const team = [
     description:
       "Innovation catalyst and co-founder leading product development and R&D initiatives. Expert in AI/ML systems and building solutions in collaboration with leading academic institutions.",
     accent: "bg-primary",
+    image: "/assets/cofoun.jpg",
   },
 ];
 
@@ -64,10 +67,18 @@ export function TeamPreview() {
               {/* Avatar circle */}
               <div className="flex justify-center mb-5">
                 <div
-                  className={`w-18 h-18 rounded-full ${member.accent} flex items-center justify-center text-white font-display font-bold text-xl group-hover:scale-105 transition-smooth shadow-md`}
+                  className={`w-18 h-18 rounded-full ${member.accent} flex items-center justify-center text-white font-display font-bold text-xl group-hover:scale-105 transition-smooth shadow-md overflow-hidden relative`}
                   style={{ width: "4.5rem", height: "4.5rem" }}
                 >
-                  {member.initials}
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="absolute inset-0 w-full h-full object-cover object-top"
+                    />
+                  ) : (
+                    member.initials
+                  )}
                 </div>
               </div>
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1.5 block">

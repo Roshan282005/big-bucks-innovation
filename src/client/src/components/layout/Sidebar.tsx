@@ -42,21 +42,21 @@ export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
   const displaySub = userEmail || "Authenticated User";
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-white">
+    <div className="flex flex-col h-full bg-card">
       {/* Logo */}
-      <div className="flex items-center justify-between h-16 px-5 border-b border-[#E5E7EB]">
+      <div className="flex items-center justify-between h-16 px-5 border-b border-border">
         <Link
           to="/dashboard"
           className="flex items-center gap-2.5 group"
           onClick={onClose}
         >
           <img
-            src="/assets/logo.png"
+            src="/assets/logo.jpg"
             alt="Big Bucks Innovation"
             className="h-9 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
           />
           <div>
-            <p className="font-display font-bold text-[#111827] text-xs leading-tight">
+            <p className="font-display font-bold text-foreground text-xs leading-tight">
               BIG BUCKS
             </p>
             <p className="font-display font-semibold text-primary text-xs leading-tight">
@@ -111,8 +111,8 @@ export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
       </nav>
 
       {/* User section */}
-      <div className="p-3 border-t border-[#E5E7EB]">
-        <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-[#F9FAFB] mb-1">
+      <div className="p-3 border-t border-border">
+        <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-muted/50 mb-1">
           <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-white font-display font-bold text-xs flex-shrink-0">
             A
           </div>
@@ -139,7 +139,7 @@ export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-60 bg-white border-r border-[#E5E7EB] fixed inset-y-0 left-0 z-30 shadow-[1px_0_0_rgba(0,0,0,0.04)]">
+      <aside className="hidden lg:flex flex-col w-60 bg-card border-r border-border fixed inset-y-0 left-0 z-30 shadow-subtle">
         <SidebarContent />
       </aside>
 
@@ -159,7 +159,7 @@ export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
             animate={{ x: 0 }}
             exit={{ x: -260 }}
             transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-            className="lg:hidden fixed inset-y-0 left-0 w-60 bg-white border-r border-[#E5E7EB] z-40 flex flex-col"
+            className="lg:hidden fixed inset-y-0 left-0 w-60 bg-card border-r border-border z-40 flex flex-col"
           >
             <SidebarContent />
           </motion.aside>

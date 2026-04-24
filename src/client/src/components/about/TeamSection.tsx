@@ -150,23 +150,25 @@ export function TeamSection() {
                   className={`absolute -top-10 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full blur-3xl opacity-8 group-hover:opacity-15 transition-smooth ${a.glow}`}
                 />
 
-                <Avatar className="relative mx-auto w-full aspect-[820/1456] max-w-[200px] mb-6 rounded-xl border border-border/50 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300">
+                <div className="relative mx-auto w-full aspect-[820/1456] max-w-[200px] mb-6 rounded-xl border border-border/50 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300 bg-muted">
                   {member.image ? (
-                    <AvatarImage
+                    <img
                       src={member.image}
                       alt={`${member.name}, ${member.role}`}
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                        e.currentTarget.nextElementSibling?.classList.remove("hidden");
+                      }}
                     />
                   ) : null}
-                  <AvatarFallback
-                    className="text-2xl font-display font-bold rounded-none bg-primary text-primary-foreground"
-                  >
+                  <div className="hidden absolute inset-0 flex items-center justify-center text-2xl font-display font-bold bg-primary text-primary-foreground">
                     {member.initials}
-                  </AvatarFallback>
+                  </div>
                   <div className="absolute bottom-2 right-2 w-6 h-6 rounded-lg bg-white shadow-sm border border-border/50 flex items-center justify-center z-10">
                     <div className={`w-2.5 h-2.5 rounded-sm ${a.glow}`} />
                   </div>
-                </Avatar>
+                </div>
 
                 <h3 className="font-display font-bold text-foreground text-sm mb-0.5 leading-snug">
                   {member.name}
