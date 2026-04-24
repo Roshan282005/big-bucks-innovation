@@ -4,5 +4,7 @@ packages:
   - server
 onlyBuiltDependencies:
   - '@biomejs/biome'
+  - '@firebase/util'
   - esbuild
+  - protobufjs
   - sharp
