@@ -11,7 +11,7 @@ const team = [
     bio: "Visionary entrepreneur and IIT Delhi pre-incubated founder. Spearheads enterprise strategy, government partnerships, and leads Big Bucks Innovation's mission to transform India's technology landscape.",
     expertise: ["Strategy", "Enterprise Sales", "Innovation"],
     accentColor: "primary" as const,
-    image: "/assets/foun.jpg",
+    image: "public/assets/foun.jpg",
   },
   {
     initials: "MB",
@@ -20,7 +20,7 @@ const team = [
     bio: "Operations architect driving BBI's rapid growth across multiple cities. Orchestrates training programs, business operations, and ensures excellence in every client engagement.",
     expertise: ["Operations", "Process Excellence", "Team Building"],
     accentColor: "accent" as const,
-    image: "/assets/coo.jpg",
+    image: "public/assets/coo.jpg",
   },
   {
     initials: "SS",
@@ -29,7 +29,7 @@ const team = [
     bio: "Seasoned manager overseeing end-to-end project delivery and cross-functional coordination. Ensures BBI's strategic goals translate into measurable outcomes for clients.",
     expertise: ["Project Management", "Delivery", "Coordination"],
     accentColor: "primary" as const,
-    image: "/assets/gm.jpg",
+    image: "public/assets/gm.jpg",
   },
   {
     initials: "GM",
@@ -38,7 +38,7 @@ const team = [
     bio: "Co-creator of BBI's vision, Gowtham drives product innovation and technology partnerships. Passionate about leveraging emerging tech to solve real-world enterprise challenges.",
     expertise: ["Product", "Partnerships", "Technology"],
     accentColor: "accent" as const,
-    image: "/assets/cofoun.jpg",
+    image: "public/assets/cofoun.jpg",
   },
   {
     initials: "VE",
@@ -47,7 +47,7 @@ const team = [
     bio: "Leads BBI's flagship internship programs, managing placements, curriculum, and industry collaborations that have empowered 5000+ students across India.",
     expertise: ["Internships", "Curriculum", "Student Success"],
     accentColor: "primary" as const,
-    image: "/assets/hr.jpg",
+    image: "public/assets/hr.jpg",
   },
   {
     initials: "SRL",
@@ -56,7 +56,7 @@ const team = [
     bio: "Distinguished mentor guiding students and early-stage startups through technology challenges. Bridges academic knowledge with real-world industry application.",
     expertise: ["Mentorship", "Startups", "Technology Guidance"],
     accentColor: "accent" as const,
-    image: "/assets/sd.jpg",
+    image: "public/assets/sd.jpg",
   },
   {
     initials: "PV",
@@ -65,7 +65,7 @@ const team = [
     bio: "Creative engineer crafting pixel-perfect interfaces and seamless user experiences. Builds the visual layer that makes BBI's digital products intuitive and delightful.",
     expertise: ["Frontend", "UI/UX", "React"],
     accentColor: "primary" as const,
-    image: "/assets/ad.jpg",
+    image: "public/assets/ad.jpg",
   },
 ];
 
