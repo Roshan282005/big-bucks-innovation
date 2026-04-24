@@ -40,7 +40,7 @@ export function LeadsPage() {
   const deleteMutation = useDeleteLead();
 
   const leads: LeadPublic[] =
-    (backendLeads as any) ?? (isError || !isLoading ? SAMPLE_LEADS : []);
+    backendLeads ?? (isError || !isLoading ? SAMPLE_LEADS : []);
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<LeadStatus | "all">("all");

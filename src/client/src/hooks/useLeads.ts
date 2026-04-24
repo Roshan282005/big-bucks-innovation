@@ -15,11 +15,11 @@ export type UpdateLeadPayload = Partial<CreateLeadPayload>;
 const LEADS_KEY = ["leads"] as const;
 
 export function useLeads(statusFilter: LeadStatus | null = null) {
-  return useQuery<Lead[]>({
+  return useQuery<LeadPublic[]>({
     queryKey: [...LEADS_KEY, statusFilter],
     queryFn: async () => {
       const params = statusFilter ? `?status=${statusFilter}` : "";
-      return apiClient.get(`/api/leads${params}`);
+      return apiClient.get<LeadPublic[]>(`/api/leads${params}`);
     },
   });
 }

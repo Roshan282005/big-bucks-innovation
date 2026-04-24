@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { LeadStatus, Lead } from "@/types";
+import { type LeadPublic } from "@/hooks/useLeads";
 import { Edit2, Trash2, UserPlus } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -14,10 +15,9 @@ const STATUS_STYLES: Record<LeadStatus, string> = {
 
 const SKELETON_KEYS = ["sk-a", "sk-b", "sk-c", "sk-d", "sk-e"] as const;
 
-function fmtTimestamp(ts: bigint): string {
+function fmtTimestamp(ts: string): string {
   try {
-    const ms = Number(ts / BigInt(1_000_000));
-    return new Date(ms).toLocaleDateString("en-IN", {
+    return new Date(ts).toLocaleDateString("en-IN", {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -48,15 +48,11 @@ function SkeletonRow() {
   );
 }
 
-interface LeadPublic extends Omit<Lead, 'id' | 'createdAt' | 'updatedAt'> {
-  id: bigint;
-  created_at: bigint;
-  updated_at: bigint;
-}
+
 
 export const SAMPLE_LEADS: LeadPublic[] = [
   {
-    id: BigInt(1),
+    id: "1",
     name: "Rahul Sharma",
     email: "rahul@techcorp.in",
     phone: "9876543210",
@@ -64,11 +60,11 @@ export const SAMPLE_LEADS: LeadPublic[] = [
     status: "New",
     source: "LinkedIn",
     notes: "Interested in AI package",
-    created_at: BigInt(1709251200000000000),
-    updated_at: BigInt(1709251200000000000),
+    created_at: "2024-03-01T00:00:00Z",
+    updated_at: "2024-03-01T00:00:00Z",
   },
   {
-    id: BigInt(2),
+    id: "2",
     name: "Priya Nair",
     email: "priya@finedge.com",
     phone: "9123456789",
@@ -76,11 +72,11 @@ export const SAMPLE_LEADS: LeadPublic[] = [
     status: "Contacted",
     source: "Website",
     notes: "Requested cloud demo",
-    created_at: BigInt(1709078400000000000),
-    updated_at: BigInt(1709164800000000000),
+    created_at: "2024-02-28T00:00:00Z",
+    updated_at: "2024-02-29T00:00:00Z",
   },
   {
-    id: BigInt(3),
+    id: "3",
     name: "Amit Verma",
     email: "amit@ministry.gov.in",
     phone: "9345678901",
@@ -88,11 +84,11 @@ export const SAMPLE_LEADS: LeadPublic[] = [
     status: "Qualified",
     source: "Referral",
     notes: "Government tender interest",
-    created_at: BigInt(1708819200000000000),
-    updated_at: BigInt(1709078400000000000),
+    created_at: "2024-02-25T00:00:00Z",
+    updated_at: "2024-02-27T00:00:00Z",
   },
   {
-    id: BigInt(4),
+    id: "4",
     name: "Sunita Reddy",
     email: "sunita@innovatemfg.com",
     phone: "9456789012",
@@ -100,11 +96,11 @@ export const SAMPLE_LEADS: LeadPublic[] = [
     status: "New",
     source: "Event",
     notes: "Met at Delhi Tech Summit",
-    created_at: BigInt(1708560000000000000),
-    updated_at: BigInt(1708560000000000000),
+    created_at: "2024-02-22T00:00:00Z",
+    updated_at: "2024-02-22T00:00:00Z",
   },
   {
-    id: BigInt(5),
+    id: "5",
     name: "Karan Mehta",
     email: "karan@eduplus.org",
     phone: "9567890123",
@@ -112,8 +108,8 @@ export const SAMPLE_LEADS: LeadPublic[] = [
     status: "Closed",
     source: "Cold call",
     notes: "Training contract signed",
-    created_at: BigInt(1707350400000000000),
-    updated_at: BigInt(1707782400000000000),
+    created_at: "2024-02-08T00:00:00Z",
+    updated_at: "2024-02-12T00:00:00Z",
   },
 ];
 
