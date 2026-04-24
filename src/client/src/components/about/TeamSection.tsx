@@ -158,7 +158,9 @@ export function TeamSection() {
                       className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       onError={(e) => {
                         e.currentTarget.style.display = "none";
-                        e.currentTarget.nextElementSibling?.classList.remove("hidden");
+                        e.currentTarget.nextElementSibling?.classList.remove(
+                          "hidden",
+                        );
                       }}
                     />
                   ) : null}
