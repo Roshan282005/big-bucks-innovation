@@ -19,7 +19,7 @@ export function useLeads(statusFilter: LeadStatus | null = null) {
     queryKey: [...LEADS_KEY, statusFilter],
     queryFn: async () => {
       const params = statusFilter ? `?status=${statusFilter}` : "";
-      return apiClient.get<LeadPublic[]>(`/api/leads${params}`);
+      return apiClient.get(`/api/leads${params}`);
     },
   });
 }

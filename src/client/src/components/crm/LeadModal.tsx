@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { LEAD_STATUSES, type LeadStatus, type Lead } from "@/types";
+import { type LeadPublic } from "@/hooks/useLeads";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
@@ -36,7 +37,7 @@ const DEFAULT_FORM: FormState = {
 
 interface LeadModalProps {
   open: boolean;
-  lead: Lead | null;
+  lead: LeadPublic | null;
   onClose: () => void;
   onSave: (
     data: Omit<Lead, "id" | "createdAt" | "updatedAt"> | (Partial<Lead> & { id: string }),
