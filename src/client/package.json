@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run typecheck && npm run check && npx vite build",
     "typecheck": "tsc --noEmit",
     "check": "biome check src",
     "fix": "biome check --write src"

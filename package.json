@@ -6,6 +6,7 @@
         "node": ">=18.0.0"
     },
     "scripts": {
+        "build": "webpack",
         "dev:client": "cd src/client && pnpm dev",
         "dev:server": "cd server && npm run dev",
         "build:client": "cd src/client && pnpm build",
