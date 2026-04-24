@@ -46,7 +46,7 @@ export function Navbar() {
             data-ocid="nav.logo_link"
           >
             <img
-              src="@/assets/logo.jpg"
+              src="/assets/logo.jpg"
               alt="Big Bucks Innovation"
               className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
             />
@@ -103,7 +103,7 @@ export function Navbar() {
                   <Button
                     data-ocid="nav.cta_button"
                     size="sm"
-                    className="hidden sm:flex items-center gap-1.5 bg-primary text-white hover:bg-[#1D4ED8] shadow-[0_2px_8px_rgba(37,99,235,0.3)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.4)] transition-all duration-200 font-display font-semibold rounded-lg"
+                    className="hidden sm:flex items-center gap-1.5 bg-primary text-primary-foreground hover:opacity-90 shadow-subtle transition-all duration-200 font-display font-semibold rounded-lg"
                   >
                     Dashboard
                   </Button>

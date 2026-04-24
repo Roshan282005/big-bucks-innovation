@@ -11,7 +11,7 @@ const team = [
     bio: "Visionary entrepreneur and IIT Delhi pre-incubated founder. Spearheads enterprise strategy, government partnerships, and leads Big Bucks Innovation's mission to transform India's technology landscape.",
     expertise: ["Strategy", "Enterprise Sales", "Innovation"],
     accentColor: "primary" as const,
-    image: "public/assets/foun.jpg",
+    image: "/assets/foun.jpg",
   },
   {
     initials: "MB",
@@ -20,7 +20,7 @@ const team = [
     bio: "Operations architect driving BBI's rapid growth across multiple cities. Orchestrates training programs, business operations, and ensures excellence in every client engagement.",
     expertise: ["Operations", "Process Excellence", "Team Building"],
     accentColor: "accent" as const,
-    image: "public/assets/coo.jpg",
+    image: "/assets/coo.jpg",
   },
   {
     initials: "SS",
@@ -29,7 +29,7 @@ const team = [
     bio: "Seasoned manager overseeing end-to-end project delivery and cross-functional coordination. Ensures BBI's strategic goals translate into measurable outcomes for clients.",
     expertise: ["Project Management", "Delivery", "Coordination"],
     accentColor: "primary" as const,
-    image: "public/assets/gm.jpg",
+    image: "/assets/gm.jpg",
   },
   {
     initials: "GM",
@@ -38,7 +38,7 @@ const team = [
     bio: "Co-creator of BBI's vision, Gowtham drives product innovation and technology partnerships. Passionate about leveraging emerging tech to solve real-world enterprise challenges.",
     expertise: ["Product", "Partnerships", "Technology"],
     accentColor: "accent" as const,
-    image: "public/assets/cofoun.jpg",
+    image: "/assets/cofoun.jpg",
   },
   {
     initials: "VE",
@@ -47,7 +47,7 @@ const team = [
     bio: "Leads BBI's flagship internship programs, managing placements, curriculum, and industry collaborations that have empowered 5000+ students across India.",
     expertise: ["Internships", "Curriculum", "Student Success"],
     accentColor: "primary" as const,
-    image: "public/assets/hr.jpg",
+    image: "/assets/hr.jpg",
   },
   {
     initials: "SRL",
@@ -56,7 +56,7 @@ const team = [
     bio: "Distinguished mentor guiding students and early-stage startups through technology challenges. Bridges academic knowledge with real-world industry application.",
     expertise: ["Mentorship", "Startups", "Technology Guidance"],
     accentColor: "accent" as const,
-    image: "public/assets/sd.jpg",
+    image: "/assets/sd.jpg",
   },
   {
     initials: "PV",
@@ -65,7 +65,7 @@ const team = [
     bio: "Creative engineer crafting pixel-perfect interfaces and seamless user experiences. Builds the visual layer that makes BBI's digital products intuitive and delightful.",
     expertise: ["Frontend", "UI/UX", "React"],
     accentColor: "primary" as const,
-    image: "public/assets/ad.jpg",
+    image: "/assets/ad.jpg",
   },
 ];
 
@@ -133,13 +133,13 @@ export function TeamSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.55 }}
-                className={`relative bg-white border ${a.ring} ${a.hover} rounded-2xl p-6 text-center transition-smooth surface-elevated group overflow-hidden`}
-                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
+                className={`relative bg-white border ${a.ring} ${a.hover} rounded-2xl p-6 text-center transition-smooth shadow-elevated group overflow-hidden`}
+                style={{ backdropFilter: "blur(8px)" }}
                 data-ocid={`about.team_member.${i + 1}`}
               >
-                {/* left blue border accent */}
+                {/* left accent bar */}
                 <div
-                  className={`absolute top-0 left-0 h-full w-0.5 ${a.glow} opacity-40`}
+                  className={`absolute top-0 left-0 h-full w-1 ${a.glow} opacity-30 group-hover:opacity-60 transition-smooth`}
                 />
                 {/* top accent bar */}
                 <div
@@ -159,8 +159,7 @@ export function TeamSection() {
                     />
                   ) : null}
                   <AvatarFallback
-                    className="text-2xl font-display font-bold rounded-none"
-                    style={{ backgroundColor: "#2563EB" }}
+                    className="text-2xl font-display font-bold rounded-none bg-primary text-primary-foreground"
                   >
                     {member.initials}
                   </AvatarFallback>
@@ -172,10 +171,7 @@ export function TeamSection() {
                 <h3 className="font-display font-bold text-foreground text-sm mb-0.5 leading-snug">
                   {member.name}
                 </h3>
-                <p
-                  className="text-xs font-semibold mb-3 uppercase tracking-wide"
-                  style={{ color: "#F59E0B" }}
-                >
+                <p className="text-xs font-semibold mb-3 uppercase tracking-wide text-accent">
                   {member.role}
                 </p>
                 <p className="text-muted-foreground text-xs leading-relaxed mb-4">
