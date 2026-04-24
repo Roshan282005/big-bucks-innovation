@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEmailSignIn, useEmailSignUp } from "@/hooks/useEmailAuth";
 import { useGoogleSignIn } from "@/hooks/useGoogleAuth";
 import { useAuthStore } from "@/store/auth";
 import { useNavigate } from "@tanstack/react-router";
@@ -14,16 +15,38 @@ interface AuthFormProps {
 }
 
 export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
-  const { mutate: googleSignIn, isPending: isLoading } = useGoogleSignIn();
+  const { mutate: googleSignIn, isPending: isGoogleLoading } =
+    useGoogleSignIn();
+  const { mutate: emailSignIn, isPending: isLoginLoading } = useEmailSignIn();
+  const { mutate: emailSignUp, isPending: isRegisterLoading } =
+    useEmailSignUp();
+
   const { isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(defaultTab);
+
+  // Form states
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const isLoading = isGoogleLoading || isLoginLoading || isRegisterLoading;
 
   useEffect(() => {
     if (isAuthenticated) {
       navigate({ to: "/dashboard" });
     }
   }, [isAuthenticated, navigate]);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    emailSignIn({ email, password });
+  };
+
+  const handleSignUp = (e: React.FormEvent) => {
+    e.preventDefault();
+    emailSignUp({ email, password, name });
+  };
 
   return (
     <div className="w-full max-w-md mx-auto relative overflow-hidden">
@@ -79,7 +102,7 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
             transition={{ duration: 0.2 }}
           >
             <TabsContent value="login" className="space-y-4">
-              <div className="space-y-4 mb-6">
+              <form onSubmit={handleLogin} className="space-y-4 mb-6">
                 <div className="space-y-2">
                   <Label htmlFor="login-email">Email Address</Label>
                   <div className="relative">
@@ -89,6 +112,9 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
                       placeholder="name@company.com"
                       className="pl-10 h-11"
                       type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                 </div>
@@ -108,26 +134,33 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
                       id="login-password"
                       type="password"
                       className="pl-10 h-11"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                 </div>
                 <Button
+                  type="submit"
                   className="w-full h-11 font-semibold shadow-md hover:shadow-lg transition-all"
                   disabled={isLoading}
                 >
-                  Sign In
+                  {isLoginLoading ? "Signing In..." : "Sign In"}
                 </Button>
-              </div>
+              </form>
             </TabsContent>
 
             <TabsContent value="signup" className="space-y-4">
-              <div className="space-y-4 mb-6">
+              <form onSubmit={handleSignUp} className="space-y-4 mb-6">
                 <div className="space-y-2">
                   <Label htmlFor="signup-name">Full Name</Label>
                   <Input
                     id="signup-name"
                     placeholder="John Doe"
                     className="h-11"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="space-y-2">
@@ -137,6 +170,9 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
                     placeholder="name@company.com"
                     className="h-11"
                     type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="space-y-2">
@@ -145,15 +181,19 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
                     id="signup-password"
                     type="password"
                     className="h-11"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <Button
+                  type="submit"
                   className="w-full h-11 font-semibold shadow-md hover:shadow-lg transition-all"
                   disabled={isLoading}
                 >
-                  Create Account
+                  {isRegisterLoading ? "Creating Account..." : "Create Account"}
                 </Button>
-              </div>
+              </form>
             </TabsContent>
           </motion.div>
         </AnimatePresence>

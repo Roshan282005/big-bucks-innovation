@@ -1,3 +1,4 @@
+import { useGoogleSignOut } from "@/hooks/useGoogleAuth";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/store/auth";
 import { Link, useLocation } from "@tanstack/react-router";
@@ -30,11 +31,12 @@ interface SidebarProps {
 }
 
 export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
-  const { userEmail, userName, logout } = useAuthStore();
+  const { userEmail, userName } = useAuthStore();
+  const { mutate: signOut } = useGoogleSignOut();
   const location = useLocation();
 
   const handleLogout = () => {
-    logout();
+    signOut();
     onClose?.();
   };
 
