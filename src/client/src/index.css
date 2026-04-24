@@ -172,10 +172,10 @@
   }
 
   .nav-glass {
-    background: rgba(255, 255, 255, 0.459);
+    background: oklch(var(--background) / 0.7);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid oklch(var(--border) / 0.5);
   }
 
   .shadow-subtle {

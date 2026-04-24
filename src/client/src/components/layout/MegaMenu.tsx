@@ -144,7 +144,7 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
   );
 
   const dropdownBase =
-    "absolute top-full mt-2 bg-white border border-[#E5E7EB] rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] p-4 z-50";
+    "absolute top-full mt-2 bg-card border border-border rounded-2xl shadow-elevated p-4 z-50";
 
   return (
     <div ref={menuRef} className="flex items-center gap-0.5">
@@ -159,8 +159,8 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
           data-ocid="nav.products_menu"
           className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
             activeMenu === "products"
-              ? "text-primary bg-[#EFF6FF]"
-              : "text-[#374151] hover:text-primary hover:bg-[#F9FAFB]"
+              ? "text-primary bg-primary/10"
+              : "text-foreground/80 hover:text-primary hover:bg-muted/50"
           }`}
         >
           Products
@@ -179,7 +179,7 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
               onMouseLeave={closeMenu}
               className={`${dropdownBase} left-0 w-72`}
             >
-              <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-widest mb-2 px-1">
+              <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest mb-2 px-1">
                 Our Products
               </p>
               <div className="space-y-0.5">
@@ -188,17 +188,17 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
                     key={item.label}
                     to={item.href as "/"}
                     onClick={onNavigate}
-                    className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F5F9FF] transition-all duration-200 group"
+                    className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-primary/5 transition-all duration-200 group"
                     data-ocid={`nav.product_${item.label.toLowerCase().replace(/\s+/g, "_")}`}
                   >
-                    <div className="mt-0.5 w-7 h-7 rounded-lg bg-[#EFF6FF] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-200 flex-shrink-0">
+                    <div className="mt-0.5 w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-200 flex-shrink-0">
                       {item.icon}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-[#111827] leading-tight">
+                      <p className="text-sm font-semibold text-foreground leading-tight">
                         {item.label}
                       </p>
-                      <p className="text-xs text-[#6B7280] mt-0.5 leading-relaxed">
+                      <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -221,8 +221,8 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
           data-ocid="nav.services_menu"
           className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
             activeMenu === "services"
-              ? "text-primary bg-[#EFF6FF]"
-              : "text-[#374151] hover:text-primary hover:bg-[#F9FAFB]"
+              ? "text-primary bg-primary/10"
+              : "text-foreground/80 hover:text-primary hover:bg-muted/50"
           }`}
         >
           Services
@@ -241,7 +241,7 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
               onMouseLeave={closeMenu}
               className={`${dropdownBase} left-0 w-[520px]`}
             >
-              <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-widest mb-2 px-1">
+              <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest mb-2 px-1">
                 Our Services
               </p>
               <div className="grid grid-cols-2 gap-0.5">
@@ -250,17 +250,17 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
                     key={item.label}
                     to={item.href as "/"}
                     onClick={onNavigate}
-                    className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F5F9FF] transition-all duration-200 group"
+                    className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-primary/5 transition-all duration-200 group"
                     data-ocid={`nav.service_${item.label.toLowerCase().replace(/\s+/g, "_")}`}
                   >
-                    <div className="mt-0.5 w-7 h-7 rounded-lg bg-[#FFF7ED] flex items-center justify-center text-[#F59E0B] group-hover:bg-[#F59E0B] group-hover:text-white transition-all duration-200 flex-shrink-0">
+                    <div className="mt-0.5 w-7 h-7 rounded-lg bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-200 flex-shrink-0">
                       {item.icon}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-[#111827] leading-tight">
+                      <p className="text-sm font-semibold text-foreground leading-tight">
                         {item.label}
                       </p>
-                      <p className="text-xs text-[#6B7280] mt-0.5 leading-relaxed line-clamp-1">
+                      <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed line-clamp-1">
                         {item.description}
                       </p>
                     </div>
@@ -283,8 +283,8 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
           data-ocid="nav.company_menu"
           className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
             activeMenu === "company"
-              ? "text-primary bg-[#EFF6FF]"
-              : "text-[#374151] hover:text-primary hover:bg-[#F9FAFB]"
+              ? "text-primary bg-primary/10"
+              : "text-foreground/80 hover:text-primary hover:bg-muted/50"
           }`}
         >
           Company
@@ -303,7 +303,7 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
               onMouseLeave={closeMenu}
               className={`${dropdownBase} left-0 w-56`}
             >
-              <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-widest mb-2 px-1">
+              <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest mb-2 px-1">
                 Company
               </p>
               <div className="space-y-0.5">
@@ -312,13 +312,13 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
                     key={item.label}
                     to={item.href as "/"}
                     onClick={onNavigate}
-                    className="flex flex-col p-2.5 rounded-xl hover:bg-[#F5F9FF] transition-all duration-200"
+                    className="flex flex-col p-2.5 rounded-xl hover:bg-primary/5 transition-all duration-200"
                     data-ocid={`nav.company_${item.label.toLowerCase().replace(/\s+/g, "_")}`}
                   >
-                    <p className="text-sm font-semibold text-[#111827]">
+                    <p className="text-sm font-semibold text-foreground">
                       {item.label}
                     </p>
-                    <p className="text-xs text-[#6B7280] mt-0.5">
+                    <p className="text-xs text-muted-foreground mt-0.5">
                       {item.description}
                     </p>
                   </Link>
@@ -333,7 +333,7 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
         to="/about"
         data-ocid="nav.about_link"
         onClick={onNavigate}
-        className="px-3.5 py-2 rounded-lg text-sm font-medium text-[#374151] hover:text-primary hover:bg-[#F9FAFB] transition-all duration-200"
+        className="px-3.5 py-2 rounded-lg text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted/50 transition-all duration-200"
       >
         About
       </Link>
@@ -342,7 +342,7 @@ export function MegaMenu({ onNavigate }: MegaMenuProps) {
         to="/contact"
         data-ocid="nav.contact_link"
         onClick={onNavigate}
-        className="px-3.5 py-2 rounded-lg text-sm font-medium text-[#374151] hover:text-primary hover:bg-[#F9FAFB] transition-all duration-200"
+        className="px-3.5 py-2 rounded-lg text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted/50 transition-all duration-200"
       >
         Contact
       </Link>

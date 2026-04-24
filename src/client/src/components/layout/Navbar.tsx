@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { LayoutDashboard, LogIn, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "../ThemeToggle";
 import { MegaMenu } from "./MegaMenu";
 
 export function Navbar() {
@@ -50,7 +51,7 @@ export function Navbar() {
               className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
             />
             <div>
-              <p className="font-display font-bold text-[#111827] text-sm leading-tight tracking-tight">
+              <p className="font-display font-bold text-foreground text-sm leading-tight tracking-tight">
                 BIG BUCKS
               </p>
               <p className="font-display font-bold text-primary text-sm leading-tight tracking-tight">
@@ -58,8 +59,8 @@ export function Navbar() {
               </p>
             </div>
             <div className="hidden lg:flex items-center gap-1.5 ml-1">
-              <span className="w-px h-5 bg-[#E5E7EB]" />
-              <span className="text-[10px] text-[#9CA3AF] leading-tight font-body">
+              <span className="w-px h-5 bg-border" />
+              <span className="text-[10px] text-muted-foreground leading-tight font-body">
                 Pre-incubated at
                 <br />
                 IIT Delhi
@@ -110,12 +111,16 @@ export function Navbar() {
               </>
             )}
 
+            <div className="flex items-center">
+              <ThemeToggle />
+            </div>
+
             {/* Mobile hamburger */}
             <button
               type="button"
               data-ocid="nav.mobile_menu_button"
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden w-9 h-9 flex items-center justify-center text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] rounded-lg transition-all duration-200"
+              className="md:hidden w-9 h-9 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-200"
               aria-label="Toggle menu"
             >
               {mobileOpen ? (
@@ -136,7 +141,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
-            className="md:hidden border-t border-[#E5E7EB] bg-white/95 backdrop-blur-md overflow-hidden"
+            className="md:hidden border-t border-border bg-background/95 backdrop-blur-md overflow-hidden"
             data-ocid="nav.mobile_menu"
           >
             <div className="container mx-auto px-6 py-4 space-y-0.5">
@@ -145,12 +150,12 @@ export function Navbar() {
                   key={link.href}
                   to={link.href as "/"}
                   onClick={closeMobile}
-                  className="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-[#374151] hover:text-primary hover:bg-[#EFF6FF] transition-all duration-200"
+                  className="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/10 transition-all duration-200"
                 >
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-3 border-t border-[#E5E7EB] mt-3 flex flex-col gap-2">
+              <div className="pt-3 border-t border-border mt-3 flex flex-col gap-2">
                 {isAuthenticated ? (
                   <Link to="/dashboard" onClick={closeMobile}>
                     <Button
