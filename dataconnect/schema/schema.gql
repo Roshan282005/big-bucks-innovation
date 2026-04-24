@@ -1,0 +1,51 @@
+type User @table {
+  displayName: String!
+  email: String!
+  createdAt: Timestamp!
+  headline: String
+  bio: String
+  profilePictureUrl: String
+  company: String
+  jobTitle: String
+  location: String
+}
+
+type Connection @table {
+  user1: User!
+  user2: User!
+  status: String!
+  createdAt: Timestamp!
+}
+
+type Group @table {
+  name: String!
+  description: String!
+  createdAt: Timestamp!
+  owner: User!
+  groupPictureUrl: String
+  isPublic: Boolean
+}
+
+type Post @table {
+  author: User!
+  group: Group
+  content: String!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+  imageUrl: String
+  linkUrl: String
+}
+
+type GroupMembership @table(key: ["user", "group"]) {
+  user: User!
+  group: Group!
+  role: String!
+  joinedAt: Timestamp!
+}
+
+type Comment @table {
+  author: User!
+  post: Post!
+  content: String!
+  createdAt: Timestamp!
+}

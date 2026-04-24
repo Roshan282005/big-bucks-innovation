@@ -1,5 +1,7 @@
 packages:
-  - src/**/*
+  - src/client
+
+  - server
 onlyBuiltDependencies:
   - '@biomejs/biome'
   - esbuild

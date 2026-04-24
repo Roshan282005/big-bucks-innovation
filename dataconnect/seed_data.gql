@@ -1,0 +1,92 @@
+mutation CreateDemoData @transaction @auth(level: USER, insecureReason: "This operation is safe to expose to all logged in users.") {
+  user1: user_insert(data: {
+    id: "550e8400-e29b-41d4-a716-446655440000",
+    displayName: "Alice Smith",
+    email: "alice.smith@example.com",
+    createdAt: "2023-01-01T10:00:00Z",
+    headline: "Software Engineer",
+    bio: "Passionate about building scalable applications.",
+    profilePictureUrl: "https://example.com/alice.jpg",
+    company: "Big Bucks Innovation",
+    jobTitle: "Lead Developer",
+    location: "New York, USA"
+  })
+  user2: user_insert(data: {
+    id: "550e8400-e29b-41d4-a716-446655440001",
+    displayName: "Bob Johnson",
+    email: "bob.johnson@example.com",
+    createdAt: "2023-01-02T11:00:00Z",
+    headline: "Product Manager",
+    bio: "Focused on user-centric product development.",
+    profilePictureUrl: "https://example.com/bob.jpg",
+    company: "Big Bucks Innovation",
+    jobTitle: "Senior PM",
+    location: "San Francisco, USA"
+  })
+  group1: group_insert(data: {
+    id: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    name: "Engineering Team",
+    description: "Team focused on developing core products.",
+    createdAt: "2023-01-05T09:00:00Z",
+    owner: { id: "550e8400-e29b-41d4-a716-446655440000" },
+    isPublic: false
+  })
+  group2: group_insert(data: {
+    id: "a1b2c3d4-e5f6-7890-1234-567890fedcba",
+    name: "Marketing Squad",
+    description: "Team handling marketing campaigns and outreach.",
+    createdAt: "2023-01-06T14:00:00Z",
+    owner: { id: "550e8400-e29b-41d4-a716-446655440001" },
+    isPublic: true
+  })
+  groupMembership1: groupMembership_insert(data: {
+    user: { id: "550e8400-e29b-41d4-a716-446655440000" },
+    group: { id: "a1b2c3d4-e5f6-7890-1234-567890abcdef" },
+    role: "Admin",
+    joinedAt: "2023-01-05T09:30:00Z"
+  })
+  groupMembership2: groupMembership_insert(data: {
+    user: { id: "550e8400-e29b-41d4-a716-446655440001" },
+    group: { id: "a1b2c3d4-e5f6-7890-1234-567890abcdef" },
+    role: "Member",
+    joinedAt: "2023-01-05T10:00:00Z"
+  })
+  groupMembership3: groupMembership_insert(data: {
+    user: { id: "550e8400-e29b-41d4-a716-446655440001" },
+    group: { id: "a1b2c3d4-e5f6-7890-1234-567890fedcba" },
+    role: "Admin",
+    joinedAt: "2023-01-06T14:30:00Z"
+  })
+  post1: post_insert(data: {
+    id: "p1234567-89ab-cdef-0123-456789abcdef",
+    author: { id: "550e8400-e29b-41d4-a716-446655440000" },
+    group: { id: "a1b2c3d4-e5f6-7890-1234-567890abcdef" },
+    content: "Excited to announce our new feature launch!",
+    createdAt: "2023-01-07T12:00:00Z",
+    updatedAt: "2023-01-07T12:00:00Z",
+    imageUrl: "https://example.com/feature.png"
+  })
+  post2: post_insert(data: {
+    id: "pabcdef0-1234-5678-90ab-cdef01234567",
+    author: { id: "550e8400-e29b-41d4-a716-446655440001" },
+    group: { id: "a1b2c3d4-e5f6-7890-1234-567890fedcba" },
+    content: "Check out our latest marketing campaign!",
+    createdAt: "2023-01-08T15:30:00Z",
+    updatedAt: "2023-01-08T15:30:00Z",
+    linkUrl: "https://example.com/campaign"
+  })
+  comment1: comment_insert(data: {
+    id: "c1234567-89ab-cdef-0123-456789abcdef",
+    author: { id: "550e8400-e29b-41d4-a716-446655440001" },
+    post: { id: "p1234567-89ab-cdef-0123-456789abcdef" },
+    content: "Awesome news, Alice!",
+    createdAt: "2023-01-07T12:15:00Z"
+  })
+  connection1: connection_insert(data: {
+    id: "con12345-6789-abcd-ef01-23456789abcd",
+    user1: { id: "550e8400-e29b-41d4-a716-446655440000" },
+    user2: { id: "550e8400-e29b-41d4-a716-446655440001" },
+    status: "Friends",
+    createdAt: "2023-01-03T08:00:00Z"
+  })
+}

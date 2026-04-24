@@ -1,0 +1,50 @@
+query ListPublicGroups @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public as it only lists public groups.") {
+  groups(where: {isPublic: {eq: true}}) {
+    id
+    name
+    description
+    groupPictureUrl
+    owner {
+      displayName
+    }
+  }
+}
+
+query GetMyPosts @auth(level: USER) {
+  posts(where: {authorId: {eq_expr: "auth.uid"}}, orderBy: [{createdAt: DESC}]) {
+    id
+    content
+    createdAt
+    group {
+      name
+    }
+    comments_on_post {
+      id
+      content
+      author {
+        displayName
+      }
+    }
+  }
+}
+
+mutation CreatePostInGroup($groupId: UUID!, $content: String!, $imageUrl: String, $linkUrl: String) @auth(level: USER) {
+  post_insert(data: {
+    authorId_expr: "auth.uid",
+    groupId: $groupId,
+    content: $content,
+    imageUrl: $imageUrl,
+    linkUrl: $linkUrl,
+    createdAt_expr: "request.time",
+    updatedAt_expr: "request.time"
+  })
+}
+
+mutation ConnectWithUser($user2Id: UUID!) @auth(level: USER) {
+  connection_insert(data: {
+    user1Id_expr: "auth.uid",
+    user2Id: $user2Id,
+    status: "PENDING",
+    createdAt_expr: "request.time"
+  })
+}
