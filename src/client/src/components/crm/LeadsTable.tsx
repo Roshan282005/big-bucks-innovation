@@ -1,16 +1,16 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { LeadStatus, Lead } from "@/types";
-import { type LeadPublic } from "@/hooks/useLeads";
+import type { LeadPublic } from "@/hooks/useLeads";
+import type { Lead, LeadStatus } from "@/types";
 import { Edit2, Trash2, UserPlus } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
 const STATUS_STYLES: Record<LeadStatus, string> = {
-  "New": "bg-blue-50 text-blue-600 border-blue-200",
-  "Contacted": "bg-amber-50 text-amber-600 border-amber-200",
-  "Qualified": "bg-emerald-50 text-emerald-600 border-emerald-200",
-  "Closed": "bg-muted text-muted-foreground border-border",
+  New: "bg-blue-50 text-blue-600 border-blue-200",
+  Contacted: "bg-amber-50 text-amber-600 border-amber-200",
+  Qualified: "bg-emerald-50 text-emerald-600 border-emerald-200",
+  Closed: "bg-muted text-muted-foreground border-border",
 };
 
 const SKELETON_KEYS = ["sk-a", "sk-b", "sk-c", "sk-d", "sk-e"] as const;
@@ -47,8 +47,6 @@ function SkeletonRow() {
     </tr>
   );
 }
-
-
 
 export const SAMPLE_LEADS: LeadPublic[] = [
   {

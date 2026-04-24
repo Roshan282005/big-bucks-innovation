@@ -152,18 +152,19 @@ export function TeamSection() {
 
                 <Avatar className="relative mx-auto w-full aspect-[820/1456] max-w-[200px] mb-6 rounded-xl border border-border/50 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300">
                   {member.image ? (
-                    <AvatarImage 
-                      src={member.image} 
+                    <AvatarImage
+                      src={member.image}
                       alt={`${member.name}, ${member.role}`}
                       className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : null}
-                  <AvatarFallback className="text-2xl font-display font-bold rounded-none" style={{ backgroundColor: "#2563EB" }}>
+                  <AvatarFallback
+                    className="text-2xl font-display font-bold rounded-none"
+                    style={{ backgroundColor: "#2563EB" }}
+                  >
                     {member.initials}
                   </AvatarFallback>
-                  <div
-                    className={`absolute bottom-2 right-2 w-6 h-6 rounded-lg bg-white shadow-sm border border-border/50 flex items-center justify-center z-10`}
-                  >
+                  <div className="absolute bottom-2 right-2 w-6 h-6 rounded-lg bg-white shadow-sm border border-border/50 flex items-center justify-center z-10">
                     <div className={`w-2.5 h-2.5 rounded-sm ${a.glow}`} />
                   </div>
                 </Avatar>

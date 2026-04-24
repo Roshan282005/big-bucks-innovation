@@ -14,7 +14,7 @@ function Avatar({
       data-slot="avatar"
       className={cn(
         "relative flex shrink-0 overflow-hidden",
-        // Default to a circle/square if no specific size is provided, 
+        // Default to a circle/square if no specific size is provided,
         // but allow overriding for portrait sizes like 820x1456
         !className?.includes("h-") && !className?.includes("w-") && "size-8",
         !className?.includes("rounded-") && "rounded-full",

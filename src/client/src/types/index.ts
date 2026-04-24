@@ -12,7 +12,12 @@ export type JobPostingId = string;
 
 export type Role = "admin" | "member";
 
-export const LEAD_STATUSES = ["New", "Contacted", "Qualified", "Closed"] as const;
+export const LEAD_STATUSES = [
+  "New",
+  "Contacted",
+  "Qualified",
+  "Closed",
+] as const;
 export type LeadStatus = (typeof LEAD_STATUSES)[number];
 export type ClientStatus = "active" | "inactive" | "prospect";
 export type ProjectStatus = "Planning" | "InProgress" | "OnHold" | "Completed";

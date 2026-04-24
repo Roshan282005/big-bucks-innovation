@@ -20,7 +20,9 @@ export function ProfileSettings() {
   const { userEmail, userName, uid } = useAuthStore();
 
   const [displayName, setDisplayName] = useState(userName || "Admin User");
-  const [email, setEmail] = useState(userEmail || "admin@bigbucksinnovation.com");
+  const [email, setEmail] = useState(
+    userEmail || "admin@bigbucksinnovation.com",
+  );
   const [errors, setErrors] = useState<FormErrors>({});
   const [saving, setSaving] = useState(false);
 

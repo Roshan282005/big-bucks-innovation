@@ -9,8 +9,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { LEAD_STATUSES, type LeadStatus, type Lead } from "@/types";
-import { type LeadPublic } from "@/hooks/useLeads";
+import type { LeadPublic } from "@/hooks/useLeads";
+import { LEAD_STATUSES, type Lead, type LeadStatus } from "@/types";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
@@ -40,7 +40,9 @@ interface LeadModalProps {
   lead: LeadPublic | null;
   onClose: () => void;
   onSave: (
-    data: Omit<Lead, "id" | "createdAt" | "updatedAt"> | (Partial<Lead> & { id: string }),
+    data:
+      | Omit<Lead, "id" | "createdAt" | "updatedAt">
+      | (Partial<Lead> & { id: string }),
   ) => Promise<void>;
   isSaving: boolean;
 }
@@ -138,7 +140,9 @@ export function LeadModal({
       notes: form.notes.trim(),
     };
     if (isEdit) {
-      await onSave({ ...payload, id: lead!.id } as Partial<Lead> & { id: string });
+      await onSave({ ...payload, id: lead!.id } as Partial<Lead> & {
+        id: string;
+      });
     } else {
       await onSave(payload);
     }

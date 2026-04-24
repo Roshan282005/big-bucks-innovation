@@ -3,7 +3,8 @@ import type { Lead, LeadStatus } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-export interface LeadPublic extends Omit<Lead, "id" | "createdAt" | "updatedAt"> {
+export interface LeadPublic
+  extends Omit<Lead, "id" | "createdAt" | "updatedAt"> {
   id: string;
   created_at: string;
   updated_at: string;
@@ -26,14 +27,16 @@ export function useLeads(statusFilter: LeadStatus | null = null) {
 
 export function useCreateLead() {
   const queryClient = useQueryClient();
-  return useMutation<Lead, Error, Omit<Lead, "id" | "createdAt" | "updatedAt">>({
-    mutationFn: (payload) => apiClient.post("/api/leads", payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: LEADS_KEY });
-      toast.success("Lead created successfully");
+  return useMutation<Lead, Error, Omit<Lead, "id" | "createdAt" | "updatedAt">>(
+    {
+      mutationFn: (payload) => apiClient.post("/api/leads", payload),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: LEADS_KEY });
+        toast.success("Lead created successfully");
+      },
+      onError: () => toast.error("Failed to create lead"),
     },
-    onError: () => toast.error("Failed to create lead"),
-  });
+  );
 }
 
 export function useUpdateLead() {

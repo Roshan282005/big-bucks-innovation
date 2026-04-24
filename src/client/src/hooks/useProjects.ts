@@ -29,14 +29,17 @@ export function useCreateProject() {
 
 export function useUpdateProject() {
   const queryClient = useQueryClient();
-  return useMutation<Project, Error, { id: string; payload: Partial<Project> }>({
-    mutationFn: ({ id, payload }) => apiClient.put(`/api/projects/${id}`, payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: PROJECTS_KEY });
-      toast.success("Project updated successfully");
+  return useMutation<Project, Error, { id: string; payload: Partial<Project> }>(
+    {
+      mutationFn: ({ id, payload }) =>
+        apiClient.put(`/api/projects/${id}`, payload),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: PROJECTS_KEY });
+        toast.success("Project updated successfully");
+      },
+      onError: () => toast.error("Failed to update project"),
     },
-    onError: () => toast.error("Failed to update project"),
-  });
+  );
 }
 
 export function useDeleteProject() {

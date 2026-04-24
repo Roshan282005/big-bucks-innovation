@@ -195,7 +195,10 @@ export function LeadsPage() {
               className="pl-9 bg-card border-border h-9 text-sm"
             />
           </div>
-          <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as LeadStatus | "all")}>
+          <Select
+            value={statusFilter}
+            onValueChange={(v) => setStatusFilter(v as LeadStatus | "all")}
+          >
             <SelectTrigger
               data-ocid="leads.status_filter"
               className="w-40 bg-card border-border h-9 text-sm"

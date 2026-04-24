@@ -30,7 +30,8 @@ export function useCreateClient() {
 export function useUpdateClient() {
   const queryClient = useQueryClient();
   return useMutation<Client, Error, { id: string; payload: Partial<Client> }>({
-    mutationFn: ({ id, payload }) => apiClient.put(`/api/clients/${id}`, payload),
+    mutationFn: ({ id, payload }) =>
+      apiClient.put(`/api/clients/${id}`, payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: CLIENTS_KEY });
       toast.success("Client updated successfully");

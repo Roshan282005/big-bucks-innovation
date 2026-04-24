@@ -7,7 +7,7 @@ export function BulbAnimation() {
     <motion.div
       initial={{ opacity: 0, scale: 0.7 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.7, delay: 0.40, ease: [0.34, 1.56, 0.64, 1] }}
+      transition={{ duration: 0.7, delay: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
       className="flex justify-center mt-14"
       data-ocid="hero.bulb_animation"
     >

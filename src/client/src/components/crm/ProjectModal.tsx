@@ -1,4 +1,3 @@
-import type { ProjectStatus, Project } from "@/types";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import type { Project, ProjectStatus } from "@/types";
 
 import { useEffect, useState } from "react";
 
@@ -136,16 +136,10 @@ export function ProjectModal({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Planning">
-                    Planning
-                  </SelectItem>
-                  <SelectItem value="InProgress">
-                    In Progress
-                  </SelectItem>
+                  <SelectItem value="Planning">Planning</SelectItem>
+                  <SelectItem value="InProgress">In Progress</SelectItem>
                   <SelectItem value="OnHold">On Hold</SelectItem>
-                  <SelectItem value="Completed">
-                    Completed
-                  </SelectItem>
+                  <SelectItem value="Completed">Completed</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -210,8 +204,6 @@ export function ProjectModal({
               className={inputCls}
             />
           </div>
-
-
 
           <div className="flex gap-2 pt-2 justify-end">
             <Button

@@ -1,5 +1,5 @@
-import { PublicLayout } from "@/components/layout/PublicLayout";
 import { AuthForm } from "@/components/auth/AuthForm";
+import { PublicLayout } from "@/components/layout/PublicLayout";
 import { motion } from "motion/react";
 
 export function LoginPage() {
@@ -27,4 +27,3 @@ export function LoginPage() {
     </PublicLayout>
   );
 }
-

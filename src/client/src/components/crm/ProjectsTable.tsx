@@ -1,7 +1,7 @@
-import type { ProjectStatus, Project } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { Project, ProjectStatus } from "@/types";
 import { Edit2, FolderOpen, Trash2 } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -24,31 +24,6 @@ const statusMeta: Record<ProjectStatus, { label: string; className: string }> =
       className: "bg-emerald-50 text-emerald-600 border-emerald-200",
     },
   };
-
-function ProgressBar({ value }: { value: number }) {
-  const pct = Math.min(100, Math.max(0, value));
-  const color =
-    pct >= 80
-      ? "bg-emerald-500"
-      : pct >= 50
-        ? "bg-primary"
-        : pct >= 25
-          ? "bg-amber-400"
-          : "bg-muted-foreground";
-  return (
-    <div className="flex items-center gap-2 min-w-[80px]">
-      <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
-        <div
-          className={`h-full rounded-full transition-all duration-500 ${color}`}
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-      <span className="text-xs font-mono text-muted-foreground w-8 text-right">
-        {pct}%
-      </span>
-    </div>
-  );
-}
 
 export function ProjectsTableSkeleton() {
   return (

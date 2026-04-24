@@ -17,7 +17,6 @@ interface ClientsTableProps {
   isLoading: boolean;
   onEdit: (client: Client) => void;
   onDelete: (client: Client) => void;
-
 }
 
 const STATUS_STYLES: Record<ClientStatus, string> = {

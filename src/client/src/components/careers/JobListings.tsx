@@ -1,5 +1,5 @@
-import { apiClient } from "@/lib/api";
 import { Skeleton } from "@/components/ui/skeleton";
+import { apiClient } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 import { SearchX } from "lucide-react";
 import { JobCard, type JobCardData, type JobTypeKey } from "./JobCard";

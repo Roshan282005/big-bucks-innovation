@@ -21,8 +21,8 @@ import { SettingsPage } from "@/routes/dashboard/settings";
 import { TasksPage } from "@/routes/dashboard/tasks";
 import { HomePage } from "@/routes/index";
 import { LoginPage } from "@/routes/login";
-import { RegisterPage } from "@/routes/register";
 import { ProductsPage } from "@/routes/products";
+import { RegisterPage } from "@/routes/register";
 
 // Root route
 const rootRoute = createRootRoute({

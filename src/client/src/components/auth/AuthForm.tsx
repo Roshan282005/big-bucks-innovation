@@ -2,12 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LogIn, UserPlus, ShieldCheck, Mail, Lock } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useState } from "react";
-import { useAuthStore } from "@/store/auth";
 import { useGoogleSignIn } from "@/hooks/useGoogleAuth";
+import { useAuthStore } from "@/store/auth";
 import { useNavigate } from "@tanstack/react-router";
+import { Lock, LogIn, Mail, ShieldCheck, UserPlus } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 interface AuthFormProps {
   defaultTab?: "login" | "signup";
@@ -31,11 +31,12 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
       <div
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle, oklch(0.45 0.16 264 / 0.15) 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(circle, oklch(0.45 0.16 264 / 0.15) 1px, transparent 1px)",
           backgroundSize: "20px 20px",
         }}
       />
-      
+
       <div className="relative z-10 text-center mb-8">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -49,20 +50,24 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
           {activeTab === "login" ? "Welcome Back" : "Create Account"}
         </h2>
         <p className="text-sm text-muted-foreground">
-          {activeTab === "login" 
-            ? "Sign in to access your enterprise dashboard" 
+          {activeTab === "login"
+            ? "Sign in to access your enterprise dashboard"
             : "Join Big Bucks Innovation and scale your enterprise"}
         </p>
       </div>
 
-      <Tabs 
-        defaultValue={defaultTab} 
+      <Tabs
+        defaultValue={defaultTab}
         onValueChange={(v) => setActiveTab(v as any)}
         className="w-full"
       >
         <TabsList className="grid w-full grid-cols-2 mb-8 bg-muted/50 p-1 h-11">
-          <TabsTrigger value="login" className="font-semibold">Login</TabsTrigger>
-          <TabsTrigger value="signup" className="font-semibold">Register</TabsTrigger>
+          <TabsTrigger value="login" className="font-semibold">
+            Login
+          </TabsTrigger>
+          <TabsTrigger value="signup" className="font-semibold">
+            Register
+          </TabsTrigger>
         </TabsList>
 
         <AnimatePresence mode="wait">
@@ -79,20 +84,37 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
                   <Label htmlFor="login-email">Email Address</Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-                    <Input id="login-email" placeholder="name@company.com" className="pl-10 h-11" type="email" />
+                    <Input
+                      id="login-email"
+                      placeholder="name@company.com"
+                      className="pl-10 h-11"
+                      type="email"
+                    />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="login-password">Password</Label>
-                    <button type="button" className="text-xs text-primary hover:underline">Forgot password?</button>
+                    <button
+                      type="button"
+                      className="text-xs text-primary hover:underline"
+                    >
+                      Forgot password?
+                    </button>
                   </div>
                   <div className="relative">
                     <Lock className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-                    <Input id="login-password" type="password" className="pl-10 h-11" />
+                    <Input
+                      id="login-password"
+                      type="password"
+                      className="pl-10 h-11"
+                    />
                   </div>
                 </div>
-                <Button className="w-full h-11 font-semibold shadow-md hover:shadow-lg transition-all" disabled={isLoading}>
+                <Button
+                  className="w-full h-11 font-semibold shadow-md hover:shadow-lg transition-all"
+                  disabled={isLoading}
+                >
                   Sign In
                 </Button>
               </div>
@@ -102,17 +124,33 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
               <div className="space-y-4 mb-6">
                 <div className="space-y-2">
                   <Label htmlFor="signup-name">Full Name</Label>
-                  <Input id="signup-name" placeholder="John Doe" className="h-11" />
+                  <Input
+                    id="signup-name"
+                    placeholder="John Doe"
+                    className="h-11"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="signup-email">Email Address</Label>
-                  <Input id="signup-email" placeholder="name@company.com" className="h-11" type="email" />
+                  <Input
+                    id="signup-email"
+                    placeholder="name@company.com"
+                    className="h-11"
+                    type="email"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="signup-password">Create Password</Label>
-                  <Input id="signup-password" type="password" className="h-11" />
+                  <Input
+                    id="signup-password"
+                    type="password"
+                    className="h-11"
+                  />
                 </div>
-                <Button className="w-full h-11 font-semibold shadow-md hover:shadow-lg transition-all" disabled={isLoading}>
+                <Button
+                  className="w-full h-11 font-semibold shadow-md hover:shadow-lg transition-all"
+                  disabled={isLoading}
+                >
                   Create Account
                 </Button>
               </div>
@@ -126,7 +164,9 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
           <span className="w-full border-t border-border" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-4 text-muted-foreground font-semibold">Or continue with</span>
+          <span className="bg-background px-4 text-muted-foreground font-semibold">
+            Or continue with
+          </span>
         </div>
       </div>
 
@@ -142,6 +182,7 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
         ) : (
           <>
             <svg className="w-5 h-5" viewBox="0 0 24 24">
+              <title>Google Logo</title>
               <path
                 fill="currentColor"
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -169,9 +210,16 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
       </Button>
 
       <p className="mt-8 text-center text-xs text-muted-foreground leading-relaxed">
-        By continuing, you agree to our <button className="text-primary hover:underline">Terms of Service</button> and <button className="text-primary hover:underline">Privacy Policy</button>.
+        By continuing, you agree to our{" "}
+        <button type="button" className="text-primary hover:underline">
+          Terms of Service
+        </button>{" "}
+        and{" "}
+        <button type="button" className="text-primary hover:underline">
+          Privacy Policy
+        </button>
+        .
       </p>
     </div>
   );
 }
-
