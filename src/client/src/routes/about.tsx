@@ -29,61 +29,51 @@ const mouColleges = [
     name: "St. Josephs Institute of Technology",
     location: "Chennai, Tamil Nadu",
     type: "Engineering",
-    image: "https://www.collegebatch.com/static/clg-gallery/st-josephs-institute-of-technology-chennai-340913.webp",
   },
   {
     name: "Easwari Engineering College",
     location: "Chennai, Tamil Nadu",
     type: "Engineering",
-    image: "https://campushunt.in/photogallery/Easwari-Engineering-College-for-Women---Chennai-1517558552-0.jpg",
   },
   {
     name: "Saveetha Engineering College",
     location: "Chennai, Tamil Nadu",
     type: "Engineering",
-    image: "https://campushunt.in/photogallery/saveetha-eng-clg-1299.jpg",
   },
   {
     name: "Jeppiaar Engineering College",
     location: "Chennai, Tamil Nadu",
     type: "Engineering",
-    image: "https://www.jeppiaarinstitute.org/wp-content/uploads/2024/07/slide-1.png",
   },
   {
     name: "Panimalar Engineering College",
     location: "Chennai, Tamil Nadu",
     type: "Engineering",
-    image: "https://panimalar.ac.in/assets/images/AboutUs/about-us-banner-img.jpg",
   },
   {
     name: "Misrimal Navajee Munoth Jain Engineering College",
     location: "Chennai, Tamil Nadu",
     type: "Engineering",
-    image: "https://www.mnmjec.ac.in/img/Homemain.jpg",
   },
   {
     name: "Meenakshi College of Engineering",
     location: "Chennai, Tamil Nadu",
     type: "Engineering",
-    image: "https://www.enggtree.com/wp-content/uploads/2021/10/Meenakshi-College-of-Engineering-Chennai.png",
   },
   {
     name: "Dr. Ambedkar Institute of Technology",
     location: "Bengaluru, Karnataka",
     type: "Engineering",
-    image: "https://qs-igauge.blr1.cdn.digitaloceanspaces.com/6.jpg",
   },
   {
     name: "Vel Tech Rangarajan Dr. Sagunthala R&D Institute",
     location: "Chennai, Tamil Nadu",
     type: "Engineering & Research",
-    image: "https://media.licdn.com/dms/image/v2/C4E1BAQEKwH4ZipPjsg/company-background_10000/company-background_10000/0/1649846118038/veltechinstitute_cover?e=2147483647&v=beta&t=6nP9_wxn7WogvPNpPNa2hKIcnLkHSPPqrB2jAQSLrFs",
   },
   {
     name: "RMK Engineering College",
     location: "Chennai, Tamil Nadu",
     type: "Engineering",
-    image: "https://rmkec.ac.in/g_images/building/Maingate.jpg",
   },
 ];
 
@@ -125,6 +115,7 @@ const fundingGrants = [
   },
   { title: "NIDHI-EIR Fellowship", body: "DST, Govt. of India", year: "2024" },
 ];
+
 // ─── MOU Signing Event Photos ────────────────────────────────────────────────
 // To replace placeholders with real photos:
 //   1. Copy your MOU photos to: src/frontend/public/assets/
@@ -153,7 +144,7 @@ const mouEvents = [
   {
     id: 2,
     // Replace with real photo: public/assets/mou-2.jpg
-    photo: "/assets/mou-3.jpg",
+    photo: "/assets/mou-2.jpg",
     institution: "AVIT",
     description:
       "Group MOU signing in conference hall with faculty and leadership",
@@ -168,7 +159,7 @@ const mouEvents = [
   {
     id: 3,
     // Replace with real photo: public/assets/mou-3.jpg
-    photo: "/assets/mou-6.jpg",
+    photo: "/assets/mou-3.jpg",
     institution: "College Auditorium",
     description:
       "Formal MOU exchange on the main auditorium stage with dignitaries",
@@ -183,7 +174,7 @@ const mouEvents = [
   {
     id: 4,
     // Replace with real photo: public/assets/mou-4.jpg
-    photo: "/assets/mou-2.jpg",
+    photo: "/assets/mou-4.jpg",
     institution: "Office MOU Signing",
     description:
       "Official document signing with stamped MOU, executive team present",
@@ -212,7 +203,7 @@ const mouEvents = [
   {
     id: 6,
     // Replace with real photo: public/assets/mou-6.jpg
-    photo: "/assets/mou-4.jpg",
+    photo: "/assets/mou-6.jpg",
     institution: "Gojan School of Business & Technology",
     description:
       "Branded MOU signing ceremony with Big Bucks Innovation signage",
@@ -677,7 +668,6 @@ export function AboutPage() {
       {/* Team */}
       <TeamSection />
 
-            {/* MOU Colleges Carousel */}
       {/* ─── MOU Signing Gallery ─────────────────────────────────────────────── */}
       {/*                                                                         */}
       {/* HOW TO ADD REAL PHOTOS:                                                 */}
@@ -837,8 +827,6 @@ export function AboutPage() {
       </section>
 
       {/* MOU Colleges Text Grid */}
-
-    
       <section
         className="py-20 bg-white border-y border-border"
         data-ocid="about.mou_section"
@@ -880,13 +868,6 @@ export function AboutPage() {
                 style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
                 data-ocid={`about.mou_college.${i + 1}`}
               >
-                {college.image && (
-                  <img
-                    src={college.image}
-                    alt={college.name}
-                    className="w-full h-28 object-cover rounded-t-lg mb-2 mou-white"
-                  />
-                )}
                 <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
                   <GraduationCap className="w-4 h-4 text-primary" />
                 </div>
