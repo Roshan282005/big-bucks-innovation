@@ -67,7 +67,7 @@ export function ProductsPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.48, delay: i * 0.12 }}
-              className="group bg-card border border-border rounded-2xl p-7 hover:border-primary/40 hover:shadow-lg transition-smooth surface-subtle flex flex-col"
+              className="group bg-white border border-border rounded-2xl p-7 hover:border-primary/40 transition-smooth shadow-subtle hover:shadow-elevated flex flex-col"
               data-ocid={`products_preview.card.${i + 1}`}
             >
               <div

@@ -19,7 +19,7 @@ export function BulbAnimation() {
           className="absolute w-40 h-40 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.45 0.16 264 / 0.20), transparent 70%)",
+              "radial-gradient(circle, var(--primary) / 0.20, transparent 70%)",
           }}
         />
         {/* Mid ring — blue border pulse */}
@@ -36,11 +36,11 @@ export function BulbAnimation() {
             width: "6.5rem",
             height: "6.5rem",
             background:
-              "radial-gradient(circle, oklch(0.45 0.16 264 / 0.09), transparent 70%)",
+              "radial-gradient(circle, var(--primary) / 0.09, transparent 70%)",
           }}
         />
         {/* Inner container */}
-        <div className="relative z-10 w-20 h-20 rounded-full bg-card border border-primary/35 flex items-center justify-center surface-elevated">
+        <div className="relative z-10 w-20 h-20 rounded-full bg-white border border-primary/35 flex items-center justify-center shadow-elevated">
           <svg
             width="40"
             height="40"
@@ -67,7 +67,7 @@ export function BulbAnimation() {
             {/* Bulb body — blue */}
             <motion.path
               d="M20 6C14.477 6 10 10.477 10 16c0 3.6 1.8 6.77 4.5 8.68V28h11v-3.32C28.2 22.77 30 19.6 30 16c0-5.523-4.477-10-10-10z"
-              fill="oklch(0.45 0.16 264 / 0.85)"
+              fill="var(--primary) / 0.85"
               filter="url(#bulb-glow-blue)"
               animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{
@@ -82,7 +82,7 @@ export function BulbAnimation() {
               y1="30"
               x2="25"
               y2="30"
-              stroke="oklch(0.45 0.16 264)"
+              stroke="var(--primary)"
               strokeWidth="1.5"
               strokeLinecap="round"
             />
@@ -91,7 +91,7 @@ export function BulbAnimation() {
               y1="33"
               x2="24"
               y2="33"
-              stroke="oklch(0.45 0.16 264)"
+              stroke="var(--primary)"
               strokeWidth="1.5"
               strokeLinecap="round"
             />
@@ -101,7 +101,7 @@ export function BulbAnimation() {
               y1="8"
               x2="36"
               y2="5"
-              stroke="oklch(0.62 0.19 60)"
+              stroke="var(--accent)"
               strokeWidth="1.5"
               strokeLinecap="round"
               animate={{ opacity: [0, 1, 0] }}
@@ -112,7 +112,7 @@ export function BulbAnimation() {
               y1="16"
               x2="40"
               y2="16"
-              stroke="oklch(0.62 0.19 60)"
+              stroke="var(--accent)"
               strokeWidth="1.5"
               strokeLinecap="round"
               animate={{ opacity: [0, 1, 0] }}
@@ -123,7 +123,7 @@ export function BulbAnimation() {
               y1="8"
               x2="4"
               y2="5"
-              stroke="oklch(0.62 0.19 60)"
+              stroke="var(--accent)"
               strokeWidth="1.5"
               strokeLinecap="round"
               animate={{ opacity: [0, 1, 0] }}
@@ -134,7 +134,7 @@ export function BulbAnimation() {
               y1="16"
               x2="0"
               y2="16"
-              stroke="oklch(0.62 0.19 60)"
+              stroke="var(--accent)"
               strokeWidth="1.5"
               strokeLinecap="round"
               animate={{ opacity: [0, 1, 0] }}

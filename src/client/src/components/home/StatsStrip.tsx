@@ -10,7 +10,7 @@ const stats = [
 export function StatsStrip() {
   return (
     <section
-      className="bg-card border-y border-border py-10 md:py-14"
+      className="bg-white border-y border-border py-10 md:py-14"
       data-ocid="stats.section"
     >
       <div className="container mx-auto px-4">

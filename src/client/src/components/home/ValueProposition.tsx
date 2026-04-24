@@ -65,7 +65,7 @@ export function ValueProposition() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className={`group bg-card border border-border rounded-2xl p-7 ${pillar.border} transition-smooth surface-subtle`}
+              className={`group bg-white border border-border rounded-2xl p-7 ${pillar.border} transition-smooth shadow-subtle hover:shadow-elevated`}
               data-ocid={`value_prop.pillar.${i + 1}`}
             >
               <div

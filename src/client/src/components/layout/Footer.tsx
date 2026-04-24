@@ -39,15 +39,15 @@ export function Footer() {
     typeof window !== "undefined" ? window.location.hostname : "";
 
   return (
-    <footer className="bg-[#F9FAFB] border-t border-[#E5E7EB]">
+    <footer className="bg-muted/10 border-t border-border">
       {/* IIT Delhi badge strip */}
       <div className="bg-primary/5 border-b border-primary/10 py-3">
         <div className="container mx-auto px-6">
-          <p className="text-center text-xs text-[#374151] font-medium">
+          <p className="text-center text-xs text-foreground font-medium">
             🏛️ Pre-incubated at{" "}
             <span className="text-primary font-semibold">IIT Delhi</span> •
             Supported by{" "}
-            <span className="text-[#F59E0B] font-semibold">
+            <span className="text-accent font-semibold">
               Government Funded Programs
             </span>{" "}
             • Empowering 5000+ Students Across India
@@ -120,7 +120,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-9 h-9 rounded-xl bg-white border border-[#E5E7EB] flex items-center justify-center text-[#9CA3AF] hover:text-primary hover:border-primary/30 hover:shadow-[0_2px_8px_rgba(37,99,235,0.12)] transition-all duration-200"
+                  className="w-9 h-9 rounded-xl bg-white border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-subtle transition-all duration-200"
                 >
                   <Icon className="w-4 h-4" />
                 </a>
@@ -150,7 +150,7 @@ export function Footer() {
           ))}
         </div>
 
-        <Separator className="bg-[#E5E7EB]" />
+        <Separator className="bg-border" />
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6">

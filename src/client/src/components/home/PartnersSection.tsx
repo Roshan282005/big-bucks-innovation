@@ -84,7 +84,7 @@ export function PartnersSection() {
               {marqueeItems.map((college, i) => (
                 <div
                   key={`${college}-loop-${Math.floor(i / mouColleges.length)}`}
-                  className="shrink-0 bg-card border border-border rounded-xl px-5 py-3 flex items-center gap-3 hover:border-primary/35 transition-smooth surface-subtle"
+                  className="shrink-0 bg-white border border-border rounded-xl px-5 py-3 flex items-center gap-3 hover:border-primary/35 transition-smooth shadow-subtle hover:shadow-elevated"
                   data-ocid={
                     i < mouColleges.length
                       ? `partners.item.${i + 1}`

@@ -29,11 +29,11 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
     <div className="w-full max-w-md mx-auto relative overflow-hidden">
       {/* Subtle dot grid inside card */}
       <div
-        className="absolute inset-0 opacity-20 pointer-events-none"
+        className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(circle, oklch(0.45 0.16 264 / 0.15) 1px, transparent 1px)",
-          backgroundSize: "20px 20px",
+            "radial-gradient(circle, var(--primary) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
         }}
       />
 
@@ -42,7 +42,7 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, type: "spring" }}
-          className="w-16 h-16 bg-gradient-to-br from-primary to-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/20"
+          className="w-16 h-16 bg-gradient-to-br from-primary to-primary/60 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-elevated"
         >
           <ShieldCheck className="w-8 h-8 text-white" />
         </motion.div>
