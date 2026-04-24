@@ -45,7 +45,7 @@ export function Navbar() {
             data-ocid="nav.logo_link"
           >
             <img
-              src="public/assets/logo.jpg"
+              src="@/assets/logo.jpg"
               alt="Big Bucks Innovation"
               className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
             />
