@@ -75,3 +75,5 @@ env.json
 
 # Build output
 dist/
+
+.vercel
