@@ -4,49 +4,76 @@ import { motion } from "motion/react";
 
 const milestones = [
   {
-    year: "2020",
-    quarter: "Q1",
-    title: "Founded",
+    year: "2022",
+    quarter: "",
+    title: "Company Founded & MSME Registration",
     description:
-      "Big Bucks Innovation Pvt Ltd established with IIT Delhi pre-incubation backing. First team of 5 engineers assembled, initial R&D into enterprise IoT and technology solutions commenced.",
-    tags: ["Company Founded", "IIT Delhi", "Pre-Incubation"],
+      "Big Bucks Innovation established and registered as an MSME — the first step in our innovation journey.",
+    tags: ["Company Founded", "MSME", "Registration"],
     accent: false,
-  },
-  {
-    year: "2021",
-    quarter: "Q3",
-    title: "First MOU & Training Cohort",
-    description:
-      "Signed inaugural MOU with an academic institution. Launched first student training cohort — 500 students trained in the first year across IoT, digital marketing, and web technologies.",
-    tags: ["First MOU", "500 Students", "Training Launch"],
-    accent: true,
   },
   {
     year: "2022",
-    quarter: "Q2",
-    title: "IIT Delhi Strategic Partnership",
+    quarter: "",
+    title: "1st Government Funding",
     description:
-      "Formalized deep collaboration with IIT Delhi's innovation lab, gaining access to world-class research facilities, faculty expertise, and a pipeline of top engineering talent for R&D projects.",
-    tags: ["IIT Delhi Partnership", "Research Lab", "Talent Pipeline"],
-    accent: false,
+      "Received our first government grant to develop our flagship LED Street Light innovation.",
+    tags: ["Government Grant", "LED Innovation", "Funding"],
+    accent: true,
   },
   {
     year: "2023",
-    quarter: "Q4",
-    title: "Product & Service Expansion",
+    quarter: "",
+    title: "Team Expansion",
     description:
-      "Launched RENEWA LED Street Light, ANNAM food surplus SaaS, and SEYAL student-startup connector app. Expanded services to 10 verticals including 3D printing, PCB design, and patent services.",
-    tags: ["3 Products Launched", "10 Services", "SaaS Expansion"],
+      "Grew to a 10-member core team, expanding our capabilities across development, operations, and research.",
+    tags: ["Team Growth", "Expansion", "10 Members"],
+    accent: false,
+  },
+  {
+    year: "2024",
+    quarter: "",
+    title: "35+ Grant Fundings",
+    description:
+      "Secured over 35 grants and recognitions to accelerate our innovation pipeline and company growth.",
+    tags: ["35+ Grants", "Recognition", "Scaling"],
     accent: true,
   },
   {
     year: "2024",
-    quarter: "Today",
-    title: "35 Projects, 5000+ Students & 10+ MOUs",
+    quarter: "",
+    title: "Registered as Pvt Ltd",
     description:
-      "Reached major milestones: 35 completed projects, 5000+ students trained across India, 10+ MOUs signed, 15 active team members, 6 funding grants, and 2 branch offices operational nationally.",
-    tags: ["5000+ Students", "10+ MOUs", "35 Projects", "National Reach"],
+      "Formalized our corporate structure by incorporating as a Private Limited company.",
+    tags: ["Pvt Ltd", "Incorporation", "Corporate"],
     accent: false,
+  },
+  {
+    year: "2025",
+    quarter: "",
+    title: "Head Office + Mini R&D Lab",
+    description:
+      "Opened our Chennai HQ at Thoraipakkam, complete with an in-house Mini R&D Lab.",
+    tags: ["HQ Launched", "R&D Lab", "Thoraipakkam"],
+    accent: true,
+  },
+  {
+    year: "2025",
+    quarter: "",
+    title: "2nd Branch Office",
+    description:
+      "Launched our second office inside St. Josephs Institute of Technology, deepening our academic partnerships.",
+    tags: ["Branch Office", "Academic", "Expansion"],
+    accent: false,
+  },
+  {
+    year: "2026",
+    quarter: "",
+    title: "Pre-Incubated at IIT Delhi IHFC",
+    description:
+      "Achieved pre-incubation status at IIT Delhi's Hardware & Field Computing (IHFC) centre — a landmark milestone.",
+    tags: ["IIT Delhi", "IHFC", "Pre-Incubation"],
+    accent: true,
   },
 ];
 
@@ -71,12 +98,11 @@ export function Timeline() {
             Our Journey
           </Badge>
           <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground mb-4">
-            Four years of{" "}
-            <span className="text-gradient-accent">building and growing</span>
+            Our journey from{" "}
+            <span className="text-gradient-accent">startup to scale-up</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-base">
-            From a bold idea in IIT Delhi's innovation lab to a
-            government-backed enterprise technology company with national reach.
+            From MSME registration to pre-incubation at IIT Delhi — building India's next-gen enterprise technology company.
           </p>
         </motion.div>
 
@@ -128,7 +154,7 @@ export function Timeline() {
                             <span
                               className={`font-display font-bold text-sm ${m.accent ? "text-accent" : "text-primary"}`}
                             >
-                              {m.year} · {m.quarter}
+                              {m.year}{m.quarter && ` · ${m.quarter}`}
                             </span>
                           </div>
                           <h3 className="font-display font-bold text-foreground text-lg mb-2">

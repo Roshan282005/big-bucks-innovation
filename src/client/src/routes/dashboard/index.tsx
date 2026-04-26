@@ -5,6 +5,7 @@ import { StatsCards } from "@/components/dashboard/StatsCards";
 import { TasksPriorityChart } from "@/components/dashboard/TasksPriorityChart";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { useAuthStore } from "@/store/auth";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { motion } from "motion/react";
 
 export function DashboardPage() {
@@ -68,3 +69,13 @@ export function DashboardPage() {
     </DashboardLayout>
   );
 }
+
+export const Route = createFileRoute("/dashboard/")({
+  beforeLoad: () => {
+    const { isAuthenticated } = useAuthStore.getState();
+    if (!isAuthenticated) {
+      throw redirect({ to: "/login" });
+    }
+  },
+  component: DashboardPage,
+});

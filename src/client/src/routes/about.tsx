@@ -116,6 +116,17 @@ const fundingGrants = [
   { title: "NIDHI-EIR Fellowship", body: "DST, Govt. of India", year: "2024" },
 ];
 
+const grantLogos = [
+  "IIT Delhi IHFC",
+  "EDII TN — Govt. of Tamil Nadu",
+  "Maharashtra Pollution Control Board",
+  "Anna Incubator",
+  "NIT Srinagar",
+  "GITAM University Vizag",
+  "Veltech University",
+  "Chennai Institute of Technology",
+];
+
 // ─── MOU Signing Event Photos ────────────────────────────────────────────────
 // To replace placeholders with real photos:
 //   1. Copy your MOU photos to: src/frontend/public/assets/
@@ -934,7 +945,7 @@ export function AboutPage() {
               Government Funded
             </Badge>
             <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground mb-3">
-              6 Funding Grants &{" "}
+              53+ Funding Grants &{" "}
               <span className="text-gradient-primary">Recognition</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto text-sm">
@@ -942,6 +953,28 @@ export function AboutPage() {
               competitive grants and fellowships.
             </p>
           </motion.div>
+
+          {/* Marquee logos strip */}
+          <div className="overflow-hidden mb-8 relative">
+            {/* fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-muted/20 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-muted/20 to-transparent z-10 pointer-events-none" />
+
+            <div
+              className="flex gap-4 w-max"
+              style={{ animation: "marquee 22s linear infinite" }}
+            >
+              {[...grantLogos, ...grantLogos].map((name, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/25 bg-accent/5 text-accent text-xs font-semibold whitespace-nowrap"
+                >
+                  <Award className="w-3 h-3" />
+                  {name}
+                </span>
+              ))}
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {fundingGrants.map((grant, i) => (
@@ -1106,3 +1139,9 @@ export function AboutPage() {
     </PublicLayout>
   );
 }
+
+import { createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/about")({
+  component: AboutPage,
+});

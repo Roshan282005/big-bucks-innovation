@@ -43,7 +43,7 @@ const team = [
   {
     initials: "VE",
     name: "Ms. Vinitha E",
-    role: "Head – Internships Portfolio",
+    role: "Head –HR",
     bio: "Leads BBI's flagship internship programs, managing placements, curriculum, and industry collaborations that have empowered 5000+ students across India.",
     expertise: ["Internships", "Curriculum", "Student Success"],
     accentColor: "primary" as const,
@@ -66,6 +66,15 @@ const team = [
     expertise: ["Frontend", "UI/UX", "React"],
     accentColor: "primary" as const,
     image: "/assets/ad.jpg",
+  },
+  {
+    initials: "RS",
+    name: "Mr. ROSHAN S", 
+    role: "Full Stack Developer & Web Architect",
+    bio: "The sole architect behind BBI's digital presence. Designed and engineered the entire website from ground up — handling UI/UX, component systems, animations, and deployment single-handedly.",
+    expertise: ["Full Stack", "React", "Web Architecture"],
+    accentColor: "accent" as const,
+    image: "/assets/rozz.jpg", 
   },
 ];
 
@@ -128,7 +137,7 @@ export function TeamSection() {
             const a = accentMap[member.accentColor];
             return (
               <motion.div
-                key={member.role}
+                key={member.name}
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -157,14 +166,18 @@ export function TeamSection() {
                       alt={`${member.name}, ${member.role}`}
                       className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                        e.currentTarget.nextElementSibling?.classList.remove(
-                          "hidden",
-                        );
+                        const img = e.currentTarget;
+                        img.style.display = "none";
+                        const fallback = img.parentElement?.querySelector("[data-fallback]");
+                        if (fallback) (fallback as HTMLElement).style.display = "flex";
                       }}
                     />
                   ) : null}
-                  <div className="hidden absolute inset-0 flex items-center justify-center text-2xl font-display font-bold bg-primary text-primary-foreground">
+                  <div
+                    data-fallback
+                    style={{ display: "none" }}
+                    className="absolute inset-0 flex items-center justify-center text-2xl font-display font-bold bg-primary text-primary-foreground"
+                  >
                     {member.initials}
                   </div>
                   <div className="absolute bottom-2 right-2 w-6 h-6 rounded-lg bg-white shadow-sm border border-border/50 flex items-center justify-center z-10">
