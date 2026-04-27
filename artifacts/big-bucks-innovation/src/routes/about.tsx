@@ -188,7 +188,7 @@ const mouEvents = [
   {
     id: 2,
     // Replace with real photo: public/assets/mou-2.jpg
-    photo: "/assets/mou-2.jpg",
+    photo: "/assets/mou-6.jpg",
     institution: "AVIT",
     description:
       "Group MOU signing in conference hall with faculty and leadership",
@@ -247,7 +247,7 @@ const mouEvents = [
   {
     id: 6,
     // Replace with real photo: public/assets/mou-6.jpg
-    photo: "/assets/mou-6.jpg",
+    photo: "/assets/mou-2.jpg",
     institution: "Gojan School of Business & Technology",
     description:
       "Branded MOU signing ceremony with Big Bucks Innovation signage",
