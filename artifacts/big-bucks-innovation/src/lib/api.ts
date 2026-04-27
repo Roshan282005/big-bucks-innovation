@@ -13,7 +13,17 @@ async function request(method: string, path: string, body?: unknown) {
     const text = await res.text();
     throw new Error(text || `Request failed: ${res.status}`);
   }
-  return res.json();
+
+  if (res.status === 204 || res.headers.get("content-length") === "0") {
+    return null;
+  }
+
+  const contentType = res.headers.get("content-type") ?? "";
+  if (contentType.includes("application/json")) {
+    return res.json();
+  }
+
+  return null;
 }
 
 export const apiClient = {

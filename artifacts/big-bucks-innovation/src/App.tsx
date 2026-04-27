@@ -8,8 +8,6 @@ import {
   redirect,
 } from "@tanstack/react-router";
 import { Toaster } from "sonner";
-import { Navbar } from "./components/layout/Navbar";
-import { ThemeToggle } from "./components/ThemeToggle";
 import { AboutPage } from "@/routes/about";
 import { CareersPage } from "@/routes/careers";
 import { ContactPage } from "@/routes/contact";
@@ -26,12 +24,11 @@ import { OfficePage } from "@/routes/offices";
 import { ProductsPage } from "@/routes/products";
 import { RegisterPage } from "@/routes/register";
 
-// Root route
+// Root route — no global shell here; each page uses its own layout
+// (PublicLayout for public pages, DashboardLayout for dashboard pages)
 const rootRoute = createRootRoute({
   component: () => (
     <>
-      <Navbar />
-      <ThemeToggle />
       <Outlet />
       <Toaster position="top-right" richColors closeButton />
     </>
