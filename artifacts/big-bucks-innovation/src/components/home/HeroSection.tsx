@@ -8,15 +8,21 @@ export function HeroSection() {
   return (
     <section className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-background">
       {/* Full-viewport background image */}
-      <div 
-        className="home-bg"
+      <div
+        className="absolute inset-0 z-0"
         role="presentation"
         aria-hidden="true"
+        style={{
+          backgroundImage: "url('/assets/ihfc-iitdelhi.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+        }}
       />
-      
+
       {/* Subtle dot grid background */}
       <div
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 opacity-40 z-[1]"
         style={{
           backgroundImage:
             "radial-gradient(circle, oklch(0.45 0.16 264 / 0.12) 1px, transparent 1px)",
@@ -25,7 +31,7 @@ export function HeroSection() {
       />
       {/* Top blue gradient wash */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 z-[1]"
         style={{
           background:
             "radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.45 0.16 264 / 0.10), transparent 65%)",
@@ -33,7 +39,7 @@ export function HeroSection() {
       />
       {/* Gold accent orb bottom-right */}
       <div
-        className="absolute -bottom-40 right-0 w-[700px] h-[700px] rounded-full pointer-events-none"
+        className="absolute -bottom-40 right-0 w-[700px] h-[700px] rounded-full pointer-events-none z-[1]"
         style={{
           background:
             "radial-gradient(circle, oklch(0.62 0.19 60 / 0.06), transparent 65%)",
@@ -123,20 +129,6 @@ export function HeroSection() {
                 Our Products
               </Button>
             </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.42 }}
-            className="flex justify-center items-center mt-12 mb-4"
-          >
-            <img
-              src="/assets/ihfc-iitdelhi.jpg"
-              alt="IHFC IIT Delhi"
-              className="max-w-sm w-full h-auto rounded-2xl shadow-2xl object-contain mou-white"
-              style={{ maxHeight: "340px" }}
-            />
           </motion.div>
         </div>
       </div>
