@@ -1,4 +1,5 @@
 import { Router, type IRouter } from "express";
+import cookieParser from "cookie-parser";
 import healthRouter from "./health";
 import authRouter from "./auth";
 import crmRouter from "./crm";
@@ -8,6 +9,7 @@ import usersRouter from "./users";
 
 const router: IRouter = Router();
 
+router.use(cookieParser());
 router.use(healthRouter);
 router.use("/auth", authRouter);
 router.use(crmRouter);

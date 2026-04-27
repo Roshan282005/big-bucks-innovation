@@ -7,9 +7,9 @@ interface JobPosting {
   title: string;
   department: string;
   location: string;
-  type: "FullTime" | "PartTime" | "Contract";
+  job_type: "FullTime" | "PartTime" | "Contract";
   description: string;
-  requirements: string[];
+  requirements: string;
   isActive: boolean;
   createdAt: string;
 }
@@ -20,14 +20,10 @@ const jobs: JobPosting[] = [
     title: "Full Stack Developer",
     department: "Engineering",
     location: "IIT Delhi / Remote",
-    type: "FullTime",
+    job_type: "FullTime",
     description:
       "Build enterprise-grade web and mobile applications using React, Node.js, and cloud platforms.",
-    requirements: [
-      "3+ years of React or Node.js experience",
-      "Familiarity with REST APIs and cloud deployment",
-      "Strong communication skills",
-    ],
+    requirements: "3+ years React or Node.js, REST APIs, cloud deployment, strong communication",
     isActive: true,
     createdAt: "2025-01-01T00:00:00.000Z",
   },
@@ -36,14 +32,10 @@ const jobs: JobPosting[] = [
     title: "IoT Solutions Engineer",
     department: "Product",
     location: "New Delhi",
-    type: "FullTime",
+    job_type: "FullTime",
     description:
       "Design and ship IoT hardware-software integrations for smart energy and enterprise deployments.",
-    requirements: [
-      "Experience with embedded systems or IoT protocols (MQTT, Zigbee)",
-      "Python or C++ skills",
-      "Passion for sustainable technology",
-    ],
+    requirements: "Embedded systems or IoT protocols (MQTT/Zigbee), Python or C++, sustainable tech passion",
     isActive: true,
     createdAt: "2025-01-15T00:00:00.000Z",
   },

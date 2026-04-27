@@ -25,9 +25,8 @@ const STATUS_STYLES: Record<ClientStatus, string> = {
   prospect: "bg-amber-50 text-amber-600 border-amber-200",
 };
 
-function formatDate(ts: bigint): string {
-  const ms = Number(ts / BigInt(1_000_000));
-  return new Date(ms).toLocaleDateString("en-IN", {
+function formatDate(ts: string): string {
+  return new Date(ts).toLocaleDateString("en-IN", {
     day: "2-digit",
     month: "short",
     year: "numeric",

@@ -76,7 +76,7 @@ export function ClientsPage() {
       );
     } else {
       createMutation.mutate(
-        { ...form, created_at: BigInt(Date.now()) },
+        { ...form, created_at: new Date().toISOString() },
         { onSuccess: () => setModalOpen(false) },
       );
     }
