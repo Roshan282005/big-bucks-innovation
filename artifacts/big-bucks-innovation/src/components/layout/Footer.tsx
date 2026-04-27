@@ -157,14 +157,7 @@ export function Footer() {
           <p className="text-xs text-[#9CA3AF]">
             © {year} Big Bucks Innovation Pvt Ltd. All rights reserved.
           </p>
-          <a
-            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-[#9CA3AF] hover:text-primary transition-all duration-200"
-          >
-            Built with love using caffeine.ai
-          </a>
+          
         </div>
       </div>
     </footer>

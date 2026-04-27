@@ -12,14 +12,14 @@ import { AboutPage } from "@/routes/about";
 import { CareersPage } from "@/routes/careers";
 import { ContactPage } from "@/routes/contact";
 import { ClientsPage } from "@/routes/dashboard/clients";
-import { DashboardPage } from "@/routes/dashboard/index";
+
 import { LeadsPage } from "@/routes/dashboard/leads";
 import { ProjectsPage } from "@/routes/dashboard/projects";
 import { ReportsPage } from "@/routes/dashboard/reports";
 import { SettingsPage } from "@/routes/dashboard/settings";
 import { TasksPage } from "@/routes/dashboard/tasks";
 import { HomePage } from "@/routes/index";
-import { LoginPage } from "@/routes/login";
+
 import { OfficePage } from "@/routes/offices";
 import { ProductsPage } from "@/routes/products";
 import { RegisterPage } from "@/routes/register";
@@ -61,11 +61,7 @@ const contactRoute = createRoute({
   path: "/contact",
   component: ContactPage,
 });
-const loginRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/login",
-  component: LoginPage,
-});
+
 const registerRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/register",
@@ -85,13 +81,6 @@ const dashboardGuard = createRoute({
     const { isAuthenticated } = useAuthStore.getState();
     if (!isAuthenticated) throw redirect({ to: "/login" });
   },
-});
-
-// Dashboard routes
-const dashboardRoute = createRoute({
-  getParentRoute: () => dashboardGuard,
-  path: "/dashboard",
-  component: DashboardPage,
 });
 const leadsRoute = createRoute({
   getParentRoute: () => dashboardGuard,
@@ -130,11 +119,10 @@ const routeTree = rootRoute.addChildren([
   aboutRoute,
   careersRoute,
   contactRoute,
-  loginRoute,
+
   registerRoute,
   officesRoute,
   dashboardGuard.addChildren([
-    dashboardRoute,
     leadsRoute,
     clientsRoute,
     projectsRoute,

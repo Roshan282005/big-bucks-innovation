@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/auth";
 import { Link } from "@tanstack/react-router";
-import { LayoutDashboard, LogIn, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "../ThemeToggle";
