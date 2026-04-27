@@ -152,6 +152,7 @@ const mouEvents = [
     icon: Award,
     tall: true, // spans 2 rows in masonry layout
   },
+  
   {
     id: 2,
     // Replace with real photo: public/assets/mou-2.jpg
