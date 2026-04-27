@@ -107,7 +107,7 @@ export function Footer() {
             <div className="flex items-center gap-2.5">
               {[
                 {
-                  href: "https://linkedin.com",
+                  href: "linkedin.com/search/results/all/?keywords=Big+Bucks+Innovation+Private+Limited&origin=RICH_QUERY_TYPEAHEAD_HISTORY&heroEntityKey=urn%3Ali%3Aorganization%3A99154107&position=0&lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BEouN5lnzQ4KLFZOptNT0cw%3D%3D",
                   icon: Linkedin,
                   label: "LinkedIn",
                 },
