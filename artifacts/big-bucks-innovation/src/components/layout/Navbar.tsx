@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { useAuthStore } from "@/store/auth";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "../ThemeToggle";
 import { MegaMenu } from "./MegaMenu";
@@ -9,7 +9,6 @@ import { MegaMenu } from "./MegaMenu";
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { isAuthenticated } = useAuthStore();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 12);
@@ -32,38 +31,26 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "nav-glass shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
-          : "nav-glass"
+        scrolled ? "nav-glass shadow-[0_4px_24px_rgba(0,0,0,0.06)]" : "nav-glass"
       }`}
     >
       <nav className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link
-            to="/"
-            className="flex items-center gap-3 group"
-            data-ocid="nav.logo_link"
-          >
+          <Link to="/" className="flex items-center gap-3 group" data-ocid="nav.logo_link">
             <img
               src="/assets/logo.jpg"
               alt="Big Bucks Innovation"
               className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
             />
             <div>
-              <p className="font-display font-bold text-foreground text-sm leading-tight tracking-tight">
-                BIG BUCKS
-              </p>
-              <p className="font-display font-bold text-primary text-sm leading-tight tracking-tight">
-                INNOVATION
-              </p>
+              <p className="font-display font-bold text-foreground text-sm leading-tight tracking-tight">BIG BUCKS</p>
+              <p className="font-display font-bold text-primary text-sm leading-tight tracking-tight">INNOVATION</p>
             </div>
             <div className="hidden lg:flex items-center gap-1.5 ml-1">
               <span className="w-px h-5 bg-border" />
               <span className="text-[10px] text-muted-foreground leading-tight font-body">
-                Pre-incubated at
-                <br />
-                IIT Delhi
+                Pre-incubated at<br />IIT Delhi
               </span>
             </div>
           </Link>
@@ -75,41 +62,15 @@ export function Navbar() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2.5">
-            {isAuthenticated ? (
-              <Link to="/dashboard">
-                <Button
-                  data-ocid="nav.dashboard_button"
-                  size="sm"
-                  className="hidden sm:flex items-center gap-1.5 bg-primary text-white hover:bg-[#1D4ED8] hover:text-black shadow-[0_2px_8px_rgba(37,99,235,0.3)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.4)] transition-all duration-200 font-display font-semibold rounded-lg"
-                >
-                  <LayoutDashboard className="w-3.5 h-3.5" />
-                  Dashboard
-                </Button>
-              </Link>
-            ) : (
-              <>
-                <Link to="/login">
-                  <Button
-                    data-ocid="nav.login_button"
-                    size="sm"
-                    variant="outline"
-                    className="hidden sm:flex items-center gap-1.5 border-primary text-primary hover:bg-primary/8 transition-all duration-200 font-display font-semibold rounded-lg"
-                  >
-                    <LogIn className="w-3.5 h-3.5" />
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/dashboard">
-                  <Button
-                    data-ocid="nav.cta_button"
-                    size="sm"
-                    className="hidden sm:flex items-center gap-1.5 bg-primary text-primary-foreground hover:opacity-90 shadow-subtle transition-all duration-200 font-display font-semibold rounded-lg"
-                  >
-                    Dashboard
-                  </Button>
-                </Link>
-              </>
-            )}
+            <Link to="/register">
+              <Button
+                data-ocid="nav.cta_button"
+                size="sm"
+                className="hidden sm:flex items-center gap-1.5 bg-primary text-primary-foreground hover:opacity-90 shadow-subtle transition-all duration-200 font-display font-semibold rounded-lg"
+              >
+                Get Started
+              </Button>
+            </Link>
 
             <div className="flex items-center">
               <ThemeToggle />
@@ -123,11 +84,7 @@ export function Navbar() {
               className="md:hidden w-9 h-9 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-200"
               aria-label="Toggle menu"
             >
-              {mobileOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -155,40 +112,16 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-3 border-t border-border mt-3 flex flex-col gap-2">
-                {isAuthenticated ? (
-                  <Link to="/dashboard" onClick={closeMobile}>
-                    <Button
-                      data-ocid="nav.mobile_dashboard_button"
-                      className="w-full bg-primary text-white hover:bg-[#1D4ED8] font-display font-semibold"
-                      size="sm"
-                    >
-                      <LayoutDashboard className="w-4 h-4 mr-2" /> Dashboard
-                    </Button>
-                  </Link>
-                ) : (
-                  <>
-                    <Link to="/login" onClick={closeMobile}>
-                      <Button
-                        data-ocid="nav.mobile_login_button"
-                        variant="outline"
-                        className="w-full border-primary text-primary hover:bg-primary/8 font-display font-semibold"
-                        size="sm"
-                      >
-                        <LogIn className="w-4 h-4 mr-2" /> Login
-                      </Button>
-                    </Link>
-                    <Link to="/dashboard" onClick={closeMobile}>
-                      <Button
-                        data-ocid="nav.mobile_cta_button"
-                        className="w-full bg-primary text-white hover:bg-[#1D4ED8] font-display font-semibold"
-                        size="sm"
-                      >
-                        Dashboard
-                      </Button>
-                    </Link>
-                  </>
-                )}
+              <div className="pt-3 border-t border-border mt-3">
+                <Link to="/register" onClick={closeMobile}>
+                  <Button
+                    data-ocid="nav.mobile_cta_button"
+                    className="w-full bg-primary text-white hover:bg-[#1D4ED8] font-display font-semibold"
+                    size="sm"
+                  >
+                    Get Started
+                  </Button>
+                </Link>
               </div>
             </div>
           </motion.div>

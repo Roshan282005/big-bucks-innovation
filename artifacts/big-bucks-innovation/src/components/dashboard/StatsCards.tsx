@@ -18,7 +18,6 @@ interface StatCard {
   trend: "up" | "down" | "neutral";
   icon: React.ComponentType<{ className?: string }>;
   href:
-    | "/dashboard"
     | "/dashboard/leads"
     | "/dashboard/clients"
     | "/dashboard/projects"
@@ -69,10 +68,7 @@ const stats: StatCard[] = [
 
 export function StatsCards() {
   return (
-    <div
-      className="grid grid-cols-2 lg:grid-cols-4 gap-4"
-      data-ocid="dashboard.stats_section"
-    >
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4" data-ocid="dashboard.stats_section">
       {stats.map((stat, i) => (
         <motion.div
           key={stat.label}
@@ -85,11 +81,8 @@ export function StatsCards() {
           <Link to={stat.href}>
             <Card
               className="bg-card border-border transition-smooth cursor-pointer group overflow-hidden relative"
-              style={{
-                boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
-              }}
+              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
             >
-              {/* Blue left border accent */}
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl" />
               <CardContent className="p-4 sm:p-5 pl-5 sm:pl-6">
                 <div className="flex items-start justify-between mb-3">
@@ -105,31 +98,15 @@ export function StatsCards() {
                           : "bg-muted text-muted-foreground"
                     }`}
                   >
-                    {stat.trend === "up" ? (
-                      <TrendingUp className="w-3 h-3" />
-                    ) : stat.trend === "down" ? (
-                      <TrendingDown className="w-3 h-3" />
-                    ) : null}
+                    {stat.trend === "up" ? <TrendingUp className="w-3 h-3" /> : stat.trend === "down" ? <TrendingDown className="w-3 h-3" /> : null}
                     {stat.change}
                   </span>
                 </div>
-                <p className="font-display font-bold text-3xl text-primary leading-none">
-                  {stat.value}
-                </p>
-                <p className="text-muted-foreground text-xs font-medium mt-1.5">
-                  {stat.label}
-                </p>
+                <p className="font-display font-bold text-3xl text-primary leading-none">{stat.value}</p>
+                <p className="text-muted-foreground text-xs font-medium mt-1.5">{stat.label}</p>
                 {stat.sub && (
-                  <p
-                    className={`text-[10px] mt-1.5 flex items-center gap-1 ${
-                      stat.trend === "down"
-                        ? "text-red-400"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    {stat.subIcon && (
-                      <stat.subIcon className="w-[10px] h-[10px]" />
-                    )}
+                  <p className={`text-[10px] mt-1.5 flex items-center gap-1 ${stat.trend === "down" ? "text-red-400" : "text-muted-foreground"}`}>
+                    {stat.subIcon && <stat.subIcon className="w-[10px] h-[10px]" />}
                     {stat.sub}
                   </p>
                 )}

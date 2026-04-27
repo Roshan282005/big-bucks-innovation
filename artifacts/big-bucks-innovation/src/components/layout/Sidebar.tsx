@@ -1,6 +1,4 @@
-import { useGoogleSignOut } from "@/hooks/useGoogleAuth";
 import { cn } from "@/lib/utils";
-import { useAuthStore } from "@/store/auth";
 import { Link, useLocation } from "@tanstack/react-router";
 import {
   BarChart2,
@@ -8,7 +6,6 @@ import {
   CheckSquare,
   FolderKanban,
   LayoutDashboard,
-  LogOut,
   Settings,
   Users,
   X,
@@ -16,7 +13,6 @@ import {
 import { motion } from "motion/react";
 
 const navItems = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Leads", href: "/dashboard/leads", icon: Users },
   { label: "Clients", href: "/dashboard/clients", icon: Building2 },
   { label: "Projects", href: "/dashboard/projects", icon: FolderKanban },
@@ -31,39 +27,21 @@ interface SidebarProps {
 }
 
 export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
-  const { userEmail, userName } = useAuthStore();
-  const { mutate: signOut } = useGoogleSignOut();
   const location = useLocation();
-
-  const handleLogout = () => {
-    signOut();
-    onClose?.();
-  };
-
-  const displayName = userName || userEmail || "Anonymous";
-  const displaySub = userEmail || "Authenticated User";
 
   const SidebarContent = () => (
     <div className="flex flex-col h-full bg-card">
       {/* Logo */}
       <div className="flex items-center justify-between h-16 px-5 border-b border-border">
-        <Link
-          to="/dashboard"
-          className="flex items-center gap-2.5 group"
-          onClick={onClose}
-        >
+        <Link to="/" className="flex items-center gap-2.5 group" onClick={onClose}>
           <img
             src="/assets/logo.jpg"
             alt="Big Bucks Innovation"
             className="h-9 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
           />
           <div>
-            <p className="font-display font-bold text-foreground text-xs leading-tight">
-              BIG BUCKS
-            </p>
-            <p className="font-display font-semibold text-primary text-xs leading-tight">
-              CRM
-            </p>
+            <p className="font-display font-bold text-foreground text-xs leading-tight">BIG BUCKS</p>
+            <p className="font-display font-semibold text-primary text-xs leading-tight">CRM</p>
           </div>
         </Link>
         {onClose && (
@@ -85,12 +63,11 @@ export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
         {navItems.map((item) => {
           const active =
             location.pathname === item.href ||
-            (item.href !== "/dashboard" &&
-              location.pathname.startsWith(item.href));
+            location.pathname.startsWith(item.href);
           return (
             <Link
               key={item.href}
-              to={item.href as "/dashboard"}
+              to={item.href as "/dashboard/leads"}
               onClick={onClose}
               data-ocid={`sidebar.${item.label.toLowerCase()}_link`}
               className={cn(
@@ -100,52 +77,21 @@ export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
                   : "text-[#374151] hover:text-primary hover:bg-[#F5F9FF] border-l-[3px] border-transparent pl-[9px]",
               )}
             >
-              <item.icon
-                className={cn(
-                  "w-4 h-4 flex-shrink-0",
-                  active ? "text-primary" : "text-[#9CA3AF]",
-                )}
-              />
+              <item.icon className={cn("w-4 h-4 flex-shrink-0", active ? "text-primary" : "text-[#9CA3AF]")} />
               {item.label}
             </Link>
           );
         })}
       </nav>
-
-      {/* User section */}
-      <div className="p-3 border-t border-border">
-        <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-muted/50 mb-1">
-          <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-white font-display font-bold text-xs flex-shrink-0">
-            A
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs font-semibold text-[#374151] truncate">
-              {displayName}
-            </p>
-            <p className="text-[10px] text-[#9CA3AF] truncate">{displaySub}</p>
-          </div>
-        </div>
-        <button
-          type="button"
-          data-ocid="sidebar.logout_button"
-          onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-[#6B7280] hover:text-red-600 hover:bg-red-50 transition-all duration-200"
-        >
-          <LogOut className="w-4 h-4 flex-shrink-0" />
-          Sign Out
-        </button>
-      </div>
     </div>
   );
 
   return (
     <>
-      {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-60 bg-card border-r border-border fixed inset-y-0 left-0 z-30 shadow-subtle">
         <SidebarContent />
       </aside>
 
-      {/* Mobile overlay */}
       {mobileOpen && (
         <>
           <div
