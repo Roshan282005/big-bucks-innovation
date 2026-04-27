@@ -99,7 +99,7 @@ export function Footer() {
               </a>
               <div className="flex items-start gap-2.5 text-sm text-[#6B7280]">
                 <MapPin className="w-4 h-4 text-primary/60 flex-shrink-0 mt-0.5" />
-                <span>IIT Delhi Campus, Hauz Khas, New Delhi – 110016</span>
+                <span>No.14, Prabhu Nagar,  Neelankarai Link Road,  Thoraipakkam,  Chennai-600097</span>
               </div>
             </div>
 

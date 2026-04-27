@@ -47958,7 +47958,7 @@ function AboutPage() {
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "font-display font-bold text-2xl md:text-3xl text-foreground mb-3", children: [
-                  "6 Funding Grants &",
+                  " Funding Grants &",
                   " ",
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gradient-primary", children: "Recognition" })
                 ] }),

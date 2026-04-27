@@ -7,43 +7,13 @@ import { JobCard, type JobCardData, type JobTypeKey } from "./JobCard";
 const FALLBACK_JOBS: JobCardData[] = [
   {
     id: "1",
-    title: "IOT home automation services",
-    department: "Engineering",
-    location: "Chennai / New Delhi / Remote",
+    title: "Co Founder ( Women )",
+    department: "Leadership",
+    location: "Chennai / Remote",
     job_type: "FullTime" as JobTypeKey,
     description:
-      "Build and deploy machine learning pipelines for enterprise clients. Lead research initiatives and collaborate with cross-functional teams to integrate AI into products.",
-    requirements: "5+ years ML, Python, TensorFlow/PyTorch, MLOps",
-  },
-  {
-    id: "2",
-    title: "Network Infrastructure Specialist",
-    department: "Infrastructure",
-    location: "New Delhi",
-    job_type: "FullTime" as JobTypeKey,
-    description:
-      "Design and maintain enterprise network architectures for government and corporate clients, ensuring high availability and security compliance.",
-    requirements: "CCNA/CCNP, SD-WAN, 4+ years networking",
-  },
-  {
-    id: "3",
-    title: "Business Development Manager",
-    department: "Sales",
-    location: "Bangalore / Remote",
-    job_type: "FullTime" as JobTypeKey,
-    description:
-      "Drive enterprise sales and build strategic partnerships across verticals. Own the full sales cycle from prospecting to close in government and Fortune-500 accounts.",
-    requirements: "B2B enterprise sales, 3+ years BD, Government sector",
-  },
-  {
-    id: "4",
-    title: "Cloud Solutions Architect",
-    department: "Engineering",
-    location: "Remote",
-    job_type: "Contract" as JobTypeKey,
-    description:
-      "Design multi-cloud architectures for enterprise migration projects. Define reference architectures and work closely with clients on digital transformation roadmaps.",
-    requirements: "AWS/Azure/GCP certified, 6+ years cloud, Enterprise",
+      "We are looking for a passionate and driven woman co-founder to join our founding team. You will play a key role in shaping the company's vision, strategy, and growth across business, operations, or technology.",
+    requirements: "Entrepreneurial mindset, leadership experience, strong communication skills",
   },
 ];
 
@@ -103,7 +73,7 @@ export function JobListings() {
         <p className="text-muted-foreground text-sm max-w-sm">
           We don't have active openings at the moment, but we're always looking
           for exceptional talent. Send your resume to{" "}
-          <a
+          
             href="mailto:bigbucksinnovation@gmail.com"
             className="text-primary hover:underline"
           >

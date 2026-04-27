@@ -185,11 +185,12 @@ const mouEvents = [
     icon: Award,
     tall: true, // spans 2 rows in masonry layout
   },
+  
   {
     id: 2,
     // Replace with real photo: public/assets/mou-2.jpg
-    photo: "/assets/mou-6.jpg",
-    institution: "AVIT",
+    photo: "/assets/mou-2.jpg",
+    institution: "Gojan School of Business & Technology",
     description:
       "Group MOU signing in conference hall with faculty and leadership",
     location: "Chennai, Tamil Nadu",
@@ -204,7 +205,7 @@ const mouEvents = [
     id: 3,
     // Replace with real photo: public/assets/mou-3.jpg
     photo: "/assets/mou-3.jpg",
-    institution: "College Auditorium",
+    institution: "Aarupadaiveedu Institute of Technology",
     description:
       "Formal MOU exchange on the main auditorium stage with dignitaries",
     location: "Tamil Nadu",
@@ -219,7 +220,7 @@ const mouEvents = [
     id: 4,
     // Replace with real photo: public/assets/mou-4.jpg
     photo: "/assets/mou-4.jpg",
-    institution: "Office MOU Signing",
+    institution: "Sri Sairam Engineering College",
     description:
       "Official document signing with stamped MOU, executive team present",
     location: "Chennai, Tamil Nadu",
@@ -247,8 +248,8 @@ const mouEvents = [
   {
     id: 6,
     // Replace with real photo: public/assets/mou-6.jpg
-    photo: "/assets/mou-2.jpg",
-    institution: "Gojan School of Business & Technology",
+    photo: "/assets/mou-6.jpg",
+    institution: "Thangavelu Engineering College",
     description:
       "Branded MOU signing ceremony with Big Bucks Innovation signage",
     location: "Chennai, Tamil Nadu",
@@ -274,7 +275,6 @@ const mouEvents = [
     tall: false,
   },
 ];
-
 // ─── Photo Card Component ────────────────────────────────────────────────────
 function MouPhotoCard({
   event,
@@ -635,7 +635,7 @@ export function AboutPage() {
                 },
                 {
                   icon: Award,
-                  title: "6 Funding Grants",
+                  title: "53 Funding Grants",
                   desc: "Government-backed national tech initiatives",
                   isAccent: true,
                 },
