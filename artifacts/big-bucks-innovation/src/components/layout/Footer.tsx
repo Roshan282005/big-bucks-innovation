@@ -107,12 +107,12 @@ export function Footer() {
             <div className="flex items-center gap-2.5">
               {[
                 {
-                  href: "linkedin.com/search/results/all/?keywords=Big+Bucks+Innovation+Private+Limited&origin=RICH_QUERY_TYPEAHEAD_HISTORY&heroEntityKey=urn%3Ali%3Aorganization%3A99154107&position=0&lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BEouN5lnzQ4KLFZOptNT0cw%3D%3D",
+                  href: "https://linkedin.com/company/big-bucks-innovation",
                   icon: Linkedin,
                   label: "LinkedIn",
                 },
-                { href: "https://twitter.com", icon: Twitter, label: "X" },
-                { href: "https://github.com", icon: Github, label: "GitHub" },
+                { href: "https://twitter.com/bigbucksinnov", icon: Twitter, label: "X" },
+                { href: "https://github.com/big-bucks-innovation", icon: Github, label: "GitHub" },
               ].map(({ href, icon: Icon, label }) => (
                 <a
                   key={label}

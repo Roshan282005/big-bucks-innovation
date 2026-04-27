@@ -161,7 +161,7 @@ export function OfficePage() {
               >
                 <iframe
                   title="BBI Head Office Map"
-                  src="https://www.google.com/maps/place/Big+Bucks+Innovation/@12.9508994,80.2408363,15.16z/data=!4m6!3m5!1s0x3a525c31ed24b35d:0xa275424536ffc4cb!8m2!3d12.9495343!4d80.2462848!16s%2Fg%2F11w9hlk_83?hl=en-IN&entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d80.2350!3d12.9300!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU1JzQ4LjAiTiA4MMKwMTQnMDYuMCJF!5e0!3m2!1sen!2sin!4v1"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
