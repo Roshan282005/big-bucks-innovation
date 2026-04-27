@@ -159,7 +159,7 @@ export function TeamSection() {
                   className={`absolute -top-10 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full blur-3xl opacity-8 group-hover:opacity-15 transition-smooth ${a.glow}`}
                 />
 
-                <div className="relative mx-auto w-full aspect-[820/1456] max-w-[200px] mb-6 rounded-xl border border-border/50 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300 bg-muted">
+                <div className="relative mx-auto w-full aspect-[820/1456] max-w-[176px] mb-6 rounded-xl border border-border/50 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300 bg-muted">
                   {member.image ? (
                     <img
                       src={member.image}

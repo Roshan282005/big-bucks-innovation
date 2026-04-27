@@ -7,6 +7,13 @@ import { motion } from "motion/react";
 export function HeroSection() {
   return (
     <section className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-background">
+      {/* Full-viewport background image */}
+      <div 
+        className="home-bg"
+        role="presentation"
+        aria-hidden="true"
+      />
+      
       {/* Subtle dot grid background */}
       <div
         className="absolute inset-0 opacity-40"

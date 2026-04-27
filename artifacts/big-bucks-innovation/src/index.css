@@ -216,4 +216,72 @@
     border: 1px solid oklch(var(--border));
     border-radius: calc(var(--radius) * 1.5);
   }
+  
+  /* ─── Full-page background ─── */
+  .home-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url('/assets/ihfc-iitdelhi.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    box-shadow: none;
+    border: none;
+    outline: none;
+  }
+  
+  /* Accessibility: respect user's motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .home-bg {
+      background-attachment: scroll;
+    }
+  }
+  
+  /* ─── Team avatar — base ─── */
+  .team-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    display: block;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  /* Hover: subtle lift */
+  .team-avatar:hover {
+    transform: scale(1.04);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Focus-visible: keyboard navigation ring */
+  .team-avatar:focus-visible {
+    outline: 3px solid var(--color-border-focus, #2563EB);
+    outline-offset: 3px;
+  }
+
+  /* Tablet: 80px */
+  @media (max-width: 1024px) {
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  /* Mobile: 68px */
+  @media (max-width: 640px) {
+    .team-avatar {
+      width: 68px;
+      height: 68px;
+    }
+  }
+
+  /* Respect reduce-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .team-avatar:hover {
+      transform: none;
+    }
+  }
 }

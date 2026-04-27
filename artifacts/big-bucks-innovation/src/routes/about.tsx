@@ -19,6 +19,7 @@ import {
   Handshake,
   Landmark,
   MapPin,
+  Shield,
   Users,
 } from "lucide-react";
 import { motion } from "motion/react";
@@ -26,54 +27,54 @@ import { useState } from "react";
 
 const mouColleges = [
   {
-    name: "St. Josephs Institute of Technology",
+    name: "ST JOSEPHS INSTITUTE OF TECHNOLOGY, CHENNAI",
     location: "Chennai, Tamil Nadu",
-    type: "Engineering",
+    type: "Institution",
   },
   {
-    name: "Easwari Engineering College",
+    name: "ST JOSEPHS COLLEGE OF ENGINEERING, CHENNAI",
     location: "Chennai, Tamil Nadu",
-    type: "Engineering",
+    type: "Institution",
   },
   {
-    name: "Saveetha Engineering College",
+    name: "CHENNAI INSTITUTE OF TECHNOLOGY, CHENNAI",
     location: "Chennai, Tamil Nadu",
-    type: "Engineering",
+    type: "Institution",
   },
   {
-    name: "Jeppiaar Engineering College",
+    name: "SRI SAIRAM ENGINEERING COLLEGE, CHENNAI",
     location: "Chennai, Tamil Nadu",
-    type: "Engineering",
+    type: "Institution",
   },
   {
-    name: "Panimalar Engineering College",
+    name: "SRI SAIRAM INSTITUTE OF TECHNOLOGY, CHENNAI",
     location: "Chennai, Tamil Nadu",
-    type: "Engineering",
+    type: "Institution",
   },
   {
-    name: "Misrimal Navajee Munoth Jain Engineering College",
+    name: "AARUPADAI VEEDU INSTITUTE OF TECHNOLOGY, CHENNAI",
     location: "Chennai, Tamil Nadu",
-    type: "Engineering",
+    type: "Institution",
   },
   {
-    name: "Meenakshi College of Engineering",
-    location: "Chennai, Tamil Nadu",
-    type: "Engineering",
+    name: "GLOBAL INSTITUTE OF ENGINEERING & TECHNOLOGY, RANIPET",
+    location: "Ranipet, Tamil Nadu",
+    type: "Institution",
   },
   {
-    name: "Dr. Ambedkar Institute of Technology",
-    location: "Bengaluru, Karnataka",
-    type: "Engineering",
+    name: "ADHIPARASKATHI COLLEGE OF ENGINEERING & TECHNOLOGY, RANIPET",
+    location: "Ranipet, Tamil Nadu",
+    type: "Institution",
   },
   {
-    name: "Vel Tech Rangarajan Dr. Sagunthala R&D Institute",
-    location: "Chennai, Tamil Nadu",
-    type: "Engineering & Research",
+    name: "ARM COLLEGE OF ENGINEERING & TECHNOLOGY",
+    location: "Tamil Nadu",
+    type: "Institution",
   },
   {
-    name: "RMK Engineering College",
-    location: "Chennai, Tamil Nadu",
-    type: "Engineering",
+    name: "THANGAVELU ENGINEERING COLLEGE",
+    location: "Tamil Nadu",
+    type: "Institution",
   },
 ];
 
@@ -84,19 +85,51 @@ const partners = [
     icon: BookOpen,
     highlight: true,
   },
-  { name: "Ministry of Education", type: "Government", icon: Landmark },
-  { name: "NASSCOM", type: "Industry", icon: Building2 },
   {
-    name: "National Skill Development Corporation",
+    name: "Ministry of Corporate Affairs",
     type: "Government",
-    icon: Award,
+    icon: Landmark,
+    highlight: false,
   },
-  { name: "Startup India", type: "Government", icon: FlaskConical },
+  { name: "DPIIT", type: "Government", icon: Shield, highlight: false },
+  { name: "AICTE", type: "Government", icon: Award, highlight: false },
   {
-    name: "CII — Confederation of Indian Industry",
-    type: "Industry",
-    icon: Handshake,
+    name: "Ministry of MSME",
+    type: "Government",
+    icon: Building2,
+    highlight: false,
   },
+  {
+    name: "Ministry of Commerce Affairs",
+    type: "Government",
+    icon: Landmark,
+    highlight: false,
+  },
+  { name: "StartupTN", type: "Government", icon: FlaskConical, highlight: false },
+  {
+    name: "Startup India",
+    type: "Government",
+    icon: FlaskConical,
+    highlight: false,
+  },
+  {
+    name: "EDII TN",
+    type: "Government",
+    icon: Handshake,
+    highlight: false,
+  },
+];
+
+const partnerLogos = [
+  "IIT Delhi",
+  "Ministry of Corporate Affairs",
+  "DPIIT",
+  "AICTE",
+  "Ministry of MSME",
+  "Ministry of Commerce Affairs",
+  "StartupTN",
+  "Startup India",
+  "EDII TN",
 ];
 
 const fundingGrants = [
@@ -118,7 +151,7 @@ const fundingGrants = [
 
 const grantLogos = [
   "IIT Delhi IHFC",
-  "EDII TN — Govt. of Tamil Nadu",
+  "EDII TN, Government of Tamil Nadu",
   "Maharashtra Pollution Control Board",
   "Anna Incubator",
   "NIT Srinagar",
