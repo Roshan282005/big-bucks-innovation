@@ -10,31 +10,33 @@ export function useGoogleSignIn() {
 
   return useMutation({
     mutationFn: async () => {
+      if (!auth || !googleProvider) {
+        throw new Error(
+          "Firebase is not configured. Please set VITE_FIREBASE_* environment variables.",
+        );
+      }
       const result = await signInWithPopup(auth, googleProvider);
       const idToken = await result.user.getIdToken();
 
-      // Exchange Firebase token for HttpOnly session cookie
       await apiClient.post("/api/auth/session", { idToken });
 
       setUid(result.user.uid);
-      setUserData(result.user.email || "", result.user.displayName || "");
+      setUserData(result.user.email ?? "", result.user.displayName ?? "");
       setAuthenticated(true);
       toast.success(`Welcome ${result.user.displayName}!`);
     },
-    onError: (err) => toast.error(`Auth failed: ${err.message}`),
+    onError: (err: Error) => toast.error(`Auth failed: ${err.message}`),
   });
 }
 
 export function useGoogleSignOut() {
   const { logout } = useAuthStore();
-  const signOutMutation = useMutation({
+  return useMutation({
     mutationFn: async () => {
       await apiClient.post("/api/auth/logout");
-      await signOut(auth);
+      if (auth) await signOut(auth);
       logout();
     },
     onSuccess: () => toast.success("Signed out successfully"),
   });
-  return signOutMutation;
 }
-

@@ -29,7 +29,7 @@ import {
   useDeleteClient,
   useUpdateClient,
 } from "@/hooks/useClients";
-import type { ClientStatus } from "@/types";
+import type { Client, ClientStatus } from "@/types";
 import { Building2, Plus, Search, Users } from "lucide-react";
 import { useMemo, useState } from "react";
 
@@ -39,8 +39,8 @@ export function ClientsPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
   const [modalOpen, setModalOpen] = useState(false);
-  const [editingClient, setEditingClient] = useState<any>(null);
-  const [deleteTarget, setDeleteTarget] = useState<any>(null);
+  const [editingClient, setEditingClient] = useState<Client | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<Client | null>(null);
 
   const backendStatus = statusFilter === "all" ? null : statusFilter;
   const { data: clients = [], isLoading } = useClients(backendStatus);
@@ -63,7 +63,7 @@ export function ClientsPage() {
     setModalOpen(true);
   }
 
-  function openEdit(client: any) {
+  function openEdit(client: Client) {
     setEditingClient(client);
     setModalOpen(true);
   }
@@ -216,7 +216,7 @@ export function ClientsPage() {
           clients={filtered}
           isLoading={isLoading}
           onEdit={openEdit}
-          onDelete={(c: any) => setDeleteTarget(c)}
+          onDelete={(c: Client) => setDeleteTarget(c)}
         />
       </div>
 

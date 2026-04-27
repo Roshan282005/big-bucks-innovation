@@ -81,7 +81,7 @@ export function AuthForm({ defaultTab = "login" }: AuthFormProps) {
 
       <Tabs
         defaultValue={defaultTab}
-        onValueChange={(v) => setActiveTab(v as any)}
+        onValueChange={(v) => setActiveTab(v as "login" | "signup")}
         className="w-full"
       >
         <TabsList className="grid w-full grid-cols-2 mb-8 bg-muted/50 p-1 h-11">

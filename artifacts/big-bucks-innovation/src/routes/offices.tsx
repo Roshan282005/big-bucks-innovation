@@ -1,3 +1,4 @@
+import React from "react";
 import { PublicLayout } from "@/components/layout/PublicLayout";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -59,7 +60,7 @@ function InfoRow({
   icon: Icon,
   label,
   value,
-}: { icon: any; label: string; value: string }) {
+}: { icon: React.ElementType; label: string; value: string }) {
   return (
     <div className="flex items-start gap-3">
       <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">

@@ -9,23 +9,38 @@ import {
 } from "firebase/auth";
 import { toast } from "sonner";
 
+interface SignInCredentials {
+  email: string;
+  password: string;
+}
+
+interface SignUpCredentials {
+  email: string;
+  password: string;
+  name: string;
+}
+
 export function useEmailSignIn() {
   const { setAuthenticated, setUid, setUserData } = useAuthStore();
 
   return useMutation({
-    mutationFn: async ({ email, password }: any) => {
+    mutationFn: async ({ email, password }: SignInCredentials) => {
+      if (!auth) {
+        throw new Error(
+          "Firebase is not configured. Please set VITE_FIREBASE_* environment variables.",
+        );
+      }
       const result = await signInWithEmailAndPassword(auth, email, password);
       const user = result.user;
-      if (!user) throw new Error("Login failed");
 
       const idToken = await user.getIdToken();
       await apiClient.post("/api/auth/session", { idToken });
 
       setUid(user.uid);
-      setUserData(user.email || "", user.displayName || "");
+      setUserData(user.email ?? "", user.displayName ?? "");
       setAuthenticated(true);
 
-      toast.success(`Welcome back ${user.displayName || user.email}!`);
+      toast.success(`Welcome back ${user.displayName ?? user.email}!`);
     },
     onError: (err: Error) => toast.error(`Login failed: ${err.message}`),
   });
@@ -35,14 +50,18 @@ export function useEmailSignUp() {
   const { setAuthenticated, setUid, setUserData } = useAuthStore();
 
   return useMutation({
-    mutationFn: async ({ email, password, name }: any) => {
+    mutationFn: async ({ email, password, name }: SignUpCredentials) => {
+      if (!auth) {
+        throw new Error(
+          "Firebase is not configured. Please set VITE_FIREBASE_* environment variables.",
+        );
+      }
       const result = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
       );
       const user = result.user;
-      if (!user) throw new Error("Registration failed");
 
       await updateProfile(user, { displayName: name });
 
@@ -50,7 +69,7 @@ export function useEmailSignUp() {
       await apiClient.post("/api/auth/session", { idToken });
 
       setUid(user.uid);
-      setUserData(user.email || "", name);
+      setUserData(user.email ?? "", name);
       setAuthenticated(true);
 
       toast.success("Account created successfully!");

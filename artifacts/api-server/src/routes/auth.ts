@@ -6,11 +6,30 @@ const router: Router = Router();
 
 router.use(cookieParser());
 
-const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-in-production";
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  console.warn(
+    "[auth] WARNING: JWT_SECRET is not set. Auth endpoints are disabled until the secret is configured.",
+  );
+}
+
 const COOKIE_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 days
+
+function requireSecret(res: Response): boolean {
+  if (!JWT_SECRET) {
+    res
+      .status(503)
+      .json({ error: "Authentication is not configured. JWT_SECRET is missing." });
+    return false;
+  }
+  return true;
+}
 
 /** POST /api/auth/session — Exchange Firebase ID token for HttpOnly session cookie */
 router.post("/session", async (req: Request, res: Response) => {
+  if (!requireSecret(res)) return;
+
   try {
     const { idToken } = req.body;
     if (!idToken) {
@@ -30,7 +49,7 @@ router.post("/session", async (req: Request, res: Response) => {
 
     const sessionToken = jwt.sign(
       { uid: decoded.uid, email: decoded.email, role: "user" },
-      JWT_SECRET,
+      JWT_SECRET!,
       { expiresIn: "7d" },
     );
 
@@ -42,7 +61,7 @@ router.post("/session", async (req: Request, res: Response) => {
     });
 
     res.json({ uid: decoded.uid, email: decoded.email });
-  } catch (err) {
+  } catch {
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -59,6 +78,8 @@ router.post("/logout", (_req: Request, res: Response) => {
 
 /** GET /api/auth/me — Get current session user */
 router.get("/me", (req: Request, res: Response) => {
+  if (!requireSecret(res)) return;
+
   const token = req.cookies?.session;
   if (!token) {
     res.status(401).json({ error: "Not authenticated" });
@@ -66,7 +87,7 @@ router.get("/me", (req: Request, res: Response) => {
   }
 
   try {
-    const user = jwt.verify(token, JWT_SECRET);
+    const user = jwt.verify(token, JWT_SECRET!);
     res.json(user);
   } catch {
     res.status(401).json({ error: "Invalid or expired session" });
