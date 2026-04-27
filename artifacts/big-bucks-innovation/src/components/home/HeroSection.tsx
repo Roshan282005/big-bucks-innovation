@@ -21,6 +21,7 @@ export function HeroSection() {
           pointerEvents: "none",
           backgroundAttachment: "fixed",
           backgroundBlendMode: "multiply",
+          opacity: 0.8,
         }}
       />
 
