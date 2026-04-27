@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": "artifacts/big-bucks-innovation/dist",
+  "installCommand": "pnpm install"
+}
