@@ -73,7 +73,7 @@ export function JobListings() {
         <p className="text-muted-foreground text-sm max-w-sm">
           We don't have active openings at the moment, but we're always looking
           for exceptional talent. Send your resume to{" "}
-          
+          <a
             href="mailto:bigbucksinnovation@gmail.com"
             className="text-primary hover:underline"
           >
