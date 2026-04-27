@@ -4,6 +4,8 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+**App**: Big Bucks Innovation Pvt Ltd — enterprise-grade AI, networking, and business solutions, pre-incubated at IIT Delhi.
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces
@@ -15,6 +17,28 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **Validation**: Zod (`zod/v4`), `drizzle-zod`
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
+
+## Artifacts
+
+- `artifacts/big-bucks-innovation` — React + Vite frontend. Public site (home, about, products, careers, contact, offices) + authenticated dashboard (leads, clients, projects, tasks, reports, settings). Uses TanStack Router.
+- `artifacts/api-server` — Express backend. Auth routes at `/api/auth/` (session, logout, me). Firebase Admin SDK for token verification.
+
+## Authentication
+
+Firebase Auth (Google + Email/Password). Frontend uses `src/lib/firebase.ts` (client SDK). Backend uses Firebase Admin SDK in `artifacts/api-server/src/lib/firebase-admin.ts`.
+
+Required secrets:
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_STORAGE_BUCKET`
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`
+- `VITE_FIREBASE_APP_ID`
+- `VITE_FIREBASE_MEASUREMENT_ID` (optional)
+- `FIREBASE_PROJECT_ID` (backend)
+- `FIREBASE_CLIENT_EMAIL` (backend)
+- `FIREBASE_PRIVATE_KEY` (backend)
+- `JWT_SECRET` (backend session signing)
 
 ## Key Commands
 
