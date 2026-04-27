@@ -17,6 +17,10 @@ export function HeroSection() {
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
+          filter: "brightness(0.6) saturate(1.2)",
+          pointerEvents: "none",
+          backgroundAttachment: "fixed",
+          backgroundBlendMode: "multiply",
         }}
       />
 
