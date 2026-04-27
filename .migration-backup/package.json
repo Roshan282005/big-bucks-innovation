@@ -1,0 +1,23 @@
+{
+    "name": "big-bucks-innovation",
+    "private": true,
+    "type": "module",
+    "engines": {
+        "node": "20.x"
+    },
+    "scripts": {
+        "build": "pnpm -r build",
+        "dev:client": "cd src/client && pnpm dev",
+        "dev:server": "cd server && pnpm dev",
+        "build:client": "cd src/client && pnpm build",
+        "build:server": "cd server && pnpm build"
+    },
+    "devDependencies": {
+        "sharp": "^0.34.4",
+        "webpack": "^5.106.2",
+        "webpack-cli": "^7.0.2"
+    },
+    "dependencies": {
+        "@vercel/speed-insights": "^2.0.0"
+    }
+}

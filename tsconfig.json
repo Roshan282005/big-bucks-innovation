@@ -1,11 +1,16 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "target": "ES2020",
-    "experimentalDecorators": true,
-    "strictPropertyInitialization": false,
-    "moduleResolution": "bundler",
-    "allowJs": true,
-    "outDir": "HACK_BECAUSE_OF_ALLOW_JS"
-  }
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./lib/db"
+    },
+    {
+      "path": "./lib/api-client-react"
+    },
+    {
+      "path": "./lib/api-zod"
+    }
+  ]
 }

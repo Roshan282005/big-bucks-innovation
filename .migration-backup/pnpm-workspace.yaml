@@ -1,0 +1,10 @@
+packages:
+  - src/client
+
+  - server
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - '@firebase/util'
+  - esbuild
+  - protobufjs
+  - sharp
