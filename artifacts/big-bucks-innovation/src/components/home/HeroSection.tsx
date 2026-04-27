@@ -132,7 +132,7 @@ export function HeroSection() {
             className="flex justify-center items-center mt-12 mb-4"
           >
             <img
-              src="/assets/ihfc-iitdelhi.jpeg"
+              src="/assets/ihfc-iitdelhi.jpg"
               alt="IHFC IIT Delhi"
               className="max-w-sm w-full h-auto rounded-2xl shadow-2xl object-contain mou-white"
               style={{ maxHeight: "340px" }}
