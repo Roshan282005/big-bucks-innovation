@@ -1,14 +1,13 @@
-import { useCurrentUser } from "@/hooks/useGoogleAuth";
 import { apiClient } from "@/lib/api";
 import { useAuthStore } from "@/store/auth";
+import { auth } from "@/lib/firebase";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export interface UserProfile {
-  uid: string;
-  name: string;
+  id: string;
   email: string;
-  role: "admin" | "user";
+  role: "admin" | "member";
 }
 
 export function useMe() {
@@ -16,19 +15,18 @@ export function useMe() {
     queryKey: ["me"],
     queryFn: async () => {
       try {
-        return await apiClient.get("/api/auth/me");
+        return await apiClient.get("/api/users/me");
       } catch {
         return null;
       }
     },
-    staleTime: 5 * 60 * 1000, // 5min
+    staleTime: 5 * 60 * 1000,
   });
 }
 
 export function useFirebaseUser() {
-  const user = useCurrentUser();
-  const { isAuthenticated } = useAuthStore();
-  return { user, isAuthenticated };
+  const { isAuthenticated, uid, userEmail } = useAuthStore();
+  return { user: auth?.currentUser ?? null, isAuthenticated, uid, email: userEmail };
 }
 
 export function useUpdateProfile() {

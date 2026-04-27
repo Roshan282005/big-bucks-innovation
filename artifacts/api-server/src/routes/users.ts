@@ -14,4 +14,14 @@ router.get("/users/me", requireAuth, (req: Request, res: Response) => {
   res.json({ id: user.uid, email: user.email, role: user.role ?? "member" });
 });
 
+router.put("/users/me", requireAuth, (req: Request, res: Response) => {
+  const user = req.user;
+  if (!user) {
+    res.status(401).json({ error: "Not authenticated" });
+    return;
+  }
+  const { name, email } = req.body as { name?: string; email?: string };
+  res.json({ id: user.uid, email: email ?? user.email, name, role: user.role ?? "member" });
+});
+
 export default router;
