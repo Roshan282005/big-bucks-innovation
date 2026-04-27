@@ -135,7 +135,7 @@ export function HeroSection() {
               src="/assets/ihfc-iitdelhi.jpg"
               alt="IHFC IIT Delhi"
               className="max-w-sm w-full h-auto rounded-2xl  object-contain mou-white"
-              style={{ maxHeight: "640px" }}
+              style={{ maxHeight: "940px" }}
             />
           </motion.div>
         </div>
