@@ -45,7 +45,7 @@ export interface Client {
   email: string;
   phone: string;
   status: ClientStatus;
-  created_at: bigint;
+  created_at: string;
   address?: string;
   industry?: string;
 }
