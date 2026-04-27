@@ -56,7 +56,7 @@ const team = [
     bio: "Distinguished mentor guiding students and early-stage startups through technology challenges. Bridges academic knowledge with real-world industry application.",
     expertise: ["Mentorship", "Startups", "Technology Guidance"],
     accentColor: "accent" as const,
-    image: "/assets/sd.jpg",
+    image: "/assets/ad.jpg",
   },
   {
     initials: "PV",
@@ -65,7 +65,7 @@ const team = [
     bio: "Creative engineer crafting pixel-perfect interfaces and seamless user experiences. Builds the visual layer that makes BBI's digital products intuitive and delightful.",
     expertise: ["Frontend", "UI/UX", "React"],
     accentColor: "primary" as const,
-    image: "/assets/ad.jpg",
+    image: "/assets/sd.jpg",
   },
   {
     initials: "RS",
