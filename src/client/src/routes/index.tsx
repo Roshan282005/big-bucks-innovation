@@ -236,16 +236,3 @@ export function HomePage() {
     </PublicLayout>
   );
 }
-
-import { createFileRoute, redirect } from "@tanstack/react-router";
-import { useAuthStore } from "@/store/auth";
-
-export const Route = createFileRoute("/")({
-  beforeLoad: () => {
-    const { isAuthenticated } = useAuthStore.getState();
-    if (isAuthenticated) {
-      throw redirect({ to: "/dashboard" });
-    }
-  },
-  component: HomePage,
-});

@@ -8,7 +8,8 @@ import {
   redirect,
 } from "@tanstack/react-router";
 import { Toaster } from "sonner";
-
+import { Navbar } from "./components/layout/Navbar";
+import { ThemeToggle } from "./components/ThemeToggle";
 import { AboutPage } from "@/routes/about";
 import { CareersPage } from "@/routes/careers";
 import { ContactPage } from "@/routes/contact";
@@ -28,6 +29,8 @@ import { RegisterPage } from "@/routes/register";
 const rootRoute = createRootRoute({
   component: () => (
     <>
+      <Navbar />
+      <ThemeToggle />
       <Outlet />
       <Toaster position="top-right" richColors closeButton />
     </>

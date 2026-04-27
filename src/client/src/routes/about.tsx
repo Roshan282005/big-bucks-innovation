@@ -964,9 +964,18 @@ export function AboutPage() {
               className="flex gap-4 w-max"
               style={{ animation: "marquee 22s linear infinite" }}
             >
-              {[...grantLogos, ...grantLogos].map((name, i) => (
+              {grantLogos.map((name) => (
                 <span
-                  key={i}
+                  key={name}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/25 bg-accent/5 text-accent text-xs font-semibold whitespace-nowrap"
+                >
+                  <Award className="w-3 h-3" />
+                  {name}
+                </span>
+              ))}
+              {grantLogos.map((name) => (
+                <span
+                  key={`${name}-dup`}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/25 bg-accent/5 text-accent text-xs font-semibold whitespace-nowrap"
                 >
                   <Award className="w-3 h-3" />
@@ -1139,9 +1148,3 @@ export function AboutPage() {
     </PublicLayout>
   );
 }
-
-import { createFileRoute } from "@tanstack/react-router";
-
-export const Route = createFileRoute("/about")({
-  component: AboutPage,
-});

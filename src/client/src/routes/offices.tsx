@@ -1,8 +1,14 @@
 import { PublicLayout } from "@/components/layout/PublicLayout";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Phone, Mail, Clock, Building2, FlaskConical } from "lucide-react";
+import {
+  Building2,
+  Clock,
+  FlaskConical,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
 import { motion } from "motion/react";
-import { createFileRoute } from "@tanstack/react-router";
 
 // ── Asset arrays ─────────────────────────────────────────────────────────────
 const headOfficePhotos = [
@@ -13,10 +19,7 @@ const headOfficePhotos = [
   "/assets/hd5.jpg",
 ];
 
-const branchPhotos = [
-  "/assets/br1.jpg",
-  "/assets/br2.jpg",
-];
+const branchPhotos = ["/assets/br1.jpg", "/assets/br2.jpg"];
 
 // ── Photo Grid Component ──────────────────────────────────────────────────────
 function PhotoMosaic({ photos, label }: { photos: string[]; label: string }) {
@@ -36,7 +39,7 @@ function PhotoMosaic({ photos, label }: { photos: string[]; label: string }) {
         >
           <img
             src={src}
-            alt={`${label} photo ${i + 1}`}
+            alt={`${label} ${i + 1}`}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
               // Graceful fallback to gradient placeholder
@@ -52,15 +55,23 @@ function PhotoMosaic({ photos, label }: { photos: string[]; label: string }) {
 }
 
 // ── Info Card ─────────────────────────────────────────────────────────────────
-function InfoRow({ icon: Icon, label, value }: { icon: any; label: string; value: string }) {
+function InfoRow({
+  icon: Icon,
+  label,
+  value,
+}: { icon: any; label: string; value: string }) {
   return (
     <div className="flex items-start gap-3">
       <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
         <Icon className="w-4 h-4 text-primary" />
       </div>
       <div>
-        <p className="text-xs text-muted-foreground uppercase tracking-wide font-semibold mb-0.5">{label}</p>
-        <p className="text-sm text-foreground font-medium leading-snug">{value}</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wide font-semibold mb-0.5">
+          {label}
+        </p>
+        <p className="text-sm text-foreground font-medium leading-snug">
+          {value}
+        </p>
       </div>
     </div>
   );
@@ -75,19 +86,24 @@ export function OfficePage() {
         <div
           className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: "radial-gradient(circle, oklch(0.45 0.16 264 / 0.10) 1px, transparent 1px)",
+            backgroundImage:
+              "radial-gradient(circle, oklch(0.45 0.16 264 / 0.10) 1px, transparent 1px)",
             backgroundSize: "28px 28px",
           }}
         />
         <div className="container mx-auto px-4 text-center relative z-10">
-          <Badge variant="outline" className="mb-5 border-primary/30 text-primary bg-primary/5 text-xs uppercase tracking-widest">
+          <Badge
+            variant="outline"
+            className="mb-5 border-primary/30 text-primary bg-primary/5 text-xs uppercase tracking-widest"
+          >
             Our Locations
           </Badge>
           <h1 className="font-display font-bold text-4xl md:text-6xl text-foreground mb-5 leading-tight">
             Where We <span className="text-gradient-accent">Operate</span>
           </h1>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
-            Headquartered in Chennai with a growing network of branch offices — building India's next-gen enterprise tech from the ground up.
+            Headquartered in Chennai with a growing network of branch offices —
+            building India's next-gen enterprise tech from the ground up.
           </p>
         </div>
       </section>
@@ -104,14 +120,19 @@ export function OfficePage() {
           >
             {/* Left — Info */}
             <div>
-              <Badge variant="outline" className="mb-4 border-accent/40 text-accent bg-accent/5 text-xs uppercase tracking-widest">
+              <Badge
+                variant="outline"
+                className="mb-4 border-accent/40 text-accent bg-accent/5 text-xs uppercase tracking-widest"
+              >
                 Head Office · Chennai
               </Badge>
               <h2 className="font-display font-bold text-3xl text-foreground mb-2 leading-tight">
                 Thoraipakkam <span className="text-gradient-accent">HQ</span>
               </h2>
               <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                Our flagship office houses the core leadership team, the Mini R&D Lab, and serves as the hub for enterprise client engagements, government partnerships, and product development.
+                Our flagship office houses the core leadership team, the Mini
+                R&D Lab, and serves as the hub for enterprise client
+                engagements, government partnerships, and product development.
               </p>
 
               <div className="flex flex-col gap-4 mb-6">
@@ -120,12 +141,23 @@ export function OfficePage() {
                   label="Address"
                   value="No.14, Prabhu Nagar, Neelankarai Link Road, Thoraipakkam, Chennai — 600097"
                 />
-                <InfoRow icon={Clock} label="Established" value="2025 · With Mini R&D Lab" />
-                <InfoRow icon={FlaskConical} label="Facilities" value="Mini R&D Lab · Conference Rooms · Dev Workspace" />
+                <InfoRow
+                  icon={Clock}
+                  label="Established"
+                  value="2025 · With Mini R&D Lab"
+                />
+                <InfoRow
+                  icon={FlaskConical}
+                  label="Facilities"
+                  value="Mini R&D Lab · Conference Rooms · Dev Workspace"
+                />
               </div>
 
               {/* Google Maps embed */}
-              <div className="rounded-xl overflow-hidden border border-border" style={{ height: "200px" }}>
+              <div
+                className="rounded-xl overflow-hidden border border-border"
+                style={{ height: "200px" }}
+              >
                 <iframe
                   title="BBI Head Office Map"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d80.2350!3d12.9300!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU1JzQ4LjAiTiA4MMKwMTQnMDYuMCJF!5e0!3m2!1sen!2sin!4v1"
@@ -164,14 +196,21 @@ export function OfficePage() {
 
             {/* Right — Info */}
             <div className="order-1 md:order-2">
-              <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/5 text-xs uppercase tracking-widest">
+              <Badge
+                variant="outline"
+                className="mb-4 border-primary/30 text-primary bg-primary/5 text-xs uppercase tracking-widest"
+              >
                 2nd Branch · St. Josephs
               </Badge>
               <h2 className="font-display font-bold text-3xl text-foreground mb-2 leading-tight">
-                St. Josephs <span className="text-gradient-primary">Campus</span>
+                St. Josephs{" "}
+                <span className="text-gradient-primary">Campus</span>
               </h2>
               <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                Our campus branch inside St. Josephs Institute of Technology accelerates direct collaboration with students, faculty, and academic research — powering our internship and training programs.
+                Our campus branch inside St. Josephs Institute of Technology
+                accelerates direct collaboration with students, faculty, and
+                academic research — powering our internship and training
+                programs.
               </p>
 
               <div className="flex flex-col gap-4">
@@ -180,7 +219,11 @@ export function OfficePage() {
                   label="Location"
                   value="St. Josephs Institute of Technology, Chennai, Tamil Nadu"
                 />
-                <InfoRow icon={Clock} label="Opened" value="2025 · Active MOU Partner" />
+                <InfoRow
+                  icon={Clock}
+                  label="Opened"
+                  value="2025 · Active MOU Partner"
+                />
                 <InfoRow
                   icon={FlaskConical}
                   label="Focus"
@@ -191,13 +234,18 @@ export function OfficePage() {
               <div
                 className="mt-6 rounded-xl p-4 border"
                 style={{
-                  background: "linear-gradient(135deg, rgba(37,99,235,0.05), rgba(245,158,11,0.05))",
+                  background:
+                    "linear-gradient(135deg, rgba(37,99,235,0.05), rgba(245,158,11,0.05))",
                   borderColor: "rgba(37,99,235,0.15)",
                 }}
               >
-                <p className="text-xs font-semibold text-primary mb-1">Why a campus office?</p>
+                <p className="text-xs font-semibold text-primary mb-1">
+                  Why a campus office?
+                </p>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Proximity to students means faster talent pipelines, real-world project deployments, and a feedback loop between industry needs and academic output.
+                  Proximity to students means faster talent pipelines,
+                  real-world project deployments, and a feedback loop between
+                  industry needs and academic output.
                 </p>
               </div>
             </div>
@@ -216,8 +264,12 @@ export function OfficePage() {
               { value: "1 R&D Lab", label: "In-House Research" },
             ].map((s) => (
               <div key={s.label} className="text-center">
-                <p className="font-display font-bold text-3xl text-foreground mb-1">{s.value}</p>
-                <p className="text-xs text-muted-foreground uppercase tracking-widest">{s.label}</p>
+                <p className="font-display font-bold text-3xl text-foreground mb-1">
+                  {s.value}
+                </p>
+                <p className="text-xs text-muted-foreground uppercase tracking-widest">
+                  {s.label}
+                </p>
               </div>
             ))}
           </div>
@@ -226,7 +278,3 @@ export function OfficePage() {
     </PublicLayout>
   );
 }
-
-export const Route = createFileRoute("/offices")({
-  component: OfficePage,
-});

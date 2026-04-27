@@ -102,7 +102,8 @@ export function Timeline() {
             <span className="text-gradient-accent">startup to scale-up</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-base">
-            From MSME registration to pre-incubation at IIT Delhi — building India's next-gen enterprise technology company.
+            From MSME registration to pre-incubation at IIT Delhi — building
+            India's next-gen enterprise technology company.
           </p>
         </motion.div>
 
@@ -154,7 +155,8 @@ export function Timeline() {
                             <span
                               className={`font-display font-bold text-sm ${m.accent ? "text-accent" : "text-primary"}`}
                             >
-                              {m.year}{m.quarter && ` · ${m.quarter}`}
+                              {m.year}
+                              {m.quarter && ` · ${m.quarter}`}
                             </span>
                           </div>
                           <h3 className="font-display font-bold text-foreground text-lg mb-2">

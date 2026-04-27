@@ -110,7 +110,11 @@ const servicesMenu: MenuItem[] = [
 const companyMenu = [
   { label: "About Us", href: "/about", description: "Our story and mission" },
   { label: "Team", href: "/about#team", description: "8 innovation leaders" },
-  { label: "Offices", href: "/offices", description: "Our locations & presence" },
+  {
+    label: "Offices",
+    href: "/offices",
+    description: "Our locations & presence",
+  },
   { label: "Careers", href: "/careers", description: "Join our team" },
   {
     label: "Contact",

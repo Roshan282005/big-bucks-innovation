@@ -69,12 +69,12 @@ const team = [
   },
   {
     initials: "RS",
-    name: "Mr. ROSHAN S", 
+    name: "Mr. ROSHAN S",
     role: "Full Stack Developer & Web Architect",
     bio: "The sole architect behind BBI's digital presence. Designed and engineered the entire website from ground up — handling UI/UX, component systems, animations, and deployment single-handedly.",
     expertise: ["Full Stack", "React", "Web Architecture"],
     accentColor: "accent" as const,
-    image: "/assets/rozz.jpg", 
+    image: "/assets/rozz.jpg",
   },
 ];
 
@@ -168,8 +168,10 @@ export function TeamSection() {
                       onError={(e) => {
                         const img = e.currentTarget;
                         img.style.display = "none";
-                        const fallback = img.parentElement?.querySelector("[data-fallback]");
-                        if (fallback) (fallback as HTMLElement).style.display = "flex";
+                        const fallback =
+                          img.parentElement?.querySelector("[data-fallback]");
+                        if (fallback)
+                          (fallback as HTMLElement).style.display = "flex";
                       }}
                     />
                   ) : null}
