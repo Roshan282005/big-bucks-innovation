@@ -131,7 +131,7 @@ export function FounderSection() {
 
             <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
               Today, at{" "}
-              <span className="text-foreground font-semibold">23</span>, he
+              <span className="text-foreground font-semibold">23's</span>, he
               leads with a mission to create scalable solutions, empower young
               innovators, and build technology that delivers{" "}
               <span
