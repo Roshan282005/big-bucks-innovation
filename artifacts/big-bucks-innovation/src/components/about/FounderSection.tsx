@@ -77,7 +77,7 @@ export function FounderSection() {
           </Badge>
           <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground mb-3 leading-tight">
             The Vision Behind{" "}
-            <span className="text-gradient-accent">Big Bucks Innovation</span>
+            <span className="text-gradient-accent bg-clip-text position-absolute top-3">Mr Balaji Arumugam</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-base">
             A story of choosing impact over convention — from a single idea at
