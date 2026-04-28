@@ -161,7 +161,7 @@ export function OfficePage() {
               >
                 <iframe
                   title="BBI Head Office Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d80.2350!3d12.9300!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU1JzQ4LjAiTiA4MMKwMTQnMDYuMCJF!5e0!3m2!1sen!2sin!4v1"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.3484693798987!2d80.2437098740502!3d12.949539515363625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525c31ed24b35d%3A0xa275424536ffc4cb!2sBig%20Bucks%20Innovation!5e0!3m2!1sen!2sus!4v1777349733246!5m2!1sen!2sus"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
