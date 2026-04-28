@@ -4827,7 +4827,7 @@ video {
 .dark\:focus-visible\:ring-destructive\/40:focus-visible:is(.dark *) {
   --tw-ring-color: oklch(var(--destructive) / 0.4);
 }
-
+ 
 .dark\:data-\[state\=active\]\:border-input[data-state="active"]:is(.dark *) {
   border-color: oklch(var(--input));
 }
