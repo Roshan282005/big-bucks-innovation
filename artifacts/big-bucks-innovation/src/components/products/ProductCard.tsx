@@ -96,6 +96,7 @@ export function ProductCard({ product, index }: ProductCardProps) {
 
       {/* CTA — gold accent */}
       <div className="pl-2">
+        <a href="/contact" data-ocid={`products.${product.id}_learn_more`}>
         <Button
           variant="ghost"
           size="sm"
@@ -106,6 +107,7 @@ export function ProductCard({ product, index }: ProductCardProps) {
           Learn More
           <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
         </Button>
+        </a>
       </div>
     </motion.article>
   );
