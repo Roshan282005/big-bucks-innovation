@@ -57,49 +57,11 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ── Dark mode is the default ── */
 :root {
   --font-display: "Plus Jakarta Sans", sans-serif;
   --font-body: "Plus Jakarta Sans", sans-serif;
   --font-mono-custom: "Geist Mono", monospace;
   --radius: 0.5rem;
-
-  --background: 0.13 0.016 255;
-  --foreground: 0.95 0.01 260;
-  --card: 0.17 0.016 255;
-  --card-foreground: 0.95 0.01 260;
-  --popover: 0.17 0.016 255;
-  --popover-foreground: 0.95 0.01 260;
-  --primary: 0.65 0.18 264;
-  --primary-foreground: 0.13 0.016 255;
-  --secondary: 0.21 0.02 260;
-  --secondary-foreground: 0.85 0.01 260;
-  --muted: 0.21 0.02 260;
-  --muted-foreground: 0.55 0.015 260;
-  --accent: 0.72 0.19 60;
-  --accent-foreground: 0.13 0.016 255;
-  --destructive: 0.55 0.2 25;
-  --destructive-foreground: 0.95 0.01 25;
-  --border: 0.26 0.022 260;
-  --input: 0.26 0.022 260;
-  --ring: 0.65 0.18 264;
-  --chart-1: 0.65 0.18 264;
-  --chart-2: 0.72 0.19 60;
-  --chart-3: 0.6 0.18 130;
-  --chart-4: 0.7 0.18 15;
-  --chart-5: 0.55 0.2 25;
-  --sidebar: 0.1 0.012 255;
-  --sidebar-foreground: 0.92 0.01 260;
-  --sidebar-primary: 0.65 0.18 264;
-  --sidebar-primary-foreground: 0.1 0.012 255;
-  --sidebar-accent: 0.18 0.018 260;
-  --sidebar-accent-foreground: 0.85 0.01 260;
-  --sidebar-border: 0.22 0.02 260;
-  --sidebar-ring: 0.65 0.18 264;
-}
-
-/* ── Light mode override ── */
-.light {
   --background: 0.99 0 0;
   --foreground: 0.22 0.01 260;
   --card: 0.98 0.002 0;
@@ -134,12 +96,47 @@
   --sidebar-ring: 0.45 0.16 264;
 }
 
+.dark {
+  --background: 0.13 0.016 255;
+  --foreground: 0.95 0.01 260;
+  --card: 0.17 0.016 255;
+  --card-foreground: 0.95 0.01 260;
+  --popover: 0.17 0.016 255;
+  --popover-foreground: 0.95 0.01 260;
+  --primary: 0.65 0.18 264;
+  --primary-foreground: 0.13 0.016 255;
+  --secondary: 0.21 0.02 260;
+  --secondary-foreground: 0.85 0.01 260;
+  --muted: 0.21 0.02 260;
+  --muted-foreground: 0.55 0.015 260;
+  --accent: 0.72 0.19 60;
+  --accent-foreground: 0.13 0.016 255;
+  --destructive: 0.55 0.2 25;
+  --destructive-foreground: 0.95 0.01 25;
+  --border: 0.26 0.022 260;
+  --input: 0.26 0.022 260;
+  --ring: 0.65 0.18 264;
+  --chart-1: 0.65 0.18 264;
+  --chart-2: 0.72 0.19 60;
+  --chart-3: 0.6 0.18 130;
+  --chart-4: 0.7 0.18 15;
+  --chart-5: 0.55 0.2 25;
+  --sidebar: 0.1 0.012 255;
+  --sidebar-foreground: 0.92 0.01 260;
+  --sidebar-primary: 0.65 0.18 264;
+  --sidebar-primary-foreground: 0.1 0.012 255;
+  --sidebar-accent: 0.18 0.018 260;
+  --sidebar-accent-foreground: 0.85 0.01 260;
+  --sidebar-border: 0.22 0.02 260;
+  --sidebar-ring: 0.65 0.18 264;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
   html {
-    color-scheme: dark;          /* ← was "light", now matches dark default */
+    color-scheme: light;
     scroll-behavior: smooth;
   }
   body {
@@ -219,7 +216,7 @@
     border: 1px solid oklch(var(--border));
     border-radius: calc(var(--radius) * 1.5);
   }
-
+  
   /* ─── Full-page background ─── */
   .home-bg {
     position: fixed;
@@ -234,14 +231,15 @@
     border: none;
     outline: none;
   }
-
+  
+  /* Accessibility: respect user's motion preference */
   @media (prefers-reduced-motion: reduce) {
     .home-bg {
       background-attachment: scroll;
     }
   }
-
-  /* ─── Team avatar ─── */
+  
+  /* ─── Team avatar — base ─── */
   .team-avatar {
     width: 88px;
     height: 88px;
@@ -252,16 +250,19 @@
     transition: transform 150ms ease, box-shadow 150ms ease;
   }
 
+  /* Hover: subtle lift */
   .team-avatar:hover {
     transform: scale(1.04);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
+  /* Focus-visible: keyboard navigation ring */
   .team-avatar:focus-visible {
     outline: 3px solid var(--color-border-focus, #2563EB);
     outline-offset: 3px;
   }
 
+  /* Tablet: 80px */
   @media (max-width: 1024px) {
     .team-avatar {
       width: 80px;
@@ -269,6 +270,7 @@
     }
   }
 
+  /* Mobile: 68px */
   @media (max-width: 640px) {
     .team-avatar {
       width: 68px;
@@ -276,6 +278,7 @@
     }
   }
 
+  /* Respect reduce-motion */
   @media (prefers-reduced-motion: reduce) {
     .team-avatar:hover {
       transform: none;
