@@ -110,6 +110,7 @@ const servicesMenu: MenuItem[] = [
 const companyMenu = [
   { label: "About Us", href: "/about", description: "Our story and mission" },
   { label: "Team", href: "/about#team", description: "8 innovation leaders" },
+  { label: "About CEO", href: "/about#ceo",  description: "The vision behind Big Bucks" },
   {
     label: "Offices",
     href: "/offices",

@@ -89,12 +89,14 @@ export function ProductsPreview() {
               </p>
               <div className="mt-5 pt-4 border-t border-border">
                 <Link to="/products">
+                  <a href="/contact">
                   <span
                     className="text-xs font-semibold text-accent hover:text-accent/80 transition-smooth cursor-pointer"
                     data-ocid={`products_preview.learn_more.${i + 1}`}
                   >
                     Learn more →
                   </span>
+                  </a>  
                 </Link>
               </div>
             </motion.div>

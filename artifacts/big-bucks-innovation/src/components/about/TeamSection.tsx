@@ -1,6 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
 
 const team = [
@@ -198,7 +196,7 @@ export function TeamSection() {
                 </p>
 
                 {/* Expertise tags */}
-                <div className="flex flex-wrap justify-center gap-1 mb-4">
+                <div className="flex flex-wrap justify-center gap-1">
                   {member.expertise.map((tag) => (
                     <Badge
                       key={tag}
@@ -208,26 +206,6 @@ export function TeamSection() {
                       {tag}
                     </Badge>
                   ))}
-                </div>
-
-                {/* Social links */}
-                <div className="flex justify-center gap-2">
-                  <button
-                    type="button"
-                    aria-label={`${member.name} LinkedIn`}
-                    className={`w-7 h-7 rounded-lg ${a.bg} border ${a.ring} flex items-center justify-center ${a.text} hover:opacity-80 transition-smooth`}
-                    data-ocid={`about.team_linkedin.${i + 1}`}
-                  >
-                    <Linkedin className="w-3 h-3" />
-                  </button>
-                  <button
-                    type="button"
-                    aria-label={`Email ${member.name}`}
-                    className={`w-7 h-7 rounded-lg ${a.bg} border ${a.ring} flex items-center justify-center ${a.text} hover:opacity-80 transition-smooth`}
-                    data-ocid={`about.team_email.${i + 1}`}
-                  >
-                    <Mail className="w-3 h-3" />
-                  </button>
                 </div>
               </motion.div>
             );

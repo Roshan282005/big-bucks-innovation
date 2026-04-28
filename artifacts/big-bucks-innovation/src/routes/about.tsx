@@ -121,22 +121,22 @@ const partners = [
   },
 ];
 
-const fundingGrants = [
-  { title: "MSME Innovation Grant", body: "Ministry of MSME", year: "2022" },
-  {
-    title: "Startup India Seed Fund",
-    body: "DPIIT, Govt. of India",
-    year: "2022",
-  },
-  { title: "TIDE 2.0 Grant", body: "MeitY, Govt. of India", year: "2023" },
-  { title: "State Innovation Grant", body: "Tamil Nadu Govt.", year: "2023" },
-  {
-    title: "Academic Research Fund",
-    body: "IIT Delhi Innovation Lab",
-    year: "2023",
-  },
-  { title: "NIDHI-EIR Fellowship", body: "DST, Govt. of India", year: "2024" },
-];
+//const fundingGrants = [
+ // { title: "MSME Innovation Grant", body: "Ministry of MSME", year: "2022" },
+ /// {
+  //  title: "Startup India Seed Fund",
+   // body: "DPIIT, Govt. of India",
+  //  year: "2022",
+ // },
+ // { title: "TIDE 2.0 Grant", body: "MeitY, Govt. of India", year: "2023" },
+ // { title: "State Innovation Grant", body: "Tamil Nadu Govt.", year: "2023" },
+  //{
+ //   title: "Academic Research Fund",
+///    body: "IIT Delhi Innovation Lab",
+//    year: "2023",
+//  },
+  //{ title: "NIDHI-EIR Fellowship", body: "DST, Govt. of India", year: "2024" },
+//];
 
 const grantLogos = [
   "IIT Delhi IHFC",

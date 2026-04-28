@@ -36,6 +36,7 @@ export function FounderSection() {
   return (
     <section
       className="py-20 border-b border-border relative overflow-hidden"
+      id="ceo"
       style={{
         background:
           "linear-gradient(135deg, #f8faff 0%, #fffbf0 50%, #f8faff 100%)",
@@ -272,8 +273,8 @@ export function FounderSection() {
                       <Zap className="w-2.5 h-2.5" />
                       Founder &amp; CEO
                     </span>
-                    <p className="text-white font-display font-bold text-lg mt-1 leading-tight">
-                      Big Bucks Innovation
+                    <p className="text-white font-display font-bold text-lg mt-1 leading-tight top-10">
+                      Mr Balaji Arumugam
                     </p>
                   </div>
                 )}
