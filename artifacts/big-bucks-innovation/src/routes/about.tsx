@@ -1,5 +1,6 @@
 import { CSRSection } from "@/components/about/CSRSection";
 import { CompanyStats } from "@/components/about/CompanyStats";
+import { FounderSection } from "@/components/about/FounderSection";
 import { MissionVision } from "@/components/about/MissionVision";
 import { TeamSection } from "@/components/about/TeamSection";
 import { Timeline } from "@/components/about/Timeline";
@@ -120,18 +121,6 @@ const partners = [
   },
 ];
 
-const partnerLogos = [
-  "IIT Delhi",
-  "Ministry of Corporate Affairs",
-  "DPIIT",
-  "AICTE",
-  "Ministry of MSME",
-  "Ministry of Commerce Affairs",
-  "StartupTN",
-  "Startup India",
-  "EDII TN",
-];
-
 const fundingGrants = [
   { title: "MSME Innovation Grant", body: "Ministry of MSME", year: "2022" },
   {
@@ -160,35 +149,23 @@ const grantLogos = [
   "Chennai Institute of Technology",
 ];
 
-// ─── MOU Signing Event Photos ────────────────────────────────────────────────
-// To replace placeholders with real photos:
-//   1. Copy your MOU photos to: src/frontend/public/assets/
-//   2. Name them: mou-1.jpg, mou-2.jpg, ... mou-7.jpg
-//   3. The <img> tags below will automatically load them.
-//      (The SVG placeholder is only shown when the image fails to load.)
-// ─────────────────────────────────────────────────────────────────────────────
-
 const mouEvents = [
   {
     id: 1,
-    // Replace with real photo: public/assets/mou-1.jpg
     photo: "/assets/mou-1.jpg",
     institution: "Sairam SDG Solveathon 4.0",
     description:
       "MOU signing ceremony on stage during the national-level SDG hackathon",
     location: "Chennai, Tamil Nadu",
     attendees: 2,
-    // Warm amber gradient for placeholder
     gradientFrom: "#92400e",
     gradientTo: "#b45309",
     accentColor: "#fbbf24",
     icon: Award,
-    tall: true, // spans 2 rows in masonry layout
+    tall: true,
   },
-  
   {
     id: 2,
-    // Replace with real photo: public/assets/mou-2.jpg
     photo: "/assets/mou-2.jpg",
     institution: "Gojan School of Business & Technology",
     description:
@@ -203,7 +180,6 @@ const mouEvents = [
   },
   {
     id: 3,
-    // Replace with real photo: public/assets/mou-3.jpg
     photo: "/assets/mou-3.jpg",
     institution: "Aarupadaiveedu Institute of Technology",
     description:
@@ -218,7 +194,6 @@ const mouEvents = [
   },
   {
     id: 4,
-    // Replace with real photo: public/assets/mou-4.jpg
     photo: "/assets/mou-4.jpg",
     institution: "Sri Sairam Engineering College",
     description:
@@ -233,7 +208,6 @@ const mouEvents = [
   },
   {
     id: 5,
-    // Replace with real photo: public/assets/mou-5.jpg
     photo: "/assets/mou-5.jpg",
     institution: "ARM CET",
     description: "Bilateral MOU exchange between institutional representatives",
@@ -247,7 +221,6 @@ const mouEvents = [
   },
   {
     id: 6,
-    // Replace with real photo: public/assets/mou-6.jpg
     photo: "/assets/mou-6.jpg",
     institution: "Thangavelu Engineering College",
     description:
@@ -262,7 +235,6 @@ const mouEvents = [
   },
   {
     id: 7,
-    // Replace with real photo: public/assets/mou-7.jpg
     photo: "/assets/mou-7.jpg",
     institution: "Chennai Institute of Technology",
     description: "MOU signing in front of CIT wall logo with core team members",
@@ -275,7 +247,7 @@ const mouEvents = [
     tall: false,
   },
 ];
-// ─── Photo Card Component ────────────────────────────────────────────────────
+
 function MouPhotoCard({
   event,
   index,
@@ -301,7 +273,6 @@ function MouPhotoCard({
       }}
       data-ocid={`about.mou_photo.${event.id}`}
     >
-      {/* Real photo — shown when file exists */}
       {!imgError && (
         <img
           src={event.photo}
@@ -311,7 +282,6 @@ function MouPhotoCard({
         />
       )}
 
-      {/* SVG Placeholder — shown when image file is missing */}
       {imgError && (
         <svg
           className="absolute inset-0 w-full h-full"
@@ -327,113 +297,26 @@ function MouPhotoCard({
               x2="100%"
               y2="100%"
             >
-              <stop
-                offset="0%"
-                stopColor={event.gradientFrom}
-                stopOpacity="1"
-              />
-              <stop
-                offset="100%"
-                stopColor={event.gradientTo}
-                stopOpacity="1"
-              />
+              <stop offset="0%" stopColor={event.gradientFrom} stopOpacity="1" />
+              <stop offset="100%" stopColor={event.gradientTo} stopOpacity="1" />
             </linearGradient>
-            <filter
-              id={`grain-${event.id}`}
-              x="0%"
-              y="0%"
-              width="100%"
-              height="100%"
-            >
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.65"
-                numOctaves="3"
-                stitchTiles="stitch"
-                result="noise"
-              />
-              <feColorMatrix
-                type="saturate"
-                values="0"
-                in="noise"
-                result="grayNoise"
-              />
-              <feBlend
-                in="SourceGraphic"
-                in2="grayNoise"
-                mode="overlay"
-                result="blend"
-              />
+            <filter id={`grain-${event.id}`} x="0%" y="0%" width="100%" height="100%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise" />
+              <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise" />
+              <feBlend in="SourceGraphic" in2="grayNoise" mode="overlay" result="blend" />
               <feComposite in="blend" in2="SourceGraphic" operator="in" />
             </filter>
           </defs>
-
-          {/* Background gradient */}
           <rect width="100%" height="100%" fill={`url(#grad-${event.id})`} />
-
-          {/* Subtle grain overlay */}
-          <rect
-            width="100%"
-            height="100%"
-            fill="white"
-            opacity="0.03"
-            filter={`url(#grain-${event.id})`}
-          />
-
-          {/* Soft bokeh blobs */}
-          <circle
-            cx="20%"
-            cy="30%"
-            r="80"
-            fill={event.accentColor}
-            opacity="0.08"
-          />
-          <circle
-            cx="75%"
-            cy="65%"
-            r="100"
-            fill={event.accentColor}
-            opacity="0.06"
-          />
+          <rect width="100%" height="100%" fill="white" opacity="0.03" filter={`url(#grain-${event.id})`} />
+          <circle cx="20%" cy="30%" r="80" fill={event.accentColor} opacity="0.08" />
+          <circle cx="75%" cy="65%" r="100" fill={event.accentColor} opacity="0.06" />
           <circle cx="50%" cy="15%" r="60" fill="white" opacity="0.05" />
-
-          {/* Diagonal light streak */}
-          <line
-            x1="-10%"
-            y1="120%"
-            x2="110%"
-            y2="-20%"
-            stroke={event.accentColor}
-            strokeWidth="1"
-            opacity="0.15"
-          />
-
-          {/* Center icon area */}
+          <line x1="-10%" y1="120%" x2="110%" y2="-20%" stroke={event.accentColor} strokeWidth="1" opacity="0.15" />
           <circle cx="50%" cy="42%" r="28" fill="white" opacity="0.1" />
-
-          {/* Camera icon hint */}
-          <text
-            x="50%"
-            y="50%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize="18"
-            fill="white"
-            opacity="0.5"
-            fontFamily="sans-serif"
-          >
-            📷
-          </text>
-
-          {/* Bottom gradient scrim for text */}
+          <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize="18" fill="white" opacity="0.5" fontFamily="sans-serif">📷</text>
           <defs>
-            <linearGradient
-              id={`scrim-${event.id}`}
-              x1="0"
-              y1="0"
-              x2="0"
-              y2="1"
-            >
+            <linearGradient id={`scrim-${event.id}`} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="transparent" />
               <stop offset="60%" stopColor="rgba(0,0,0,0.5)" />
               <stop offset="100%" stopColor="rgba(0,0,0,0.85)" />
@@ -443,21 +326,17 @@ function MouPhotoCard({
         </svg>
       )}
 
-      {/* Always-on gradient scrim for real photo readability */}
       {!imgError && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
       )}
 
-      {/* Warm amber cinematic color wash on hover */}
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
-          background:
-            "linear-gradient(135deg, rgba(245,158,11,0.15) 0%, rgba(220,38,38,0.08) 100%)",
+          background: "linear-gradient(135deg, rgba(245,158,11,0.15) 0%, rgba(220,38,38,0.08) 100%)",
         }}
       />
 
-      {/* Top-left: photo number badge */}
       <div className="absolute top-3 left-3">
         <span
           className="inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2 py-0.5 rounded-full backdrop-blur-sm"
@@ -472,7 +351,6 @@ function MouPhotoCard({
         </span>
       </div>
 
-      {/* Top-right: attendees badge */}
       <div className="absolute top-3 right-3">
         <span
           className="inline-flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded-full backdrop-blur-sm"
@@ -487,17 +365,10 @@ function MouPhotoCard({
         </span>
       </div>
 
-      {/* Bottom caption */}
       <div className="absolute bottom-0 left-0 right-0 p-4">
         <div className="flex items-center gap-1.5 mb-1">
-          <Icon
-            className="w-3 h-3 flex-shrink-0"
-            style={{ color: event.accentColor }}
-          />
-          <span
-            className="text-[10px] font-mono uppercase tracking-widest"
-            style={{ color: event.accentColor }}
-          >
+          <Icon className="w-3 h-3 flex-shrink-0" style={{ color: event.accentColor }} />
+          <span className="text-[10px] font-mono uppercase tracking-widest" style={{ color: event.accentColor }}>
             MOU Signing
           </span>
         </div>
@@ -513,12 +384,9 @@ function MouPhotoCard({
         </div>
       </div>
 
-      {/* Hover: cinematic border glow */}
       <div
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-        style={{
-          boxShadow: `inset 0 0 0 1.5px ${event.accentColor}40`,
-        }}
+        style={{ boxShadow: `inset 0 0 0 1.5px ${event.accentColor}40` }}
       />
     </motion.div>
   );
@@ -584,7 +452,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* IIT Delhi Pre-Incubation — prominent */}
+      {/* IIT Delhi Pre-Incubation */}
       <section
         className="py-14 bg-white border-b border-border"
         data-ocid="about.iit_section"
@@ -597,7 +465,6 @@ export function AboutPage() {
             transition={{ duration: 0.5 }}
             className="max-w-5xl mx-auto"
           >
-            {/* Header */}
             <div className="text-center mb-10">
               <Badge
                 variant="outline"
@@ -618,7 +485,6 @@ export function AboutPage() {
               </p>
             </div>
 
-            {/* Cards row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
                 {
@@ -673,7 +539,6 @@ export function AboutPage() {
                       }}
                     >
                       <Icon
-                        className="w-4.5 h-4.5"
                         style={{
                           color: item.isAccent ? "#F59E0B" : "#2563EB",
                           width: "18px",
@@ -712,21 +577,10 @@ export function AboutPage() {
       {/* Team */}
       <TeamSection />
 
-      {/* ─── MOU Signing Gallery ─────────────────────────────────────────────── */}
-      {/*                                                                         */}
-      {/* HOW TO ADD REAL PHOTOS:                                                 */}
-      {/*   1. Copy your 7 MOU signing event photos to:                           */}
-      {/*        src/frontend/public/assets/                                      */}
-      {/*   2. Name them exactly:                                                  */}
-      {/*        mou-1.jpg  → Sairam SDG Solveathon 4.0                          */}
-      {/*        mou-2.jpg  → AVIT group photo                                    */}
-      {/*        mou-3.jpg  → College auditorium stage                            */}
-      {/*        mou-4.jpg  → Office MOU stamped documents                        */}
-      {/*        mou-5.jpg  → ARM CET bilateral signing                           */}
-      {/*        mou-6.jpg  → Gojan School of Business & Technology               */}
-      {/*        mou-7.jpg  → Chennai Institute of Technology                     */}
-      {/*   3. Run `pnpm build` — the placeholders will be replaced automatically */}
-      {/* ──────────────────────────────────────────────────────────────────────── */}
+      {/* ✅ FOUNDER SECTION — placed here between Team and MOU Gallery */}
+      <FounderSection />
+
+      {/* MOU Signing Gallery */}
       <section
         className="py-20 border-b border-border"
         style={{
@@ -736,7 +590,6 @@ export function AboutPage() {
         data-ocid="about.mou_gallery_section"
       >
         <div className="container mx-auto px-4">
-          {/* Section header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -780,7 +633,6 @@ export function AboutPage() {
               innovation, training, and research collaboration.
             </p>
 
-            {/* Stats row */}
             <div className="flex flex-wrap justify-center gap-6 mt-8">
               {[
                 { value: "10+", label: "Partner Institutions" },
@@ -807,8 +659,6 @@ export function AboutPage() {
             </div>
           </motion.div>
 
-          {/* Masonry-style photo grid */}
-          {/* Desktop: 3 cols with CSS grid auto rows */}
           <div
             className="hidden md:grid gap-4 max-w-6xl mx-auto"
             style={{
@@ -822,7 +672,6 @@ export function AboutPage() {
             ))}
           </div>
 
-          {/* Mobile: single column */}
           <div className="md:hidden flex flex-col gap-4 max-w-sm mx-auto">
             {mouEvents.map((event, i) => (
               <motion.div
@@ -839,7 +688,6 @@ export function AboutPage() {
             ))}
           </div>
 
-          {/* Bottom CTA */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -987,12 +835,9 @@ export function AboutPage() {
             </p>
           </motion.div>
 
-          {/* Marquee logos strip */}
           <div className="overflow-hidden mb-8 relative">
-            {/* fade edges */}
             <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-muted/20 to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-muted/20 to-transparent z-10 pointer-events-none" />
-
             <div
               className="flex gap-4 w-max"
               style={{ animation: "marquee 22s linear infinite" }}
