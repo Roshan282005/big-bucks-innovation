@@ -849,37 +849,7 @@ export function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            {fundingGrants.map((grant, i) => (
-              <motion.div
-                key={grant.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.45 }}
-                className="bg-white border border-border rounded-xl px-5 py-4 flex items-start gap-3 transition-smooth hover:border-accent/30"
-                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}
-                data-ocid={`about.funding_grant.${i + 1}`}
-              >
-                <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Award className="w-4 h-4 text-accent" />
-                </div>
-                <div className="min-w-0">
-                  <p className="font-display font-semibold text-sm text-foreground leading-snug mb-0.5">
-                    {grant.title}
-                  </p>
-                  <p className="text-muted-foreground text-xs">{grant.body}</p>
-                  <span
-                    className="inline-block mt-1 text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded"
-                    style={{
-                      background: "rgba(37,99,235,0.08)",
-                      color: "#2563EB",
-                    }}
-                  >
-                    {grant.year}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+            
           </div>
         </div>
       </section>
