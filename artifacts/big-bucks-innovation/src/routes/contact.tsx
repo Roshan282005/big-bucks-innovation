@@ -6,7 +6,6 @@ import { useSearch } from "@tanstack/react-router";
 import { motion } from "motion/react";
 
 export function ContactPage() {
-  // Read optional ?subject= query param (pre-fills form — used by careers Apply Now)
   const search = useSearch({ strict: false }) as Record<string, string>;
   const subject =
     typeof search?.subject === "string" ? search.subject : undefined;
@@ -55,9 +54,9 @@ export function ContactPage() {
           >
             {[
               { value: "5,000+", label: "Students Trained" },
-              { value: "15", label: "Active Members" },
-              { value: "10+", label: "MOUs Signed" },
-              { value: "35", label: "Projects Completed" },
+              { value: "15",     label: "Active Members" },
+              { value: "10+",    label: "MOUs Signed" },
+              { value: "35",     label: "Projects Completed" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <p className="font-display font-bold text-2xl text-primary">
@@ -107,7 +106,7 @@ export function ContactPage() {
             className="text-muted-foreground text-sm"
           >
             Prefer to reach us directly?{" "}
-            <a
+            
               href="tel:8667858430"
               className="text-primary font-medium hover:underline"
               data-ocid="contact.phone_link"
@@ -115,7 +114,7 @@ export function ContactPage() {
               +91 86678 58430
             </a>{" "}
             or{" "}
-            <a
+            
               href="mailto:bigbucksinnovation@gmail.com"
               className="text-primary font-medium hover:underline"
               data-ocid="contact.email_link"
@@ -128,3 +127,5 @@ export function ContactPage() {
     </PublicLayout>
   );
 }
+
+export default ContactPage;

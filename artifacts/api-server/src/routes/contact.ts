@@ -1,37 +1,102 @@
-import { Router, type Request, type Response } from "express";
+import { Router, json, type Request, type Response, type NextFunction } from "express";
 import { randomUUID } from "crypto";
 
 const router: Router = Router();
 
+// Guard: apply body parsing at router level so the route works
+// even if the caller forgot app.use(express.json())
+router.use(json());
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface ContactSubmission {
-  id: string;
-  name: string;
-  email: string;
-  phone?: string;
-  company?: string;
-  message: string;
+  id:        string;
+  name:      string;
+  email:     string;
+  phone?:    string;
+  company?:  string;
+  subject?:  string;
+  message:   string;
   createdAt: string;
 }
 
+interface ContactBody {
+  name?:    unknown;
+  email?:   unknown;
+  phone?:   unknown;
+  company?: unknown;
+  subject?: unknown;
+  message?: unknown;
+}
+
+// ── In-memory store (replace with DB later) ───────────────────────────────────
+
 const submissions: ContactSubmission[] = [];
 
-router.post("/contact", (req: Request, res: Response) => {
-  const { name, email, phone, company, message } = req.body;
-  if (!name || !email || !message) {
-    res.status(400).json({ error: "name, email, and message are required" });
-    return;
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function isNonEmptyString(v: unknown): v is string {
+  return typeof v === "string" && v.trim().length > 0;
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// ── Route ─────────────────────────────────────────────────────────────────────
+
+router.post(
+  "/contact",
+  (req: Request<{}, {}, ContactBody>, res: Response, next: NextFunction) => {
+    try {
+      // Safely handle missing/malformed body
+      const body: ContactBody =
+        req.body && typeof req.body === "object" ? req.body : {};
+
+      const { name, email, phone, company, subject, message } = body;
+
+      const errors: string[] = [];
+
+      if (!isNonEmptyString(name)) {
+        errors.push("name is required");
+      }
+
+      // Guard email regex behind the string check — not a separate branch
+      if (!isNonEmptyString(email)) {
+        errors.push("email is required");
+      } else if (!EMAIL_RE.test(email)) {
+        errors.push("email format invalid");
+      }
+
+      if (!isNonEmptyString(message)) {
+        errors.push("message is required");
+      }
+
+      if (errors.length) {
+        res.status(400).json({ ok: false, errors });
+        return;
+      }
+
+      const submission: ContactSubmission = {
+        id:        randomUUID(),
+        name:      (name as string).trim(),
+        email:     (email as string).trim().toLowerCase(),
+        phone:     isNonEmptyString(phone)   ? phone.trim()   : undefined,
+        company:   isNonEmptyString(company) ? company.trim() : undefined,
+        subject:   isNonEmptyString(subject) ? subject.trim() : undefined,
+        message:   (message as string).trim(),
+        createdAt: new Date().toISOString(),
+      };
+
+      submissions.push(submission);
+
+      console.info(
+        `[contact] submission saved  id=${submission.id}  email=${submission.email}`
+      );
+
+      res.status(201).json({ ok: true, id: submission.id });
+    } catch (err) {
+      next(err);
+    }
   }
-  const submission: ContactSubmission = {
-    id: randomUUID(),
-    name,
-    email,
-    phone,
-    company,
-    message,
-    createdAt: new Date().toISOString(),
-  };
-  submissions.push(submission);
-  res.status(201).json({ ok: true, id: submission.id });
-});
+);
 
 export default router;
