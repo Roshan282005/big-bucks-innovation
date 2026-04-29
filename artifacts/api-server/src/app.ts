@@ -30,7 +30,7 @@ app.use(
   cors({
     // Supports comma-separated origins: FRONTEND_URL="https://prod.com,http://localhost:5173"
     origin: (origin: any, cb: any) => {
-      const allowed = (process.env.FRONTEND_URL ?? "http://localhost:5173")
+      const allowed = (process.env.FRONTEND_URL ?? "http://www.bigbucksinnovation.com")
         .split(",")
         .map((s) => s.trim());
       if (!origin || allowed.includes(origin)) return cb(null, true);
