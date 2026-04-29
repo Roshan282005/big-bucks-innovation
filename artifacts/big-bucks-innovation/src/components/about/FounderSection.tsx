@@ -1,12 +1,3 @@
-// ─── Founder Section ──────────────────────────────────────────────────────────
-// Drop this section into AboutPage BETWEEN <TeamSection /> and the MOU Gallery.
-//
-// PHOTO SETUP:
-//   • Copy your founder photo to:  src/frontend/public/assets/found2.jpg
-//   • The <img> tag will auto-load it; a graceful gradient placeholder shows
-//     if the file is missing (same pattern used in MouPhotoCard).
-// ──────────────────────────────────────────────────────────────────────────────
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
@@ -280,30 +271,30 @@ export function FounderSection() {
                 )}
               </div>
 
-              {/* Floating stat pill — bottom-left of card */}
+              {/* Floating stat pill — bottom-RIGHT of card (smaller) */}
               <motion.div
                 initial={{ opacity: 0, y: 12, scale: 0.9 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.55, duration: 0.45 }}
-                className="absolute -bottom-4 -left-6 rounded-xl px-4 py-2.5 flex items-center gap-2.5"
+                className="absolute -bottom-3 -right-4 rounded-lg px-3 py-2 flex items-center gap-2"
                 style={{
                   background: "#fff",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+                  boxShadow: "0 6px 20px rgba(0,0,0,0.10)",
                   border: "1px solid rgba(245,158,11,0.25)",
                 }}
               >
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0"
                   style={{ background: "rgba(245,158,11,0.1)" }}
                 >
-                  <TrendingUp className="w-4 h-4 text-amber-500" />
+                  <TrendingUp className="w-3 h-3 text-amber-500" />
                 </div>
                 <div>
-                  <p className="font-display font-bold text-sm text-foreground leading-none mb-0.5">
+                  <p className="font-display font-bold text-xs text-foreground leading-none mb-0.5">
                     53+ Grants
                   </p>
-                  <p className="text-muted-foreground text-[10px]">
+                  <p className="text-muted-foreground text-[9px]">
                     Secured &amp; counting
                   </p>
                 </div>
