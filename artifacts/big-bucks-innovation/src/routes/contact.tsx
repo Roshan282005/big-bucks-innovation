@@ -1,4 +1,3 @@
-// src/routes/contact.tsx  ← ONLY React, no Express imports at all
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactInfo } from "@/components/contact/ContactInfo";
 import { PublicLayout } from "@/components/layout/PublicLayout";
@@ -21,6 +20,7 @@ export function ContactPage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-primary/8 blur-3xl" />
         </div>
         <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
+
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -119,4 +119,3 @@ export function ContactPage() {
     </PublicLayout>
   );
 }
-// ← FILE ENDS HERE. No express/router code below this line.
