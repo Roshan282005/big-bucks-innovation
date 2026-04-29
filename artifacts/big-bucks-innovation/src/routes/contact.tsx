@@ -99,7 +99,7 @@ export function ContactPage() {
           >
             Prefer to reach us directly?{" "}
             
-              href="tel:8667858430"
+              <a href="tel:8667858430"
               className="text-primary font-medium hover:underline"
               data-ocid="contact.phone_link"
             >
@@ -107,7 +107,7 @@ export function ContactPage() {
             </a>{" "}
             or{" "}
             
-              href="mailto:bigbucksinnovation@gmail.com"
+              <a href="mailto:bigbucksinnovation@gmail.com"
               className="text-primary font-medium hover:underline"
               data-ocid="contact.email_link"
             >
