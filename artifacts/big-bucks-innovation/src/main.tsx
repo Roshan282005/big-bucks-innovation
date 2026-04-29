@@ -2,7 +2,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { AuthRehydrator } from "./components/auth/AuthRehydrator";
-import { ThemeProvider } from "./context/ThemeContext";
 import "./styles/tokens.css";
 import "./index.css";
 
@@ -10,10 +9,9 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
+    
       <AuthRehydrator>
         <App />
       </AuthRehydrator>
-    </ThemeProvider>
   </QueryClientProvider>,
 );

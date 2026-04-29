@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "../ThemeToggle";
 import { MegaMenu } from "./MegaMenu";
 
 export function Navbar() {
@@ -74,7 +73,7 @@ export function Navbar() {
             </Link>
 
             <div className="flex items-center">
-              <ThemeToggle />
+              
             </div>
 
             {/* Mobile hamburger */}
