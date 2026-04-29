@@ -1,3 +1,4 @@
+// src/routes/contact.tsx  ← ONLY React, no Express imports at all
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactInfo } from "@/components/contact/ContactInfo";
 import { PublicLayout } from "@/components/layout/PublicLayout";
@@ -12,7 +13,6 @@ export function ContactPage() {
 
   return (
     <PublicLayout>
-      {/* Hero */}
       <section
         className="relative py-20 overflow-hidden bg-gradient-to-b from-card to-background border-b border-border"
         data-ocid="contact.hero_section"
@@ -21,7 +21,6 @@ export function ContactPage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-primary/8 blur-3xl" />
         </div>
         <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
-
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,7 +68,6 @@ export function ContactPage() {
         </div>
       </section>
 
-      {/* Main split layout */}
       <section className="py-16 bg-background" data-ocid="contact.section">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
@@ -91,7 +89,6 @@ export function ContactPage() {
         </div>
       </section>
 
-      {/* Bottom CTA strip */}
       <section className="py-12 border-t border-border bg-muted/20">
         <div className="container mx-auto px-4 text-center">
           <motion.p
@@ -122,3 +119,4 @@ export function ContactPage() {
     </PublicLayout>
   );
 }
+// ← FILE ENDS HERE. No express/router code below this line.
