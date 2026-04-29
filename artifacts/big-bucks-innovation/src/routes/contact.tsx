@@ -17,7 +17,6 @@ export function ContactPage() {
         className="relative py-20 overflow-hidden bg-gradient-to-b from-card to-background border-b border-border"
         data-ocid="contact.hero_section"
       >
-        {/* Radial glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-primary/8 blur-3xl" />
         </div>
@@ -45,7 +44,6 @@ export function ContactPage() {
             </p>
           </motion.div>
 
-          {/* Stats strip */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,12 +73,9 @@ export function ContactPage() {
       <section className="py-16 bg-background" data-ocid="contact.section">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
-            {/* Left: Contact Info */}
             <div className="lg:col-span-2" data-ocid="contact.info_panel">
               <ContactInfo />
             </div>
-
-            {/* Right: Contact Form */}
             <div className="lg:col-span-3" data-ocid="contact.form_panel">
               <div className="mb-5">
                 <h2 className="font-display font-bold text-2xl text-foreground mb-1.5">
@@ -127,5 +122,3 @@ export function ContactPage() {
     </PublicLayout>
   );
 }
-
-export default ContactPage;

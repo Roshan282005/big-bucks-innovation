@@ -3,8 +3,6 @@ import { randomUUID } from "crypto";
 
 const router: Router = Router();
 
-// Guard: apply body parsing at router level so the route works
-// even if the caller forgot app.use(express.json())
 router.use(json());
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -29,7 +27,7 @@ interface ContactBody {
   message?: unknown;
 }
 
-// ── In-memory store (replace with DB later) ───────────────────────────────────
+// ── In-memory store ───────────────────────────────────────────────────────────
 
 const submissions: ContactSubmission[] = [];
 
@@ -45,9 +43,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 router.post(
   "/contact",
-  (req: Request<{}, {}, ContactBody>, res: Response, next: NextFunction) => {
+  (req: Request<object, object, ContactBody>, res: Response, next: NextFunction) => {
     try {
-      // Safely handle missing/malformed body
       const body: ContactBody =
         req.body && typeof req.body === "object" ? req.body : {};
 
@@ -59,7 +56,6 @@ router.post(
         errors.push("name is required");
       }
 
-      // Guard email regex behind the string check — not a separate branch
       if (!isNonEmptyString(email)) {
         errors.push("email is required");
       } else if (!EMAIL_RE.test(email)) {
@@ -89,7 +85,7 @@ router.post(
       submissions.push(submission);
 
       console.info(
-        `[contact] submission saved  id=${submission.id}  email=${submission.email}`
+        `[contact] saved  id=${submission.id}  email=${submission.email}`
       );
 
       res.status(201).json({ ok: true, id: submission.id });
