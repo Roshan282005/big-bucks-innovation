@@ -1,0 +1,1 @@
+Big Bucks Innovation PVT LTD is a pre-incubated enterprise technology company born from IIT Delhi's innovation ecosystem — delivering world-class IoT, web, mobile, and digital transformation solutions backed by government trust.
